@@ -54,9 +54,9 @@ class ArtisanController extends AbstractController
     {
         $tokenCsrf = $request->request->get('token');
 
-        if ($this->isCsrfTokenValid('delete-artisan-'. $categorie->getId(), $tokenCsrf)) 
+        if ($this->isCsrfTokenValid('delete-artisan-'. $artisan->getId(), $tokenCsrf)) 
         {
-            $categorieRepository->remove($categorie, true);
+            $artisanRepository->remove($artisan, true);
 
             $this->addFlash('success', 'La catégorie à bien été supprimée');
         }
