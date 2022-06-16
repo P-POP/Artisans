@@ -42,7 +42,7 @@ Site de référencement d'artisans dans un quartier défini.
 
 > `symfony console doctrine:shema:update --force`
 
-- Fixtures
+- Installer le bundle Fixtures
 
 > `composer require orm-fixtures --dev`
 
