@@ -1,49 +1,58 @@
-Jeudi 16 Juin
+### Installer le projet Artisans
 
-# Artisans
+[Comment bien rédiger un readme.md](https://fr.acervolima.com/qu-est-ce-que-le-fichier-readme-md/)
+
+**Artisans**
+
 Site de référencement d'artisans dans un quartier défini.
 
-# Création d'une BDD Artisans
+---
+**Bien se placer à la racine du projet.**
 
-Commande dans VSCode
+- Pour initaliser le projet, entrez :
+> `composer install`
 
-- symfony console doctrine:database:create
+---
+16 Juin 2022
+### Création d'une BDD Artisans
 
-# Creation d'une Entity
+- Commande dans VSCode
 
-- symfony console make:entity Artisan
+> `symfony console doctrine:database:create`
 
-- symfony console make:entity Owner
+- Creation des Entity
 
-- symfony console make:entity Type
+> `symfony console make:entity Artisan`
 
-- symfony console make:entity User
+> `symfony console make:entity Owner`
 
-# Relier avec php
+> `symfony console make:entity Type`
 
-- symfony console make:migration
+> `symfony console make:entity User`
 
-- symfony console doctrine:migrations:migrate
+*Les jointures des Entity ne sont pas faites*
 
- -symfony console doctrine:shema:update --force
+- Relier avec php
 
-# Fixtures
+> `symfony console make:migration`
 
-- composer require orm-fixtures --dev
+> `symfony console doctrine:migrations:migrate`
 
-### Supprimer le fichier AppFixtures !!
+> `symfony console doctrine:shema:update --force`
 
-# Création des Fichiers Fixtures pour les Entity A ne pas faire car Push dans Git
+- Fixtures
 
-- (symfony console make:fixtures ArtisanFixtures)
+> `composer require orm-fixtures --dev`
 
-- (symfony console make:fixtures TypeFixtures)
+**Supprimer le fichier AppFixtures !!**
 
-- (symfony console make:fixtures OwnerFixtures)
+- Création des Fichiers Fixtures pour les Entity
 
-# Chargement des Fixtures à faire sur VSCODE Par toute l'équipe !
+> `symfony console make:fixtures ArticleFixtures`
 
-- symfony console doctrine:fixtures:load
+> `symfony console doctrine:fixtures:load`
+
+
 
 
 
