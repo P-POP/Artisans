@@ -2,16 +2,26 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Owner;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class OwnerFixtures extends Fixture
+class OwnerFixtures extends Fixture implements DependentFixtureInterface;
 {
+
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        for ($i=0; $i<10; $i++){
 
+            //Instancie l'entité avec laquelle travailler
+            $owners = new Owner();
+            $owners->setAvis("Avis_$i");
+            
+            $manager->persist($owners);
+            
+        }
+        
         $manager->flush();
     }
 }
