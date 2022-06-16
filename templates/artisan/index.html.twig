@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artisan{% endblock %}
+
+{% block body %}
+    {% if app.user is not null %}
+        <div class='container px-4'>
+            <div class="row gx-5">
+                <div class="col">
+                    <a class='btn btn-dark m-4' href="{{ path('app_magazine_new') }}"> Add +</a>
+                </div>
+                <div class="col m-4">
+                    <form method="GET">
+                        <label for="numbers">Nombre d'artisans par page</label>
+                        <input type="hidden" name="page" value=" {{ app.request.query.get("page", 1) }}">
+                        <select name="numbers" id="numbers" onchange ="this.form.submit();">
+                            <option value="5">Choisissez une option</option>
+                            <option value="5">5</option>
+                            <option value="3">3</option>
+                            <option value="1">1</option>
+                        </select>
+                    </form>
+                </div>
+            </div>    
+        </div>
+
+        <table class='table table-light table-hover w-75 m-auto'>
+            <thead>
+                <tr>    
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Numéro</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody class="mb-3">
+                {% for artisan in artisans %}
+                    <tr>
+                        <td>{{ artisan.name }}</td>
+                        <td>{{ artisan.address }}</td>
+                        <td>{{ artisan.phone }}</td>
+                        <td>{{ artisan.email }}</td>
+                        <td>{{ artisan.description }}</td>
+                        <td>{{ artisan.cover }}</td>
+                        
+                {% endfor %}
+
+            </tbody> 
+            
+        </table>
+
+        <div class="d-flex">
+
+            <div class="m-auto pt-2">
+
+                {{ knp_pagination_render(magazines) }}
+
+            
+            </div>
+        
+        </div>
+
+    {% endif %}       
+{% endblock %}
