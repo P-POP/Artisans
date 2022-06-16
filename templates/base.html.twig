@@ -21,30 +21,28 @@
         {% endblock %}
     </head>
     <body>
-
-        
-            <header>
-                <nav>
-                    <ul class="nav justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Artisans</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Types</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled">Se connecter</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled">Se déconnecter</a>
-                        </li>
-                    </ul>
-                </nav>
-            </header>  
-        
-        
+        <header>
+            <nav>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Artisans</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Types</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link disabled">Se connecter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Se déconnecter</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>  
+        {% block body %}
+        {% endblock %}
     </body>
 </html>
