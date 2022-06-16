@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArtisanRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArtisanRepository::class)]
@@ -30,6 +32,17 @@ class Artisan
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $cover;
+
+    #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Owner::class)]
+    private $owner;
+
+    #[ORM\OneToOne(targetEntity: Type::class, cascade: ['persist', 'remove'])]
+    private $type;
+
+    public function __construct()
+    {
+        $this->owner = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +117,48 @@ class Artisan
     public function setCover(?string $cover): self
     {
         $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Owner>
+     */
+    public function getOwner(): Collection
+    {
+        return $this->owner;
+    }
+
+    public function addOwner(Owner $owner): self
+    {
+        if (!$this->owner->contains($owner)) {
+            $this->owner[] = $owner;
+            $owner->setArtisan($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOwner(Owner $owner): self
+    {
+        if ($this->owner->removeElement($owner)) {
+            // set the owning side to null (unless already changed)
+            if ($owner->getArtisan() === $this) {
+                $owner->setArtisan(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
