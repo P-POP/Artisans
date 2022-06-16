@@ -14,7 +14,7 @@ class ArtisanController extends AbstractController
     #[Route('/artisan', name: 'app_artisan')]
     public function index(ArtisanRepository $artisanRepository, PaginatorInterface $paginatorInterface, Request $request ): Response
     {
-        $artisans = $paginatoreInterface->paginate(
+        $artisans = $paginatorInterface->paginate(
             $artisanRepository->findAll(), //Requête SQL/DQL
             $request->query->getInt('page', 1), //Numéritation des pages 
             $request->query->getInt('numbers', 5) //Nombre d'enregistrement par page
