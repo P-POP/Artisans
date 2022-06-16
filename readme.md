@@ -184,7 +184,7 @@ PS C:\laragon\www\Artisans>
 
 > `composer require knplabs/knp-paginator-bundle`
 
-- Créer un nouveau fichier yaml appeler knp-paginator.yaml et y insérer le code ci-dessous :
+- Créer un nouveau fichier yaml appeler **knp-paginator.yaml** et y insérer le code ci-dessous :
 
 ```yaml
 knp_paginator:
