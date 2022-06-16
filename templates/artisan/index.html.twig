@@ -3,18 +3,66 @@
 {% block title %}Artisan{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    {% if app.user is not null %}
+        <div class='container px-4'>
+            <div class="row gx-5">
+                <div class="col">
+                    <a class='btn btn-dark m-4' href="{{ path('app_magazine_new') }}"> Add +</a>
+                </div>
+                <div class="col m-4">
+                    <form method="GET">
+                        <label for="numbers">Nombre d'artisans par page</label>
+                        <input type="hidden" name="page" value=" {{ app.request.query.get("page", 1) }}">
+                        <select name="numbers" id="numbers" onchange ="this.form.submit();">
+                            <option value="5">Choisissez une option</option>
+                            <option value="5">5</option>
+                            <option value="3">3</option>
+                            <option value="1">1</option>
+                        </select>
+                    </form>
+                </div>
+            </div>    
+        </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <table class='table table-light table-hover w-75 m-auto'>
+            <thead>
+                <tr>    
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Numéro</th>
+                    <th>Email</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    
+                    
+                </tr>
+            </thead>
+            <tbody class="mb-3">
+                {% for artisan in artisans %}
+                    <tr>
+                        <td>{{ artisan.name }}</td>
+                        <td>{{ artisan.address }}</td>
+                        <td>{{ artisan.phone }}</td>
+                        <td>{{ artisan.email }}</td>
+                        <td>{{ artisan.description }}</td>
+                        <td>{{ artisan.cover }}</td>
+                        
+                {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/Artisans/src/Controller/ArtisanController.php'|file_link(0) }}">src/Controller/ArtisanController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/Artisans/templates/artisan/index.html.twig'|file_link(0) }}">templates/artisan/index.html.twig</a></code></li>
-    </ul>
-</div>
+            </tbody> 
+            
+        </table>
+
+        <div class="d-flex">
+
+            <div class="m-auto pt-2">
+
+                {{ knp_pagination_render(magazines) }}
+
+            
+            </div>
+        
+        </div>
+
+    {% endif %}       
 {% endblock %}
