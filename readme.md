@@ -18,7 +18,7 @@ Site de référencement d'artisans dans un quartier défini.
 
 > `symfony console doctrine:migrations:migrate`
 
-> `symfony console doctrine:shema:update --force`
+> `symfony console doctrine:schema:update --force`
 
 > `composer require orm-fixtures --dev`
 
@@ -54,7 +54,7 @@ Site de référencement d'artisans dans un quartier défini.
 
 > `symfony console doctrine:migrations:migrate`
 
-> `symfony console doctrine:shema:update --force`
+> `symfony console doctrine:schema:update --force`
 
 - Installer le bundle Fixtures
 
