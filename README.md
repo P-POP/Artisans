@@ -35,7 +35,11 @@ Commande dans VSCode
 
 # Création des Fichiers Fixtures pour les Entity
 
-- symfony console make:fixtures ArticleFixtures
+- symfony console make:fixtures ArtisanFixtures
+
+- symfony console make:fixtures TypeFixtures
+
+- symfony console make:fixtures OwnerFixtures
 
 - symfony console doctrine:fixtures:load
 
