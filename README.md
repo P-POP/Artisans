@@ -33,13 +33,15 @@ Commande dans VSCode
 
 ### Supprimer le fichier AppFixtures !!
 
-# Création des Fichiers Fixtures pour les Entity
+# Création des Fichiers Fixtures pour les Entity A ne pas faire car Push dans Git
 
-- symfony console make:fixtures ArtisanFixtures
+- (symfony console make:fixtures ArtisanFixtures)
 
-- symfony console make:fixtures TypeFixtures
+- (symfony console make:fixtures TypeFixtures)
 
-- symfony console make:fixtures OwnerFixtures
+- (symfony console make:fixtures OwnerFixtures)
+
+# Chargement des Fixtures à faire sur VSCODE Par toute l'équipe !
 
 - symfony console doctrine:fixtures:load
 
