@@ -591,7 +591,27 @@ public function onAuthenticationSuccess(Request $request, TokenInterface $token,
                         'imagine_pattern' => 'thumbnail',
                     ])
                     
-         Ajouter des contraintes à l’objet profileFile de l’entité voulue afin de filtrer l’image :
+         Ajouter des contraintes à l’objet profileFile de l’entité artisan  afin de filtrer l’image :
+	 
+	#[ORM\Column(type: 'string', length: 255, nullable: true)]
+    	#[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+    	#[Assert\File(maxSize: '1M', maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }}')]
+    	private $profile;
+	
+	Sur le terminal taper les lignes de commandes : 
+
+        npm install && npm run build
+	
+	 ------------ --------------------------------------------------------------------
+	- Pour initaliser le projet, entrez :
+	
+	composer require vich/uploader-bundle
+	composer require liip/imagine-bundle
+	
+	Télécharger et installer 
+	https://github.com/mailhog/MailHog/releases : télécharger votre version
+	
+	
 
 
 
