@@ -1,10 +1,3 @@
-# Artisans
-Site de référencement d'artisans dans un quartier défini.
-Création des formulaires :
-
-Symfony console make: form ArtisanType
-
-
 <?php
 
 namespace App\Form;
