@@ -13,16 +13,31 @@
             </a>
         </div>
 
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select w-75 mx-auto" aria-label="Default select example">
                 <option selected>Choix</option>
                 <option value="1">Utilisateur</option>
                 <option value="2">Artisan</option>
                 <option value="3">Three</option>
             </select>
-   
 
-        <div class="w-50 mx-auto">
-            {{ form(form) }}
+        <div class="container d-flex">
+       
+                        <div class="row col-6">
+                        <img src="images_artisan.jpg" alt="artisan">
+                    
+                        </div>
+
+        <div class="container d-flex">
+        
+
+                    <div class="row col-6">
+                        <div class="w-50 mx-auto">
+                            {{ form(form) }}
+                        </div>
+
+                    </div>
         </div>
+
+    
 
     {% endblock %}
