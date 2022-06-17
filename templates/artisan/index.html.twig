@@ -3,12 +3,10 @@
 {% block title %}Artisan{% endblock %}
 
 {% block body %}
-    {% if app.user is not null %}
+    
         <div class='container px-4'>
             <div class="row gx-5">
-                <div class="col">
-                    <a class='btn btn-dark m-4' href="{{ path('app_magazine_new') }}"> Add +</a>
-                </div>
+                
                 <div class="col m-4">
                     <form method="GET">
                         <label for="numbers">Nombre d'artisans par page</label>
@@ -57,12 +55,12 @@
 
             <div class="m-auto pt-2">
 
-                {{ knp_pagination_render(magazines) }}
+                {{ knp_pagination_render(artisans) }}
 
             
             </div>
         
         </div>
 
-    {% endif %}       
+         
 {% endblock %}
