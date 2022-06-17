@@ -19,6 +19,7 @@ class Owner
     #[ORM\ManyToOne(targetEntity: Artisan::class, inversedBy: 'owner')]
     private $artisan;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,4 +48,6 @@ class Owner
 
         return $this;
     }
+
+    
 }
