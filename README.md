@@ -307,3 +307,302 @@ class ArtisanFormType extends AbstractType
         }
     }
 ```
+ ------------ --------------------------------------------------------------------
+ L'entité User a été crée lors de la création de la table User avec:
+- id	
+- email 
+- roles 
+- 	password 	varchar(255) 	
+ ------------ --------------------------------------------------------------------
+ Authentification:
+ La table User crée et le le fichier de configuration sécurité.yaml est à jour mettons en place nos connexion et deconnexion.
+ lign e de commande dans le terminal
+ 
+ -symfony console make:auth
+ PS C:\laragon\www\Artisans> symfony console make:auth  
+ 
+ Répondre au question:
+ - What style of authentication do you want? [Empty authenticator] :
+ répondre 1 afin afin de créer notre formulaire d'identification automatiquement.
+ 
+ - The class name of the authenticator to create (e.g. AppCustomAuthenticator) :
+ Choix d'un nom au fichier qui se chargera de l'authentification : ça sera "UserAuthenticator".
+ 
+ - Choose a name for the controller class (e.g. SecurityController) [SecurityController] :
+  Choisir un nom pour le contrôleur qui contient les routes vers le formulaire de connexion et vers la déconnexion. Je choisi par défaut : "SecurityController".
+  
+  - Do you want to generate a '/logout' URL? (yes/no) [yes] :
+Nous répondons "yes" afin de donner la possibilité à l'utilisateur de se déconnecter.
+
+Création de 3 fichiers:
+
+    - src/Security/UserAuthenticator.php
+    - src/Controller/SecurityController.php
+    - templates/security/login.html.twig
+    
+    modification à apporter:
+    Ouvrir le fichier "src/Security/UserAuthenticator.php".
+    
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+{
+    if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+        return new RedirectResponse($targetPath);
+    }
+
+    // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+}
+
+changer la route et mettre 'app-home' au lieu de 'some_route' afin de définir le chemin vers 'app-home' une fois l'utilisateur authentifié"
+
+public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    {
+        if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
+            return new RedirectResponse($targetPath);
+        }
+
+        // For example:
+        return new RedirectResponse($this->urlGenerator->generate('app_home'));
+    
+    }
+    
+     ------------ --------------------------------------------------------------------
+     Inscription:
+     
+     Dans le terminal mettre
+     
+     symfony console make:registration-form
+     
+     Répondre aux questions:
+     
+     - Do you want to add a @UniqueEntity validation annotation on your Users class to make sure duplicate accounts aren't created? (yes/no) [yes] :
+     
+     Répondre yes afin d'avoir plusieurs comptes utilisateurs avec le même mail.
+     
+     - Do you want to send an email to verify the user's email address after registration? (yes/no) [yes] :
+     Voulez-vous  veut envoyer un e-mail à l'utilisateur afin de vérifier la validité de son adresse e-mail. Il est préférable de répondre Yes
+     
+     - What email address will be used to send registration confirmations? e.g. mailer@your-domain.com :
+     Si vous avez répondu oui à la question précédente, entrez une adresse e-mail. Elle sera utilisée en tant qu'adresse expéditeur.
+     
+    -  What "name" should be associated with that email address? e.g. "Acme Mail Bot" :
+      Entrez  un nom qui sera utilisé lors de l'envoi de l'e-mail de vérification. pour moi cel sera 'Artisan'
+      
+      - Do you want to automatically authenticate the user after registration? (yes/no) [yes] :
+      Si vous voulez connecter automatiquement l'utilisateur une fois qu'il est inscrit répondre oui.
+      
+      ------------ --------------------------------------------------------------------
+      
+      Vu que nous avons répondu oui à la question précendente il faut installer
+      
+      composer require symfonycasts/verify-email-bundle
+      
+      Ouvrir le fichier "src/Controller/RegistrationController.php" et modifiez la méthode verifyUserEmail()
+      
+      public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        // validate email confirmation link, sets User::isVerified=true and persists
+        try {
+            $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
+        } catch (VerifyEmailExceptionInterface $exception) {
+            $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
+
+            return $this->redirectToRoute('app_register');
+        }
+
+        // @TODO Change the redirect on success and handle or remove the flash message in your templates
+        $this->addFlash('success', 'Your email address has been verified.');
+
+        return $this->redirectToRoute('app_home');
+    }
+    
+    Modifiez la dernière ligne de la méthode, à savoir $this->redirectToRoute() , j'ai mis 'app_home' afin de rediriger sur la page d'acceuil une fois son       email vérifié.
+    
+    - Mise à jour de la base de donnée
+    
+    symfony console doctrine:schema:update --force
+    
+    ------------ --------------------------------------------------------------------
+    
+    Mot de passe oublié ?
+    
+    -Sur le terminal tapé les lignes de commandes:
+    
+    composer require symfonycasts/reset-password-bundle
+    
+    symfony console make:reset-password
+    
+    Répondre aux questions :
+    
+    - What route should users be redirected to after their password has been successfully reset? [app_home] :
+     Des que l'utilisateur a correctement modifié son mot de passe, où le rediriger ? Le mieux reste le formulaire de connexion soit "app_login".
+
+    - What email address will be used to send reset confirmations? e.g. mailer@your-domain.com :
+       Ici, nous pouvons choisir l'adresse e-mail utilisée pour envoyer l'e-mail permettant de modifier le mot de passe.
+
+     - What "name" should be associated with that email address? e.g. "Acme Mail Bot" :
+       On définit le nom qui sera affiché dans le mail de modification du mot de passe envoyé.
+       
+       Mettre à jour la base de données:
+       
+       symfony console doctrine:schema:update --force
+       
+       ------------ --------------------------------------------------------------------
+       
+       Pour ajouter un « remember me » lors de la connexion, aller sur : 
+       
+       Dans le fichier config/packages/security.yaml sous le main écrire:
+       
+      main:
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 2419200 #1 month in seconds
+       
+       ------------ --------------------------------------------------------------------
+       
+      Mise en place de Mailhog:
+      
+      télécharger votre version à l'adresse https://github.com/mailhog/MailHog/releases et lancer l'executable.
+      
+      Aller dans le fichier .env et mettre ceci ligne 42 : 
+
+      MAILER_DSN=smtp://localhost:1025
+      
+       Pour mettre en place l’envoie automatique des mails, aller dans .env et modifier ligne 22 :
+
+     MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=1
+
+	    - Pour envoyer les mails automatiquement, aller dans config\packages\messenger.yaml et décommenter la ligne 16 ainsi que modifier la ligne 19 :
+
+            sync: 'sync://'
+
+            Symfony\Component\Mailer\Messenger\SendEmailMessage: sync
+            
+      Sous le {# templates/security/login.html.twig #} décommenter:
+      
+      <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+        
+        ------------ --------------------------------------------------------------------
+        
+        Installer VichUploaderBundle, qui est un otuil/bundle de gestion des images :
+        
+        Se placer dans le dossier racine du projet, taper dans le terminal : 
+	       composer require vich/uploader-bundle
+        
+        - Pour activer l’outil, aller dans config/packages/vich_uploder.yaml et décommenter à partir de la ligne 4, le modifier en fonction de ses besoins,           puis rajouter une autre option : 
+
+        mappings:
+             artisans:
+                 uri_prefix: /images/artisans
+                 upload_destination: '%kernel.project_dir%/public/images/artisans'
+                 namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+          Rajouter aussi ceci sous la ligne 2 :
+
+         metadata:
+             type: attribute
+
+      - Ensuite, modifier l’entité qui vas contenir l’image : 
+
+        symfony console make:entity Artisan
+
+      - Ajouter les objet suivants :
+
+     profileFile 
+     string
+     255
+     No
+
+     Profile
+     String
+     255
+     Yes
+
+     updated_at
+     datetime_immutable
+     yes
+
+      - Modifier dans le fichier de l’entité la ligne au-dessus de private $profileFile; :
+
+     #[Vich\UploadableField(mapping: 'authors', fileNameProperty: 'profile')]
+
+      - Rajouter en dessous de la ligne #[ORM\Entity(repositoryClass: AuthorRepository::class)] :
+
+     #[Vich\Uploadable]
+     
+      Rajouter le use : 
+
+       use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
+        - Modifier public function getProfileFile() et public function setProfileFile(string $profileFile) :
+
+       public function getProfileFile(): ?File
+           {
+               return $this->profileFile;
+           }
+
+           public function setProfileFile(?File $profileFile = null): self
+           {
+               $this->profileFile = $profileFile;
+
+               if ($profileFile !== null) {
+                   $this->updated_at = new DateTimeImmutable();
+               }
+
+               return $this;
+           }
+
+       Vérifier si le use est bel et bien le bon :
+
+       use Symfony\Component\HttpFoundation\File\File;
+       
+       - Ajouter dans le formulaire correspondant à l’entité modifée :
+       
+           ->add('cover', VichImageType::class, [
+                        'required' => false,
+                        'label' => 'image de couverture',
+                        'download_label' => false,
+                        'delete_label' => 'Cocher pour supprimer cette image',
+                        'imagine_pattern' => 'thumbnail',
+                    ])
+                    
+       - Envoyer les modifications sans écraser les données de la table : 
+
+        symfony console doctrine:schema:update –force
+        
+        ------------ --------------------------------------------------------------------
+        
+        - Installer LiipImagineBundle qui est un otuil/bundle de redimenssion d’images :
+        
+        composer require liip/imagine-bundle
+        
+        Rajouter 'imagine_pattern' => 'thumbnail',
+        
+            ->add('cover', VichImageType::class, [
+                        'required' => false,
+                        'label' => 'image de couverture',
+                        'download_label' => false,
+                        'delete_label' => 'Cocher pour supprimer cette image',
+                        'imagine_pattern' => 'thumbnail',
+                    ])
+                    
+         Ajouter des contraintes à l’objet profileFile de l’entité voulue afin de filtrer l’image :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
