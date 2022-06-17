@@ -56,10 +56,7 @@ class ArtisanFormType extends AbstractType
                 ])
 
               
-                ->add('type', TextType::class,[
-                    'label' => 'Nom de l\'artisan',
-                'required' => false
-            ])
+            
             
             ->add('save', SubmitType::class, [
                 'label' => 'Enregister'
