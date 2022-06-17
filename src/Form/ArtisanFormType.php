@@ -61,6 +61,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
                         'label' => 'image de couverture',
                         'download_label' => false,
                         'delete_label' => 'Cocher pour supprimer cette image',
+                        'imagine_pattern' => 'thumbnail',
                     ])
                     ->add('type', TextType::class,[
                         'label' => 'Nom de l\'artisan',
