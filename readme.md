@@ -30,5 +30,5 @@ Footer : #3c3c3b
 Bars de séparation du footer : #e3e3e3
 ```
 
-![image](https://cdn.discordapp.com/attachments/982252407885025320/987333772745793587/Plan_de_travail_1.png)
+![image](https://www.zupimages.net/up/22/24/6miv.png)
 
