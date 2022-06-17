@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "834244324ea83ef98b0998590312394e",
+=======
+    "content-hash": "14cdda6e48512f1665480ebb2e29885a",
+>>>>>>> a8ed7e2f60d800a5ccd7afe95514ee62cf8aed27
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1526,6 +1530,7 @@
             "time": "2022-05-05T09:31:05+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "fzaninotto/faker",
             "version": "v1.5.0",
             "source": {
@@ -1583,6 +1588,8 @@
             "time": "2015-05-29T06:29:14+00:00"
         },
         {
+=======
+>>>>>>> a8ed7e2f60d800a5ccd7afe95514ee62cf8aed27
             "name": "knplabs/knp-components",
             "version": "v3.5.0",
             "source": {
