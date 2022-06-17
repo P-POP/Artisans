@@ -215,4 +215,12 @@ knp_paginator:
         sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
 ```
+---
+### Mise en place des Avis artisan
+---
+-Il est possible pour un utilisateur de deposer un avis en ciblant un artisan.
 
+- Step One pensez à faire un update après avoir pull le projet: 
+> `symfony console doctrine:schema:update --force`
+
+-
