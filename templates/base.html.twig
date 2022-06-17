@@ -6,15 +6,18 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         
-        
-        
         {% block stylesheets %}
+            <!-- Link to stylesheet -->
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+            <!-- Bootstrap -->
             <!-- CSS only -->
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
+            <!-- Bootstrap -->
             <!-- JavaScript Bundle with Popper -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
             {{ encore_entry_script_tags('app') }}
@@ -22,26 +25,58 @@
     </head>
     <body>
         <header>
-            <nav>
-                <ul class="nav justify-content-end">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">Artisans</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Types</a>
-                    </li>
-                    <li class="nav-item">
-                       <a class="nav-link disabled">Se connecter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Se déconnecter</a>
-                    </li>
-                </ul>
+            <nav class="navbar navbar-expand-lg navbar-fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand marg-logo" href="{{ path('app_home') }}">
+                        <img src="/images/structure/logo.png" alt="" width="121" class="d-inline-block align-text-top">
+                    </a>
+                    <div class="collapse navbar-collapse justify-content-end marg-nav" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="{{ path('app_home') }}">Acceuil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_home') }}">Artisants</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_home') }}">Types</a>
+                            </li>
+
+                            {# {% if app.user is not null %}
+                                {% if is_granted('ROLE_ADMIN') %} #}
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ path('app_home') }}">Stocks</a>
+                                    </li>
+                                {# {% endif %} #}
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ path('app_home') }}">Mon compte</a>
+                                </li>
+                                {# {% if is_granted('ROLE_MODERATOR') %} #}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Administration 
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="{{ path('app_home') }}">Tableau de bord</a></li>
+                                            <li><a class="dropdown-item" href="{{ path('app_home') }}">Utilisateurs</a></li>
+                                        </ul>
+                                    </li>
+                                {# {% endif %} #}
+                                <li class="nav-item">
+                                    <a class="nav-link text-danger" href="{# {{ path('app_logout') }} #}">Se déconnecter</a>
+                                </li>
+                            {# {% else %} #}
+                                <li class="nav-item">
+                                    <a class="nav-link text-success" href="{# {{ path('app_login') }} #}">Se connecter</a>
+                                </li>
+                            {# {% endif %} #}
+
+                        </ul>
+                    </div>
+                </div>
             </nav>
-        </header>  
+        </header>
         {% block body %}
         {% endblock %}
     </body>
