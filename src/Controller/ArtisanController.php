@@ -59,7 +59,7 @@ class ArtisanController extends AbstractController
         ]);
     }
 
-    #[Route('/artisan/edit', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
+    #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
     {
 
