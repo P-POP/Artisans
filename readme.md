@@ -220,7 +220,7 @@ knp_paginator:
 ---
 - Il est possible pour un utilisateur de deposer un avis en ciblant un artisan.
 
-- Step One pensez à faire un update après avoir pull le projet: 
+- Pensez à faire un update après avoir pull le projet: 
 > `symfony console doctrine:schema:update --force`
 
 
