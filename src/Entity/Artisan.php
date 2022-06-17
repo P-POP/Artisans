@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArtisanRepository::class)]
 #[Vich\Uploadable]
@@ -47,6 +48,8 @@ class Artisan
     private $profileFile;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+    #[Assert\File(maxSize: '1M', maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }}')]
     private $Profile;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
