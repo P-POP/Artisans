@@ -5,12 +5,8 @@
 
 {% block body %}
 
-<<<<<<< HEAD
-    <div class="bg-grey color w-50 mx-auto mt-5">
-=======
-<div class="example-wrapper">
-    <h1>Hello {{ owner.avis }}! ✅</h1>
->>>>>>> a8ed7e2f60d800a5ccd7afe95514ee62cf8aed27
+<div class="example-wrapper container">
+    
 
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
@@ -21,7 +17,7 @@
 
             <div class="d-flex align-items-center justify-content-between pb-5">
         <div>
-            <h1 class="display-5 m-0">Déposez un avis</h1>
+            <h1 class="display-5 m-0 text">Déposez un avis</h1>
         </div>
         <a href="{{ path('app_home') }}" title="Retour à la page d'accueil" class="btn btn-outline-secondary">
             Retour à la page d'accueil
