@@ -11,14 +11,11 @@
 
 body {
     font-size: 16px;
-    margin: 0px;
+    margin: 0;
+    padding: 0;
     font-family: 'Raleway', sans-serif;
     height: 100vh; 
 }
-
-body { 
-    padding: 0; 
-    margin: 0; }
 
 nav {
     background-color: var(--withe);
@@ -97,13 +94,12 @@ nav .marg-nav {
 .g-content{
     font-weight: 300;
     font-size: 4rem;
-    color: var(--light-gray);
+    color: rgba(255, 255, 255, 0);
     text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
-    height: 50%;
     gap: 1rem;
 }
 
@@ -117,22 +113,22 @@ nav .marg-nav {
     display: none;
 } */
 
-/* .g-content p:hover{
-    display: block;
-} */
-
 .grid-link-1{
+    height: 50%;
     width: 35%;
 }
 
 .grid-link-2{
+    height: 50%;
     width: 45%;
 }
 
 .grid-link-3{
+    height: 50%;
     width: 25%;
 }
 
 .grid-link-4{
+    height: 50%;
     width: 45%;
 }
