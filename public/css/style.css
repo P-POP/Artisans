@@ -5,8 +5,10 @@
     --withe: #FFFFFF;
     --gray: #242424;
     --medium-gray: #575756;
-    --medim-light-gray: #706f6f;
+    --medium-light-gray: #706f6f;
     --light-gray: #e3e3e3;
+    --line-gray: #c6c6c6;
+    --footer-gray: #3c3c3b;
 }
 
 body {
@@ -15,6 +17,10 @@ body {
     padding: 0;
     font-family: 'Raleway', sans-serif;
     height: 100vh; 
+}
+
+p, h1, h2, h3, h4, h5{
+    font-family: 'Raleway', sans-serif;
 }
 
 nav {
@@ -108,6 +114,11 @@ nav .marg-nav {
     color: var(--gray);
 }
 
+.g-text{
+    font-weight: 300;
+    font-size: 3.5rem;
+}
+
 .g-link-1{
     height: 50%;
     width: 35%;
@@ -126,4 +137,37 @@ nav .marg-nav {
 .g-link-4{
     height: 50%;
     width: 45%;
+}
+
+.body-line {
+    width: 30%;
+    margin: 6em auto;
+    border-bottom: 2px solid var(--line-gray);
+}
+
+.body-h {
+    margin: auto;
+    font-weight: 600;
+    color: var(--medium-light-gray);
+    
+}
+
+.body-text {
+    margin: 6em 6em 0 6em;
+    text-align: justify;
+    font-weight: 300;
+    color: var(--medium-light-gray);
+}
+
+.body-h4 {
+    margin: 0 auto 3em 0;
+    font-weight: 600;
+    color: var(--medium-light-gray);
+    
+}
+
+.list-img {
+    width: 100%;
+    height: 40em;
+    object-fit: cover;
 }
