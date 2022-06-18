@@ -97,9 +97,8 @@ nav .marg-nav {
 }
 
 .g-content{
-    font-weight: 300;
-    font-size: 4rem;
-    color: var(--light-gray);
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0);
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -109,14 +108,14 @@ nav .marg-nav {
 }
 
 .g-content:hover{
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.384);
     background-size: cover;
     color: var(--gray);
 }
 
 .g-text{
-    font-weight: 300;
-    font-size: 3.5rem;
+    font-weight: 400;
+    font-size: 2.5rem;
 }
 
 .g-link-1{
@@ -152,15 +151,22 @@ nav .marg-nav {
     
 }
 
-.body-text {
-    margin: 6em 6em 0 6em;
+.body-text-left {
+    margin: 6em 3em 0 6em;
+    text-align: justify;
+    font-weight: 300;
+    color: var(--medium-light-gray);
+}
+
+.body-text-right {
+    margin: 6em 6em 0 3em;
     text-align: justify;
     font-weight: 300;
     color: var(--medium-light-gray);
 }
 
 .body-h4 {
-    margin: 0 auto 3em 0;
+    margin: 0 auto 3em auto;
     font-weight: 600;
     color: var(--medium-light-gray);
     
