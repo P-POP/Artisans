@@ -90,11 +90,10 @@ nav .marg-nav {
     width: 30%;
 }
 
-
 .g-content{
     font-weight: 300;
     font-size: 4rem;
-    color: rgba(255, 255, 255, 0);
+    color: var(--light-gray);
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -109,26 +108,22 @@ nav .marg-nav {
     color: var(--gray);
 }
 
-/* .g-content p{
-    display: none;
-} */
-
-.grid-link-1{
+.g-link-1{
     height: 50%;
     width: 35%;
 }
 
-.grid-link-2{
+.g-link-2{
     height: 50%;
     width: 45%;
 }
 
-.grid-link-3{
+.g-link-3{
     height: 50%;
     width: 25%;
 }
 
-.grid-link-4{
+.g-link-4{
     height: 50%;
     width: 45%;
 }
