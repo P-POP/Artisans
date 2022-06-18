@@ -2,7 +2,7 @@
 
 :root {
     --black: #000000; 
-    --with: #FFFFFF;
+    --withe: #FFFFFF;
     --gray: #242424;
     --medium-gray: #575756;
     --medim-light-gray: #706f6f;
@@ -21,6 +21,7 @@ body {
     margin: 0; }
 
 nav {
+    background-color: var(--withe);
     border-bottom : 1px solid var(--light-gray);
     font-family: 'Raleway', sans-serif;
     font-weight: 300;
@@ -41,7 +42,7 @@ nav .marg-nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 90%;
+    height: 100%;
     margin: auto;
 }
 
@@ -90,4 +91,48 @@ nav .marg-nav {
     background: url('../images/structure/home/street.jpeg') no-repeat center center;
     background-size: cover;
     width: 30%;
+}
+
+
+.g-content{
+    font-weight: 300;
+    font-size: 4rem;
+    color: var(--light-gray);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 50%;
+    gap: 1rem;
+}
+
+.g-content:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+    background-size: cover;
+    color: var(--gray);
+}
+
+/* .g-content p{
+    display: none;
+} */
+
+/* .g-content p:hover{
+    display: block;
+} */
+
+.grid-link-1{
+    width: 35%;
+}
+
+.grid-link-2{
+    width: 45%;
+}
+
+.grid-link-3{
+    width: 25%;
+}
+
+.grid-link-4{
+    width: 45%;
 }
