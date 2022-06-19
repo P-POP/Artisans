@@ -1,5 +1,7 @@
+/* Lien google font de la police décriture Raleway,  */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap');
 
+/* Couleurs configurées via le :root */
 :root {
     --black: #000000; 
     --withe: #FFFFFF;
@@ -11,6 +13,7 @@
     --footer-gray: #3c3c3b;
 }
 
+/* Paramètres par debaut du body */
 body {
     font-size: 16px;
     margin: 0;
@@ -19,10 +22,12 @@ body {
     height: 100vh; 
 }
 
+/* Paramètres par defaut des différents blocks de textes/titres */
 p, h1, h2, h3, h4, h5{
     font-family: 'Raleway', sans-serif;
 }
 
+/* Classes liées au style de la NavBar */
 nav {
     background-color: var(--withe);
     font-family: 'Raleway', sans-serif;
@@ -40,6 +45,7 @@ nav .marg-nav {
     margin-right: 3em;
 }
 
+/* Classes liées au style de la grille d'images sur la page Home */
 .home-grid{
     display: flex;
     align-items: center;
@@ -138,13 +144,15 @@ nav .marg-nav {
     width: 45%;
 }
 
-.body-line {
+/* Classes liées au contenu de la page home */
+.main-line {
     width: 30%;
     margin: 4em auto;
     border-bottom: 2px solid var(--line-and-btn-gray);
 }
 
-.body-h {
+/* Style du premier titre dans la page home */
+.main-h {
     margin: auto;
     font-size: 1.8rem;
     font-weight: 500;
@@ -152,21 +160,23 @@ nav .marg-nav {
     
 }
 
-.body-text-left {
+/* Style des textes principaux dans la page home */
+.main-text-left {
     margin: 4em 2em 0 4em;
     text-align: justify;
     font-weight: 300;
     color: var(--medium-light-gray);
 }
 
-.body-text-right {
+.main-text-right {
     margin: 4em 4em 0 2em;
     text-align: justify;
     font-weight: 300;
     color: var(--medium-light-gray);
 }
 
-.body-h2 {
+/* Style du second Titre */
+.main-h2 {
     margin: 0 auto 2em auto;
     font-size: 1.8rem;
     font-weight: 500;
@@ -174,12 +184,14 @@ nav .marg-nav {
     
 }
 
+/* Style des images liées aux artisans */
 .list-img {
     width: 100%;
     height: 35rem;
     object-fit: cover;
 }
 
+/* Style du titre/nom des artisans */
 .list-h3 {
     margin: 4rem 4rem 2rem 4rem;
     font-size: 1.8rem;
@@ -187,6 +199,7 @@ nav .marg-nav {
     color: var(--medium-light-gray);
 }
 
+/* Style de la note des artisans */
 .list-note {
     margin-left: 0.5rem;
     font-size: 1.5rem;
@@ -194,6 +207,7 @@ nav .marg-nav {
     color: var(--line-and-btn-gray);
 }
 
+/* Style de la déscription liée aux artisans */
 .list-text {
     margin: 0 4rem 0 4rem;
     text-align: justify;
@@ -201,12 +215,14 @@ nav .marg-nav {
     color: var(--medium-light-gray);
 }
 
+/* Style de la ligne qui sépare la désciption et l'aperçu d'un avis lié aux artisans */
 .list-line {
     width: 40%;
     margin: 2rem 4rem;
     border-bottom: 2px solid var(--line-and-btn-gray);
 }
 
+/* Style du nom de l'utilisateur éditeur de l'avis lié aux artisans */
 .list-user-avis {
     margin: 0 4rem;
     font-size: 1.2rem;
@@ -214,6 +230,7 @@ nav .marg-nav {
     color: var(--medium-light-gray);
 }
 
+/* Style du contenu de l'avis lié aux artisans */
 .list-avis-text {
     margin: 2rem 4rem 4rem 4rem;
     text-align: justify;
@@ -221,7 +238,8 @@ nav .marg-nav {
     color: var(--medium-light-gray);
 }
 
-.body-btn {
+/* Style du bouton dans la page home */
+.main-btn {
     margin: 4rem auto;
     display: flex;
     justify-content: center;
@@ -232,13 +250,14 @@ nav .marg-nav {
     padding: 15px 35px;
 }
 
-.body-btn:hover {
+.main-btn:hover {
     color: var(--medium-light-gray);
     text-decoration: none;
     border: 1px solid var(--medium-light-gray);
 }
 
-.body-map {
+/* Style de la map dans la page home */
+.main-map {
     width: 100%;
     height: 30rem;
     object-fit: cover;
