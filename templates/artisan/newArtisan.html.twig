@@ -20,22 +20,18 @@
                 <option value="3">Three</option>
             </select>
 
-        <div class="container d-flex">
-       
-                        <div class="row col-6">
-                        <img src="images_artisan.jpg" alt="artisan">
-                    
-                        </div>
+        <div class="container">
+           <div class="row">
+       <div class="col-lg-5">
+        <img src="{{ asset('images/artisan.jpg') }}" alt="artisan">
+        </div>
 
-        <div class="container d-flex">
-        
+    <div class="row col-6">
+        <div class="w-50 mx-auto">
+            {{ form(form) }}
+                </div>
 
-                    <div class="row col-6">
-                        <div class="w-50 mx-auto">
-                            {{ form(form) }}
-                        </div>
-
-                    </div>
+            </div>
         </div>
 
     
