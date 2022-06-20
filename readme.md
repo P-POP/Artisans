@@ -32,7 +32,13 @@ Site de référencement d'artisans dans un quartier défini.
 
 > `composer require knplabs/knp-paginator-bundle`
 
-> `composer require symfonycasts/verify-email-bundle`
+> `composer require symfonycasts/reset-password-bundle`
+
+> `symfony console doctrine:schema:update --force`
+
+> `composer require vich/uploader-bundle`
+
+> `composer require liip/imagine-bundle`
 
 ---
 ## from **features/BDD**
@@ -665,6 +671,7 @@ yes
 - Pour initaliser le projet, entrez :
 	
 > `composer require vich/uploader-bundle`
+
 > `composer require liip/imagine-bundle`
 	
 Télécharger et installer si besoin : https://github.com/mailhog/MailHog/releases
