@@ -708,7 +708,7 @@ Bars de séparation du footer : #e3e3e3
 - **Icons**
 [flaticon](https://fonts.google.com/specimen/Raleway?query=Raleway&category=Sans+Serif,Display,Handwriting,Monospace)
 
-- Icons utilisés 
+- Icons utilisés :
 ```
 Travaux : 
 - plein : <i class="fi fi-sr-home"></i>
