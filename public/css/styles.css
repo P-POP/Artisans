@@ -1,0 +1,39 @@
+.split
+ {
+    height: 100vh;
+    width: 50%;
+    position: relative;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  .left {
+    left: 0;
+  }
+  .rights {
+    right: 0;
+    background-image:url(imgs/pc.jpg) ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-left:var(--darcOrchid) solid ;
+  }
+  .centered
+  {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    vertical-align: baseline;
+    width: 60%;
+    
+  }
+
+  .description
+{
+   display: flex;
+}
+

@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de l'artisan{% endblock %}
+
+{% block body %}
+
+            <main>
+                <section id="craftsmen">
+                    <div class="description"> 
+                        <div class="split left">
+                            <img src="reference-alimentaire.jpg" alt="">
+                        </div>
+                            <div class="split right ">
+                                <div class="row gx-5">
+                                    <div class="col-12 m-4">
+                                        <h1>Nom de l'artisan</h1>
+                                        <p>Presentation de l'artisan</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus quisquam at culpa, sunt, voluptatem adipisci non ab dolore harum eius, praesentium aut enim eaque quis accusamus ea aliquam sit esse.</p>
+                                        <div class="m-4">
+                                            <ul>
+                                                <li>Adresse : Adresse</li>
+                                                <li>Mail : Mail</li>
+                                                <li>Phone : Phone</li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 m-4">
+                                    <div class="row">
+                                            <div class="col">
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                            </div>
+                                            <div class="col">
+                                                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                                                    <div class="carousel-inner">
+                                                        <div class="carousel-item active">
+                                                            <img src="reference-alimentaire.jpg" class="d-block w-100" alt="...">
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="reference-alimentaire.jpg" class="d-block w-100" alt="...">
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="reference-alimentaire.jpg" class="d-block w-100" alt="...">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="avisContainer">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col">
+                                <h2>Nom de l'utilisateur</h2>
+                            </div>
+                            <div class="col">
+                                <div>
+                                    <p>AVIS</p>
+                                {# affichage du score #}
+                                
+                                </div>
+                                    <div class="rating rating2">
+                                        <a href="#5" title="Give 5 stars">★</a>
+                                        <a href="#4" title="Give 4 stars">★</a>
+                                        <a href="#3" title="Give 3 stars">★</a>
+                                        <a href="#2" title="Give 2 stars">★</a>
+                                        <a href="#1" title="Give 1 star">★</a>
+                                    </div>
+                                    <div class="avis">
+                                        {# affichage des avis #}
+                                        {% for artisan in artisans %}
+                                            {% else %}
+                                        <p>Soyez le premier à déposer.</p>
+                                            {% endfor %}
+                                    </div>
+        
+                            </div>
+                    </div>
+                
+                
+                </section>
+            
+            </main>  
+
+{% endblock %}
