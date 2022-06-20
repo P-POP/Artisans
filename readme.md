@@ -337,13 +337,14 @@ class ArtisanFormType extends AbstractType
 ### Authentification :
 
 La table User crée et le le fichier de configuration sécurité.yaml est à jour mettons en place nos connexion et deconnexion.
-- ligne de commande dans le terminal
+
+- ligne de commande dans le terminal :
  
 > `symfony console make:auth`
 
 > `PS C:\laragon\www\Artisans> symfony console make:auth  `
  
-- Répondre au question:
+- Répondre aux questions :
 
 > `What style of authentication do you want? [Empty authenticator] :`
 
@@ -367,7 +368,7 @@ Nous répondons "yes" afin de donner la possibilité à l'utilisateur de se déc
     - **src/Controller/SecurityController.php**
     - **templates/security/login.html.twig**
 
-- Modifications à apporter:
+- Modifications à apporter :
 
 Ouvrir le fichier **"src/Security/UserAuthenticator.php".**
 
@@ -400,11 +401,11 @@ public function onAuthenticationSuccess(Request $request, TokenInterface $token,
 ---
 ### Inscription :
      
-- Dans le terminal mettre
+- Dans le terminal, mettre :
      
 > `symfony console make:registration-form`
      
-Répondre aux questions :
+- Répondre aux questions :
      
 > `Do you want to add a @UniqueEntity validation annotation on your Users class to make sure duplicate accounts aren't created? (yes/no) [yes] :`
 
@@ -427,11 +428,11 @@ Entrez  un nom qui sera utilisé lors de l'envoi de l'e-mail de vérification. p
 Si vous voulez connecter automatiquement l'utilisateur une fois qu'il est inscrit répondre oui.
 
 
-- Vu que nous avons répondu oui à la question précendente il faut installer
+- Vu que nous avons répondu oui à la question précendente il faut installer :
       
 > `composer require symfonycasts/verify-email-bundle`
       
-Ouvrir le fichier "**src/Controller/RegistrationController.php**" et modifiez la méthode **verifyUserEmail()**
+- Ouvrir le fichier "**src/Controller/RegistrationController.php**" et modifiez la méthode **verifyUserEmail()**
 
 ```php
 public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response
@@ -456,7 +457,7 @@ public function verifyUserEmail(Request $request, TranslatorInterface $translato
 
 - Modifiez la dernière ligne de la méthode, à savoir $this->redirectToRoute() , j'ai mis 'app_home' afin de rediriger sur la page d'acceuil une fois son       email vérifié.
     
-- Mise à jour de la base de donnée
+- Mise à jour de la base de donnée :
     
 > `symfony console doctrine:schema:update --force`
     
@@ -464,7 +465,7 @@ public function verifyUserEmail(Request $request, TranslatorInterface $translato
 
 ### Mot de passe oublié ?
     
-- Sur le terminal tapé les lignes de commandes:
+- Sur le terminal tapé les lignes de commandes :
     
 > `composer require symfonycasts/reset-password-bundle`
     
@@ -484,7 +485,7 @@ Ici, nous pouvons choisir l'adresse e-mail utilisée pour envoyer l'e-mail perme
 
 On définit le nom qui sera affiché dans le mail de modification du mot de passe envoyé.
        
-- Mettre à jour la base de données:
+- Mettre à jour la base de données :
        
 > `symfony console doctrine:schema:update --force`
 
@@ -492,7 +493,7 @@ On définit le nom qui sera affiché dans le mail de modification du mot de pass
        
 - Pour ajouter un "**remember me**" lors de la connexion, aller sur : 
        
-Dans le fichier **config/packages/security.yaml** sous le main écrire :
+- Dans le fichier **config/packages/security.yaml** sous le main écrire :
 
 ```yaml
         main:
@@ -501,7 +502,9 @@ Dans le fichier **config/packages/security.yaml** sous le main écrire :
                 lifetime: 2419200 #1 month in seconds
 ```
 
-### Mise en place de Mailhog:
+---
+
+### Mise en place de Mailhog :
       
 - télécharger votre version à l'adresse https://github.com/mailhog/MailHog/releases et lancer l'executable.
       
@@ -521,7 +524,7 @@ sync: 'sync://'
 Symfony\Component\Mailer\Messenger\SendEmailMessage: sync
 ```           
 
-- Dans **templates/security/login.html.twig** décommenter:
+- Dans **templates/security/login.html.twig** décommenter :
 
 ```html  
         <div class="checkbox mb-3">
@@ -666,3 +669,70 @@ yes
 	
 Télécharger et installer si besoin : https://github.com/mailhog/MailHog/releases
 
+---
+
+- Template de Home (Disponible dans **templates/template-Home/ressources**)
+
+#### Toutes les images et les ressources (sauf la police à implémenter dans le code via googlefonts) sont disponibles dans templates/template-Home/ressources
+
+- **Police décriture**
+[Raleway](https://fonts.google.com/specimen/Raleway?query=Raleway&category=Sans+Serif,Display,Handwriting,Monospace)
+```
+Thin
+Light
+Regular
+Medium
+SemiBold
+
+Couleurs de texte :
+
+:root {
+    --black: #000000; 
+    --with: #FFFFFF;
+    --gray: #242424;
+    --medium-gray: #575756;
+    --medim-light-gray: #706f6f;
+    --light-gray: #e3e3e3;
+}
+```
+
+- **Couleurs**
+```
+Background : blanc
+Background NavBar : blanc
+Bars de séparation : #c6c6c6
+Background Footer : #3c3c3b
+Bars de séparation du footer : #e3e3e3
+```
+
+- **Icons**
+[flaticon](https://fonts.google.com/specimen/Raleway?query=Raleway&category=Sans+Serif,Display,Handwriting,Monospace)
+
+- Icons utilisés 
+```
+Travaux : 
+- plein : <i class="fi fi-sr-home"></i>
+- contours : <i class="fi fi-rr-home"></i>
+
+Bien être :
+- plein : <i class="fi fi-sr-spa"></i>
+- contours : <i class="fi fi-rr-spa"></i>
+
+Alimentation :
+- plein : <i class="fi fi-sr-salad"></i>
+- contours : <i class="fi fi-rr-salad"></i>
+
+Présation de service :
+- plein : <i class="fi fi-sr-hand-holding-heart"></i>
+- contours : <i class="fi fi-rr-hand-holding-heart"></i>
+
+Étoile :
+- plein : <i class="fi fi-ss-star"></i>
+- contours : <i class="fi fi-rs-star"></i>
+
+Position :
+- plein : <i class="fi fi-sr-marker"></i>
+- contours : <i class="fi fi-rr-marker"></i>
+```
+
+![image](https://www.zupimages.net/up/22/24/6miv.png)
