@@ -262,3 +262,8 @@ nav .marg-nav {
     height: 30rem;
     object-fit: cover;
 }
+#map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+    height:400px;
+
+    margin: auto;
+}

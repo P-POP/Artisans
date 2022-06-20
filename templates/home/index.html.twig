@@ -89,7 +89,8 @@
     <div class="d-flex mx-auto">
         <a href="" class="main-btn">Voir plus d'artisans</a>
     </div>
-    <img src="{{ asset('/images/structure/home/map.png') }}" alt="" class="main-map">
+    <div id="map" data-address = "{{ artisans | json_encode() }}">
+    </div>
     <div class="main-line"></div>
     <div class="col-12 d-flex">
         <h2 class="mx-auto main-h">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
