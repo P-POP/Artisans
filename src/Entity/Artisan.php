@@ -4,10 +4,15 @@ namespace App\Entity;
 
 use App\Repository\ArtisanRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ArtisanRepository::class)]
+#[Vich\Uploadable]
 class Artisan
 {
     #[ORM\Id]
@@ -38,6 +43,17 @@ class Artisan
 
     #[ORM\OneToOne(targetEntity: Type::class, cascade: ['persist', 'remove'])]
     private $type;
+
+    #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'profile')]
+    private $profileFile;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+    #[Assert\File(maxSize: '1M', maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }}')]
+    private $Profile;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $updated_at;
 
     public function __construct()
     {
@@ -151,7 +167,7 @@ class Artisan
         return $this;
     }
 
-    public function getType(): ?Type
+    public function getType(): ?File
     {
         return $this->type;
     }
@@ -159,6 +175,46 @@ class Artisan
     public function setType(?Type $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getProfileFile(): ?string
+    {
+        return $this->profileFile;
+    }
+
+    public function setProfileFile(?File $profileFile = null): self
+    {
+        $this->profileFile = $profileFile;
+
+        if ($profileFile !== null) {
+            $this->updated_at = new DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    public function getProfile(): ?string
+    {
+        return $this->Profile;
+    }
+
+    public function setProfile(?string $Profile): self
+    {
+        $this->Profile = $Profile;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
