@@ -3,9 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Artisan;
-use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -32,7 +32,7 @@ class ArtisanFormType extends AbstractType
                        ])
                     ]
                 ])
-                ->add('phone', Integer::class, [
+                ->add('phone', IntegerType::class, [
                     'label' => 'Télephone',
                     'required' => false,
                 ])
@@ -55,16 +55,8 @@ class ArtisanFormType extends AbstractType
                     'label' => 'Description de l\'artisan'
                 ])
 
-                ->add('cover', Image::class, [
-                    'required' => false,
-                    'label' => 'image de couverture',
-                    'download_label' => false,
-                    'delete_label' => 'Cocher pour supprimer cette image',
-                ])
-                ->add('type', TextType::class,[
-                    'label' => 'Nom de l\'artisan',
-                'required' => false
-            ])
+              
+            
             
             ->add('save', SubmitType::class, [
                 'label' => 'Enregister'

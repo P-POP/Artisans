@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Artisan;
+use App\Form\ArtisanFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,13 +27,44 @@ class ArtisanController extends AbstractController
             'details' => $artisanRepository->find(5)
         ]);
     }
+    //Ajout d'un nouveau artisan
+    
+    #[Route('/artisan/new',name:'app_new_artisan')]
+    public function newArtisan(Request $request, ArtisanRepository $artisanRepository) :Response
+    {
+        $artisan = new Artisan();
 
-    #[Route('/artisan/edit', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
+        $form = $this->createForm(ArtisanFormType::class, $artisan);
+
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) { 
+
+            $artisanRepository->add($artisan, true);
+
+            $this->addFlash(
+               'success',
+               'Votre magazine a bien été ajouté !'
+            );
+
+            //$magazine = new Magazine();
+            //$form = $this->createForm(MagazineFormType::class, $magazine);
+
+            return $this->redirectToRoute('app_artisan');
+            
+        }
+
+        return $this->render('artisan/newArtisan.html.twig',[
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
     {
 
 
-	    $form=$this->createdForm(ArtisanFormType::class, $artisan);
+	    $form=$this->createForm(ArtisanFormType::class, $artisan);
 	    $form->handleRequest($request); 
 	    if ($form->isSubmitted() && $form->isValid()) {
 

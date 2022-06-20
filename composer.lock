@@ -4,7 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "5c8c02a4ffc75f3163efca7a9ce0c2ec",
+=======
+<<<<<<< HEAD
+    "content-hash": "834244324ea83ef98b0998590312394e",
+=======
+    "content-hash": "14cdda6e48512f1665480ebb2e29885a",
+>>>>>>> a8ed7e2f60d800a5ccd7afe95514ee62cf8aed27
+>>>>>>> origin/dev
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1526,6 +1534,7 @@
             "time": "2022-05-05T09:31:05+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "imagine/imagine",
             "version": "1.3.2",
             "source": {
@@ -1550,16 +1559,49 @@
                 "ext-gd": "to use the GD implementation",
                 "ext-gmagick": "to use the Gmagick implementation",
                 "ext-imagick": "to use the Imagick implementation"
+=======
+<<<<<<< HEAD
+            "name": "fzaninotto/faker",
+            "version": "v1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/d0190b156bcca848d401fb80f31f504f37141c8d",
+                "reference": "d0190b156bcca848d401fb80f31f504f37141c8d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "suggest": {
+                "ext-intl": "*"
+>>>>>>> origin/dev
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-develop": "1.x-dev"
+=======
+                    "dev-master": "1.5.x-dev"
+>>>>>>> origin/dev
                 }
             },
             "autoload": {
                 "psr-4": {
+<<<<<<< HEAD
                     "Imagine\\": "src/"
+=======
+                    "Faker\\": "src/Faker/"
+>>>>>>> origin/dev
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1568,6 +1610,7 @@
             ],
             "authors": [
                 {
+<<<<<<< HEAD
                     "name": "Bulat Shakirzyanov",
                     "email": "mallluhuct@gmail.com",
                     "homepage": "http://avalanche123.com"
@@ -1652,6 +1695,27 @@
             "time": "2021-11-22T12:27:42+00:00"
         },
         {
+=======
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "support": {
+                "issues": "https://github.com/fzaninotto/Faker/issues",
+                "source": "https://github.com/fzaninotto/Faker/tree/master"
+            },
+            "abandoned": true,
+            "time": "2015-05-29T06:29:14+00:00"
+        },
+        {
+=======
+>>>>>>> a8ed7e2f60d800a5ccd7afe95514ee62cf8aed27
+>>>>>>> origin/dev
             "name": "knplabs/knp-components",
             "version": "v3.5.0",
             "source": {
