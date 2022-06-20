@@ -262,3 +262,44 @@ nav .marg-nav {
     height: 30rem;
     object-fit: cover;
 }
+.split {
+    height: 130%;
+    width: 60%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    margin-right: 300px;
+    margin-left: 40px;
+
+}
+  
+  
+  .left {
+    left: 0;
+    
+  }
+  
+  
+  .right {
+    right: 0;
+    
+  }
+  
+  
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  
+  .centered img {
+    width: 300px;
+    margin-right: 50px;
+    
+
+  }
