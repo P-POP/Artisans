@@ -90,7 +90,7 @@ class ArtisanController extends AbstractController
         // utilisation du voter nommée ArtisanVoter
         $this->denyAccessUnlessGranted('ARTISAN_DELETE', $artisan);
         return $this->render('article/delete.html.twig', [
-            'article' => $artisan
+            'artisan' => $artisan
             
         ]);
 
