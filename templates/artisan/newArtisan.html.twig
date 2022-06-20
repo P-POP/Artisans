@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+
+	<div class="d-flex align-items-center justify-content-between pb-5">
+		<div>
+			<h1 class="display-5 m-0">Inscription</h1>
+		</div>
+		<a href="{{ path('app_artisan') }}" title="Retour à la liste" class="btn btn-outline-secondary">
+			Retour à la liste
+		</a>
+	</div>
+
+	<select class="form-select w-75 mx-auto" aria-label="Default select example">
+		<option selected>Choix</option>
+		<option value="1">Utilisateur</option>
+		<option value="2">Artisan</option>
+		<option value="3">Three</option>
+	</select>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<img src="{{ asset('images/artisan.jpg')}}" alt="artisan">
+			</div>
+
+
+		</div>
+
+		<div class="row">
+			<div class="col-lg-6">
+				{{ form(form) }}
+			</div>
+
+
+		</div>
+	</div>
+
+
+	{% endblock %}

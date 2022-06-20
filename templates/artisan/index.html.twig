@@ -3,11 +3,11 @@
 {% block title %}Artisan{% endblock %}
 
 {% block body %}
-    {% if app.user is not null %}
+    
         <div class='container px-4'>
             <div class="row gx-5">
                 <div class="col">
-                    <a class='btn btn-dark m-4' href="{{ path('app_magazine_new') }}"> Add +</a>
+                    <a class='btn btn-dark m-4' href="{{ path('app_new_artisan') }}"> Add +</a>
                 </div>
                 <div class="col m-4">
                     <form method="GET">
@@ -33,6 +33,7 @@
                     <th>Email</th>
                     <th>Description</th>
                     <th>Image</th>
+                    <th>Choix</th>
                     
                     
                 </tr>
@@ -46,6 +47,15 @@
                         <td>{{ artisan.email }}</td>
                         <td>{{ artisan.description }}</td>
                         <td>{{ artisan.cover }}</td>
+                        <td>
+                            <a href="{{ path('app_edit_artisan', { id:artisan.id }) }}"><button class="btn btn-warning">Editer</button></a>
+                        <td>
+                
+                            <a href="{{ path('app_delete_artisan', { id:artisan.id }) }}"><button class="btn btn-danger">Supprimer</button></a>
+                            
+                        </td>
+                        
+                        
                         
                 {% endfor %}
 
@@ -57,12 +67,12 @@
 
             <div class="m-auto pt-2">
 
-                {{ knp_pagination_render(magazines) }}
+                {{ knp_pagination_render(artisans) }}
 
             
             </div>
         
         </div>
 
-    {% endif %}       
+         
 {% endblock %}
