@@ -5,6 +5,9 @@
         "This file is @generated automatically"
     ],
 <<<<<<< HEAD
+    "content-hash": "14cdda6e48512f1665480ebb2e29885a",
+=======
+<<<<<<< HEAD
     "content-hash": "5c8c02a4ffc75f3163efca7a9ce0c2ec",
 =======
 <<<<<<< HEAD
@@ -12,6 +15,7 @@
 =======
     "content-hash": "14cdda6e48512f1665480ebb2e29885a",
 >>>>>>> a8ed7e2f60d800a5ccd7afe95514ee62cf8aed27
+>>>>>>> origin/dev
 >>>>>>> origin/dev
     "packages": [
         {
@@ -1535,6 +1539,8 @@
         },
         {
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
             "name": "imagine/imagine",
             "version": "1.3.2",
             "source": {
@@ -1715,6 +1721,7 @@
         {
 =======
 >>>>>>> a8ed7e2f60d800a5ccd7afe95514ee62cf8aed27
+>>>>>>> origin/dev
 >>>>>>> origin/dev
             "name": "knplabs/knp-components",
             "version": "v3.5.0",
@@ -1941,6 +1948,8 @@
             "time": "2022-06-06T11:26:02+00:00"
         },
         {
+<<<<<<< HEAD
+=======
             "name": "liip/imagine-bundle",
             "version": "2.8.0",
             "source": {
@@ -2043,6 +2052,7 @@
             "time": "2022-05-30T13:06:31+00:00"
         },
         {
+>>>>>>> origin/dev
             "name": "monolog/monolog",
             "version": "3.1.0",
             "source": {
@@ -7778,6 +7788,8 @@
             "time": "2022-04-15T14:25:02+00:00"
         },
         {
+<<<<<<< HEAD
+=======
             "name": "symfonycasts/reset-password-bundle",
             "version": "v1.13.0",
             "source": {
@@ -7877,6 +7889,7 @@
             "time": "2022-03-08T22:08:27+00:00"
         },
         {
+>>>>>>> origin/dev
             "name": "twig/extra-bundle",
             "version": "v3.4.0",
             "source": {
@@ -8032,6 +8045,8 @@
             "time": "2022-05-17T05:48:52+00:00"
         },
         {
+<<<<<<< HEAD
+=======
             "name": "vich/uploader-bundle",
             "version": "1.19.1",
             "source": {
@@ -8139,6 +8154,7 @@
             "time": "2022-05-05T15:51:10+00:00"
         },
         {
+>>>>>>> origin/dev
             "name": "webmozart/assert",
             "version": "1.11.0",
             "source": {
