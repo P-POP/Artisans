@@ -28,17 +28,17 @@ Site de référencement d'artisans dans un quartier défini.
 
 > `composer require orm-fixtures --dev`
 
-> `symfony console doctrine:fixtures:load`
-
 > `composer require knplabs/knp-paginator-bundle`
 
 > `composer require symfonycasts/reset-password-bundle`
 
-> `symfony console doctrine:schema:update --force`
-
 > `composer require vich/uploader-bundle`
 
 > `composer require liip/imagine-bundle`
+
+> `symfony console doctrine:schema:update --force`
+
+> `symfony console doctrine:fixtures:load`
 
 ---
 ## from **features/BDD**
