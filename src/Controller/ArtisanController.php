@@ -11,6 +11,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\ArtisanRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ArtisanController extends AbstractController
 {
@@ -80,19 +81,18 @@ class ArtisanController extends AbstractController
         ]);
     }
 
-    #[Route('/artisan/delet/{id}', name:'app_delete_artisan', requirements: ['id' => '\d+'], methods: ['POST'])]
+    #[Route('/artisan/delet/{id}', name:'app_delete_artisan', requirements: ['id' => '\d+'])]
+    #[IsGranted('ROLE_USER')]
     
-    public function remove(Artisan $artisan, Request $request, ArtisanRepository $artisanRepository): RedirectResponse
+    public function remove(Artisan $artisan): Response
     
     {
-        $tokenCsrf = $request->request->get('token');
-
-        if ($this->isCsrfTokenValid('delete-artisan-'. $artisan->getId(), $tokenCsrf)) 
-        {
-            $artisanRepository->remove($artisan, true);
-
-            $this->addFlash('success', 'La catégorie à bien été supprimée');
-        }
+        // utilisation du voter nommée ArticleVoter
+        $this->denyAccessUnlessGranted('ARTISAN_DELETE', $artisan);
+        return $this->render('article/delete.html.twig', [
+            'article' => $artisan
+            
+        ]);
 
         return $this->redirectToRoute('app_artisan');
     }
