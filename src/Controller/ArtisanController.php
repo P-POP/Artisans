@@ -49,8 +49,8 @@ class ArtisanController extends AbstractController
                'L\'artisan a bien été ajouté !'
             );
 
-            //$magazine = new Magazine();
-            //$form = $this->createForm(MagazineFormType::class, $magazine);
+            $artisan = new Artisan();
+            $form = $this->createForm(ArtisanFormType::class, $artisan());
 
             return $this->redirectToRoute('app_artisan');
             
@@ -64,8 +64,6 @@ class ArtisanController extends AbstractController
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
     {
-
-
 	    $form=$this->createForm(ArtisanFormType::class, $artisan);
 	    $form->handleRequest($request); 
 	    if ($form->isSubmitted() && $form->isValid()) {

@@ -52,10 +52,8 @@ class ArtisanFormType extends AbstractType
             
                 ->add('description', TextareaType::class, [
                     'required' => false,
-                    'label' => 'Description de l\'artisan'
+                    'label' => 'Déscription de l\'artisan'
                 ])
-
-              
             
             
             ->add('save', SubmitType::class, [
