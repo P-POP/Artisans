@@ -63,8 +63,11 @@
             <nav class="navbar navbar-expand-lg {# fixed-top #}">
                 <div class="container-fluid">
                     <a class="navbar-brand marg-logo" href="{{ path('app_home') }}">
-                        <img src="{{ asset('/images/structure/logo.png') }}" alt="" width="115" class="d-inline-block align-text-top">
+                        <img src="{{ asset('/images/structure/logo.png') }}" alt="" class="d-inline-block align-text-top logo">
                     </a>
+                    <button class="navbar-toggler marg-nav bruger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Navigation mobile">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
                     <div class="collapse navbar-collapse justify-content-end marg-nav" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -86,7 +89,7 @@
                                         <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Administration 
                                         </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <ul class="dropdown-menu drop" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item" href="{{ path('app_home') }}">Tableau de bord</a></li>
                                             <li><a class="dropdown-item" href="{{ path('app_home') }}">Utilisateurs</a></li>
                                         </ul>
@@ -109,6 +112,48 @@
         {% block body %}
         {% endblock %}
         <footer>
+            <div class="fo-content">
+                <div class="fo-part-left">
+                    <a href=""><img src="{{ asset('/images/structure/logo-footer.png') }}" class="logo"></a>
+                    <div class="fo-title">
+                        <p class="street-text">115 Lorem ipsum dolor</p>
+                        <p class="town-text">71000 Mâcon</p>
+                    </div>
+                    <div class="rights">
+                        <p class="all-rights">Tous droits réservés</p>
+                        <p class="copy">&copy; Mon petit artisan - 2022</p>
+                    </div>
+                </div>
+                <div class="fo-part-middle-1">
+                    <p class="fo-title">À propos de nous</p>
+                    <div class="fo-title-line-1"></div>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima necessitatibus vitae distinctio perferendis, expedita, alias non debitis, animi facilis tenetur ex aliquam quam autem sapiente tempore quae delectus quas veniam !</p>
+                    <div class="d-lg-flex">
+                        <a href="" class="fo-btn">Plus d'informations</a>
+                        <a href="" class="fo-btn">Contactez-nous</a>
+                    </div>
+                </div>
+                <div class="fo-part-middle-2">
+                    <p class="fo-title">Site</p>
+                    <div class="fo-title-line-2"></div>
+                    <a href="" class="fo-links">Acceuil</a>
+                    <a href="" class="fo-links">Artisans</a>
+                    <a href="" class="fo-links">Types</a>
+                    <a href="" class="fo-links">Connexion</a>
+                </div>
+                <div class="fo-part-right">
+                    <p class="fo-title">Newsletter</p>
+                    <div class="fo-title-ligne-right"></div>
+                    <div class="d-flex"></div>
+                    <form action="POST">
+                        <div class="col-12">
+                            <label for="email-newsletter" class="fo-label-news">Entrez votre adresse email pour vous inscrire à la Newsletter</label>
+                        </div>
+                            <input type="email" id="email-newsletter" class="fo-input-news">
+                            <button type="submit" class="fo-btn">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
         </footer>
     </body>
 </html>
