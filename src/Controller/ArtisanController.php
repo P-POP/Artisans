@@ -115,6 +115,17 @@ class ArtisanController extends AbstractController
         ]);
     }
 
+    /* //Création de la route pour le detail des avis concernant un artisan
+    #[Route('/artisan/{id}', name: 'app_details_with_avis__artisans', requirements:['id' => '\d+'])]
+    public function detailsWithAvis(Artisan $artisan): Response
+    {
+        $i=1;
+        
+        return $this->render('artisan/details.html.twig', [
+            'artisan' => $artisan
+        ]);
+    } */
+
 }
   
 
