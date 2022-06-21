@@ -22,22 +22,6 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('last_name', TextType::class, [
-                'label' => 'Nom',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Le nom est obligatoire'
-                    ])
-                ]
-            ])
-            ->add('first_name', TextType::class, [
-                'label' => 'Prénom',
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Le prénom est obligatoire'
-                    ])
-                ]
-            ])
             ->add('email', EmailType::class, [
                 'label' => 'Adresse email',
                 # Doc des contraintes de formulaire : https://symfony.com/doc/current/validation.html#financial-and-other-number-constraints
@@ -74,7 +58,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'J\'accepte les conditions du site',
+                'label' => 'J\'accepte les conditions générale du site',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
