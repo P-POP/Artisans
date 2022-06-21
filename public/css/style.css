@@ -263,7 +263,7 @@ nav .marg-nav {
     object-fit: cover;
 }
 .split {
-    height: 130%;
+    height: 140%;
     width: 60%;
     position: fixed;
     z-index: 1;
@@ -299,7 +299,7 @@ nav .marg-nav {
   
   .centered img {
     width: 300px;
-    margin-right: 50px;
+    
     
 
   }
