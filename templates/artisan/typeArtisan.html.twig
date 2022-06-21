@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Types{% endblock %}
+
+{% block body %}
+    
+    {% for artisans in type %}
+
+        {{artisans.name}}
+        {{artisans.address}}
+        {{artisans.description}}
+        
+    {% endfor %}
+
+{% endblock %}

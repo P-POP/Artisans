@@ -7,7 +7,9 @@
 <div class="home-grid">
     <div class="content-h-g">
         <div class="imgs-h-g img-1">
-            <a href="" class="g-content g-link-1">
+        {% for type in artisanType %}
+             <a href="{{ path('app_type_artisans', { id:type.id })}}" class="g-content g-link-1">
+        {% endfor %}
                 <i class="fi fi-rr-home"></i>
                 <p class="g-text">Travaux</p>
             </a>

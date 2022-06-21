@@ -1,3 +1,4 @@
+
 // On initialise la latitude et la longitude de Charnay-les-Macon (centre de la carte)
 
 var lat = 46.308602;
