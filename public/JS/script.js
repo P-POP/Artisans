@@ -100,9 +100,12 @@ function initMap() {
                 Http.onload = function (e) {
                     if (Http.readyState === 4) {
                       if (Http.status === 200) {
+
                         if (Http.responseText != "") {
 
-
+                            const response = JSON.parse(Http.responseText);
+                        
+                
                             if(response.length != 0){
     
                                 userlat = response[0]['lat'];
@@ -117,7 +120,7 @@ function initMap() {
                                     lon: userlon,
                                     address: element
                                 };
-                                
+                                console.log("test2555" + currentArtisans);
                                 artisanList.push(currentArtisans);
                             }  
                             else {
