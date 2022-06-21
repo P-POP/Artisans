@@ -112,14 +112,6 @@ class ArtisanController extends AbstractController
         return $this->render('artisan/detailsArtisan.html.twig', [
            'artisanAdress'=> $mapOneAddress,
            "artisan" => $artisan
-    //Création de la route pour le detail des avis concernant un artisan
-    #[Route('/artisan/{id}', name: 'details_artisan', requirements:['id' => '\d+'])]
-    public function details(Artisan $artisan): Response
-    {
-		$i=1;
-        
-        return $this->render('artisan/details.html.twig', [
-            'artisans' => $artisan
         ]);
     }
 
