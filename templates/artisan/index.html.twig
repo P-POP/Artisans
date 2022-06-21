@@ -99,7 +99,11 @@
                             <div class="col-2 d-flex justify-content-center m-auto gap-2">
                                 <a href="{{ path('app_details_artisans', { id:artisan.id }) }}" class="btn btn-outline-warning mb-3">Détails</a>
                                 <a href="{{ path('app_edit_artisan', { id:artisan.id }) }}" class="btn btn-outline-success mb-3">Editer</a>
-                                <a href="{{ path('app_delete_artisan', { id:artisan.id }) }}" class="btn btn-outline-danger mb-3">Supprimer</a>
+                                <form action="{{ path('app_delete_artisan', { id:artisan.id }) }}" method="post" class="m-0 p-0">
+                                    <input type="hidden" name="token" value="{{ csrf_token('delete-artisan-'~ artisan.id) }}" class="m-0 p-0">
+                                    <button class="btn btn-outline-danger mx-auto mb-3">Supprimer</button>
+                                </form>
+                                {# <a href="{{ path('app_delete_artisan', { id:artisan.id }) }}" class="btn btn-outline-danger mb-3">Supprimer</a> #}
                             </div>
                         </div>
                     {% else %}

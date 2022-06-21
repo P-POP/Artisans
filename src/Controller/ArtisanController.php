@@ -12,6 +12,7 @@ use App\Repository\ArtisanRepository;
 use App\Repository\OwnerRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ArtisanController extends AbstractController
 {
@@ -45,7 +46,7 @@ class ArtisanController extends AbstractController
 
             $this->addFlash(
                'success',
-               'Votre magazine a bien été ajouté !'
+               'L\'artisan a bien été ajouté !'
             );
 
             //$magazine = new Magazine();
@@ -71,7 +72,7 @@ class ArtisanController extends AbstractController
 
            	$artisanRepository->add($artisan, true);
 
-            $this->addFlash('success', 'Votre categorie a bien été modifié !');
+            $this->addFlash('success', 'L\'artisan a bien été modifié !');
 
            	return $this->redirectToRoute('app_artisan');
         }
@@ -81,18 +82,15 @@ class ArtisanController extends AbstractController
         ]);
     }
 
-    #[Route('/artisan/delet/{id}', name:'app_delete_artisan', requirements: ['id' => '\d+'], methods: ['POST'])]
-    
+    #[Route('/artisan/delet/{id}', name:'app_delete_artisan', requirements: ['id'=> '\d+'], methods: ['POST'])]
     public function remove(Artisan $artisan, Request $request, ArtisanRepository $artisanRepository): RedirectResponse
-    
     {
         $tokenCsrf = $request->request->get('token');
+        if ($this->isCsrfTokenValid('delete-artisan-'. $artisan->getId(), $tokenCsrf)){
 
-        if ($this->isCsrfTokenValid('delete-artisan-'. $artisan->getId(), $tokenCsrf)) 
-        {
             $artisanRepository->remove($artisan, true);
+            $this->addFlash('success', 'L\'artisan à bien été supprimé');
 
-            $this->addFlash('success', 'La catégorie à bien été supprimée');
         }
 
         return $this->redirectToRoute('app_artisan');
