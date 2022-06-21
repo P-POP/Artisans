@@ -528,6 +528,11 @@ footer p{
         width: 45%;
     }
 
+    /* Classe permettant au footer de rester en bas dans toutes les pages */
+    main{
+        min-height: 65%;
+    }
+
     /* Classes liées à la ligne de la page home */
     .main-line {
         width: 30%;
@@ -655,4 +660,3 @@ footer p{
         font-weight: 200;
     }
 }
-
