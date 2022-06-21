@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\ArtisanRepository;
+use App\Repository\OwnerRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -96,4 +97,20 @@ class ArtisanController extends AbstractController
 
         return $this->redirectToRoute('app_artisan');
     }
+
+    //Création de la route pour le detail des avis concernant un artisan
+    #[Route('/artisan/{id}', name: 'details_artisan', requirements:['id' => '\d+'])]
+    public function details(Artisan $artisan): Response
+    {
+		$i=1;
+        
+        return $this->render('artisan/details.html.twig', [
+            'artisans' => $artisan
+        ]);
+    }
+
+    
 }
+  
+
+    
