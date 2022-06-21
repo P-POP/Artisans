@@ -36,18 +36,8 @@ class AvisController extends AbstractController
         ]);
     }
 
-    #[Route('/artisan/avis/{id}', name: 'app_avis_artisan')]
-    public function AllAvis(OwnerRepository $ownerRepository, Request $request ): Response
-    {
-        $ratings = $ownerRepository->paginate(
-            $ownerRepository->findAll(), //Requête SQL/DQL
-            $request->query->getInt('page', 1), //Numéritation des pages 
-            $request->query->getInt('numbers', 5) //Nombre d'enregistrement par page
-        );
-        return $this->render('avis/allAvis.html.twig', [
-            'ratings' => $ratings,
-            'details' => $ownerRepository->find(5)
-        ]);
-    }
+   
+
+
 
 }

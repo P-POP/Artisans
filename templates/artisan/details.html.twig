@@ -75,21 +75,29 @@
                                 {# affichage du score #}
                                 
                                 </div>
-                                    <div class="rating rating2">
-                                        <a href="#5" title="Give 5 stars">★</a>
-                                        <a href="#4" title="Give 4 stars">★</a>
-                                        <a href="#3" title="Give 3 stars">★</a>
-                                        <a href="#2" title="Give 2 stars">★</a>
-                                        <a href="#1" title="Give 1 star">★</a>
+                                    <div class=" stars pb-3">
+                                        <i class="star" data-value="1">★</i><i class="star" data-value="2">★</i><i class="star" data-value="3">★</i><i class="star" data-value="4">★</i><i class="star" data-value="5">★</i>    
                                     </div>
-                                    <div class="avis">
+                                        <input type="hidden" name="note" id="note" value="0">
+                                    <button type="submit"></button>
+
+                                    <a href=" {{ path('app_avis', { id: owner.id }) }} "></a>
+                                    
+                                    <form action="" method="post">
+                                        <div>
+                                            <textarea type="text" name="commentaire" id="commentaire" rows="5"></textarea>
+                                        </div>
+                                    </form>
+                                    
+                                        <div class="avis">
+
                                         {# affichage des avis #}
                                         {% for artisan in artisans %}
                                             {% else %}
                                         <p>Soyez le premier à déposer.</p>
                                             {% endfor %}
                                     </div>
-        
+
                             </div>
                     </div>
                 

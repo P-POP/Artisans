@@ -39,10 +39,24 @@
                 </tr>
             </thead>
             <tbody class="mb-3">
-                {% for rating in ratings %}
+                {% for artisan in artisans %}
                     <tr>
-                        <td>{{ rating.score }}</td>
-                        <td>{{ rating.avis }}</td>
+                        <td>{{ artisan.name }}</td>
+                        <td>{{ artisan.address }}</td>
+                        <td>{{ artisan.phone }}</td>
+                        <td>{{ artisan.email }}</td>
+                        <td>{{ artisan.description }}</td>
+                        <td>{{ artisan.cover }}</td>
+                        <td>
+                            <a href="{{ path('app_edit_artisan', { id:artisan.id }) }}"><button class="btn btn-warning">Editer</button></a>
+                        <td>
+                
+                            <a href="{{ path('app_delete_artisan', { id:artisan.id }) }}"><button class="btn btn-danger">Supprimer</button></a>
+                            
+                        </td>
+                        
+                        
+                        
                 {% endfor %}
 
             </tbody> 
@@ -53,7 +67,7 @@
 
             <div class="m-auto pt-2">
 
-                {{ knp_pagination_render(ratings) }}
+                {{ knp_pagination_render(artisans) }}
 
             
             </div>
