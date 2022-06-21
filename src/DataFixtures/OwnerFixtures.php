@@ -8,10 +8,15 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class OwnerFixtures extends Fixture
+class OwnerFixtures extends Fixture implements DependentFixtureInterface
 {
 
-    
+    public function getDependencies()
+    {
+        return [
+            UserFixtures::class
+        ];
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -23,7 +28,7 @@ class OwnerFixtures extends Fixture
             $owners->setAvis("Avis_$i");
             $owners->setScore(3);
 
-            $owners->setUser($this->getReference("user_". rand(0, 11)));
+            $owners->setUser($this->getReference("user_". rand(0, 3)));
          
             $manager->persist($owners);
             
@@ -34,10 +39,5 @@ class OwnerFixtures extends Fixture
     }
 
 
-public function getDependencies()
-{
-        return [
-            UserFixtures::class
-        ];
-    }
+
 }
