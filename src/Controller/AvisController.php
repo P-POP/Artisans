@@ -35,9 +35,4 @@ class AvisController extends AbstractController
 
         ]);
     }
-
-   
-
-
-
 }
