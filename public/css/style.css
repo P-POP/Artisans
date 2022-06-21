@@ -286,7 +286,7 @@ nav .marg-nav {
 
 /*Affichage de la carte*/
 #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
-    height:400px;
+    height: 30rem;
     margin: auto;
 }
 
@@ -572,6 +572,11 @@ footer p{
     /* Style du bouton dans la page home */
     .main-btn {
         font-size: 1rem;
+    }
+
+    /*Affichage de la carte*/
+    #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+        height: 50rem;
     }
 
     .fo-content{
