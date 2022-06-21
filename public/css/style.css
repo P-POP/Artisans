@@ -265,38 +265,30 @@ nav .marg-nav {
 /*Affichage de la carte*/
 #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
     height:400px;
-
     margin: auto;
 }
 
 /* Image de la page détails de l'artisan */
-.artisanImage
-{
+.artisanImage{
     height: 300px;
     
 }
 
-.sizeImg
-{
-
+.sizeImg{
     height: 250px;
     width: 200px;
     margin: auto;
 
 }
-.leftArrow svg
-{
+
+.leftArrow svg{
     float: right;
     fill: var(--cloud);
-
     margin: 10px;
-    
 }
 
-.rightArrow svg
-{
+.rightArrow svg{
     fill: var(--cloud);
     float: left;
     margin: 10px;
-
 }
