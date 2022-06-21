@@ -635,6 +635,8 @@ footer p{
 
     .fo-title-line-2 {
         width: 2rem;
+        margin: 1rem 0;
+        border-bottom: 2px solid var(--line-and-btn-gray);
     }
 
     .fo-part-right{
