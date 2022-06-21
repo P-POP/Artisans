@@ -70,7 +70,7 @@
                                 <a class="nav-link" href="{{ path('app_home') }}">Types</a>
                             </li>
 
-                            {# {% if app.user is not null %} #}
+                            {% if app.user is not null %}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ path('app_home') }}">Mon compte</a>
                                 </li>
@@ -86,13 +86,13 @@
                                     </li>
                                 {# {% endif %} #}
                                 <li class="nav-item">
-                                    <a class="nav-link text-danger" href="{# {{ path('app_logout') }} #}">Se déconnecter</a>
+                                    <a class="nav-link text-danger" href="{{ path('app_logout') }}">Se déconnecter</a>
                                 </li>
-                            {# {% else %} #}
+                            {% else %}
                                 <li class="nav-item">
-                                    <a class="nav-link text-success" href="{# {{ path('app_login') }} #}">Se connecter</a>
+                                    <a class="nav-link text-success" href="{{ path('app_login') }}">Se connecter</a>
                                 </li>
-                            {# {% endif %} #}
+                            {% endif %}
 
                         </ul>
                     </div>
@@ -102,7 +102,7 @@
 
         {% block body %}
         {% endblock %}
-        
+
         <footer>
             <div class="fo-content">
                 <div class="fo-part-left">
@@ -128,10 +128,10 @@
                 <div class="fo-part-middle-2">
                     <p class="fo-title">Site</p>
                     <div class="fo-title-line-2"></div>
-                    <p><a href="" class="fo-links">Acceuil</a></p>
+                    <p><a href="{{ path('app_home') }}" class="fo-links">Acceuil</a></p>
                     <p><a href="" class="fo-links">Artisans</a></p>
                     <p><a href="" class="fo-links">Types</a></p>
-                    <p><a href="" class="fo-links">Connexion</a></p>
+                    <p><a href="{{ path('app_login') }}" class="fo-links">Connexion</a></p>
                 </div>
                 <div class="fo-part-right">
                     <p class="fo-title">Newsletter</p>
