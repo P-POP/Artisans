@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -23,6 +25,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private $password;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Owner::class, orphanRemoval: true)]
+    private $Owner;
+
+    public function __construct()
+    {
+        $this->Owner = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -92,5 +102,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Owner>
+     */
+    public function getOwner(): Collection
+    {
+        return $this->Owner;
+    }
+
+    public function addOwner(Owner $owner): self
+    {
+        if (!$this->Owner->contains($owner)) {
+            $this->Owner[] = $owner;
+            $owner->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOwner(Owner $owner): self
+    {
+        if ($this->Owner->removeElement($owner)) {
+            // set the owning side to null (unless already changed)
+            if ($owner->getUser() === $this) {
+                $owner->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
