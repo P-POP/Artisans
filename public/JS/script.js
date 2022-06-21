@@ -17,7 +17,7 @@ const artisans = chercher();
 // Fonction d'initialisation de la carte
 function initMap() {
 
-    var iconBase = 'JS/markerIcons/marker-icon.png'
+    var iconBase = '../JS/markerIcons/marker-icon.png'
 
     // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
     macarte = L.map('map').setView([lat, lon], 15);

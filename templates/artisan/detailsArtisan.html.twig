@@ -34,9 +34,9 @@
             </div>
         </div>
         <div class="col">
-           <h1>{{artisan.name}}</h1> 
-            <p>{{artisan.address}}</p>
-            <p>{{artisan.description}}</p>
+           <h1>{{oneArtisan.name}}</h1> 
+            <p>{{oneArtisan.address}}</p>
+            <p>{{oneArtisan.description}}</p>
         </div>
     </div>
 </div>
@@ -46,9 +46,18 @@
     Tous les avis
 
 </section>
+{% set itemToMap = [] %}
 
-    <div id="map" data-address = "{{ artisan | json_encode() }}">
-    </div>
+{% for key, currentArtisan in artisanAddress %}
+    {% for key2, jsp in currentArtisan %}
+        {% if key2 == oneArtisan.name %}
+            {% set itemToMap = itemToMap|merge([currentArtisan]) %}
+        {% endif %}
+
+    {% endfor %} 
+{% endfor %}
+<div id="map" data-address = "{{ itemToMap | json_encode() }}">
+        </div>
 
 
 

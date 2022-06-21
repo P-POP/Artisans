@@ -3,13 +3,22 @@
 {% block title %}Types{% endblock %}
 
 {% block body %}
-    
-    {% for artisans in type %}
 
-        {{artisans.name}}
-        {{artisans.address}}
-        {{artisans.description}}
+{{dump(allArtisansFromType)}}
+
+   {{dump(type)}}
+
+       {% for artisan in allArtisansFromType %}
+
+ 
+            {% if artisan.id == type.id %}
+            
+                {{artisan.name}}
+            
+            {% endif %}
         
-    {% endfor %}
+
+        
+       {% endfor %}
 
 {% endblock %}

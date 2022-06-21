@@ -19,7 +19,6 @@ class HomeController extends AbstractController
 
         $mapAddress =[];
         $artisans = $artisanRepository->findAll();
-        
 
         foreach ($artisans as $artisan) {
 
@@ -30,28 +29,28 @@ class HomeController extends AbstractController
             ];
 
         }
-    
-       
-    
-
         return $this->render('home/index.html.twig', [
 
             'artisans' => $mapAddress,
             'artisanType' => $typeRepository->findAll()
         ]);
+
+       
     }
 
     
 
     #[Route ('/type/{id}', name:'app_type_artisans', requirements:["id"=>"\d+"])]
-    public function types(int $id, TypeRepository $typeRepository)
+    public function types( int $id, TypeRepository $typeRepository, ArtisanRepository $artisanRepository)
     
     {
 
         return $this->render('artisan/typeArtisan.html.twig', [
 
             'type'=>$typeRepository->find($id),
+            'allArtisansFromType'=>$artisanRepository->findAll()
             
+
             
         ]);
     }   
