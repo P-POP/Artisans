@@ -32,7 +32,7 @@ p, h1, h2, h3, h4, h5{
 }
 
 /* Classes liées au style de la NavBar */
-nav {
+.base-nav {
     background-color: var(--withe);
     border-bottom: 1px solid var(--light-gray);
     font-family: 'Raleway', sans-serif;
@@ -442,7 +442,7 @@ footer p{
     }
 
     /* Classes liées au style de la NavBar */
-    nav {
+    .base-nav {
         font-size: 1.1rem;
     }
 
