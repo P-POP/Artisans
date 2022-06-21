@@ -1,0 +1,264 @@
+/* Lien google font de la police décriture Raleway,  */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap');
+
+/* Couleurs configurées via le :root */
+:root {
+    --black: #000000; 
+    --withe: #FFFFFF;
+    --gray: #242424;
+    --medium-gray: #575756;
+    --medium-light-gray: #706f6f;
+    --light-gray: #e3e3e3;
+    --line-and-btn-gray: #c6c6c6;
+    --footer-gray: #3c3c3b;
+}
+
+/* Paramètres par debaut du body */
+body {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    height: 100vh; 
+}
+
+/* Paramètres par defaut des différents blocks de textes/titres */
+p, h1, h2, h3, h4, h5{
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Classes liées au style de la NavBar */
+nav {
+    background-color: var(--withe);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+nav .marg-logo {
+    margin-left: 3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+nav .marg-nav {
+    margin-right: 3em;
+}
+
+/* Classes liées au style de la grille d'images sur la page Home */
+.home-grid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 87%;
+    margin: auto;
+}
+
+.content-h-g{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgs-h-g{
+    height: 50%;
+}
+
+.img-1{
+    background: url('../images/structure/home/travaux.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 35%;
+}
+
+.img-2{
+    background: url('../images/structure/home/food.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 20%;
+}
+
+.img-3{
+    background: url('../images/structure/home/prestation-de-service.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 45%;
+}
+
+.img-4{
+    background: url('../images/structure/home/bien-etre.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 25%;
+}
+
+.img-5{
+    background: url('../images/structure/home/alimentaire.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 45%;
+}
+
+.img-6{
+    background: url('../images/structure/home/street.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 30%;
+}
+
+.g-content{
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 1rem;
+}
+
+.g-content:hover{
+    background-color: rgba(255, 255, 255, 0.384);
+    background-size: cover;
+    height: 43.5%;
+    color: var(--gray);
+}
+
+.g-text{
+    font-weight: 400;
+    font-size: 2.5rem;
+}
+
+.g-link-1{
+    height: 50%;
+    width: 35%;
+}
+
+.g-link-2{
+    height: 50%;
+    width: 45%;
+}
+
+.g-link-3{
+    height: 50%;
+    width: 25%;
+}
+
+.g-link-4{
+    height: 50%;
+    width: 45%;
+}
+
+/* Classes liées au contenu de la page home */
+.main-line {
+    width: 30%;
+    margin: 4em auto;
+    border-bottom: 2px solid var(--line-and-btn-gray);
+}
+
+/* Style du premier titre dans la page home */
+.main-h {
+    margin: auto;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--medium-light-gray);
+    
+}
+
+/* Style des textes principaux dans la page home */
+.main-text-left {
+    margin: 4em 2em 0 4em;
+    text-align: justify;
+    font-weight: 300;
+    color: var(--medium-light-gray);
+}
+
+.main-text-right {
+    margin: 4em 4em 0 2em;
+    text-align: justify;
+    font-weight: 300;
+    color: var(--medium-light-gray);
+}
+
+/* Style du second Titre */
+.main-h2 {
+    margin: 0 auto 2em auto;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--medium-light-gray);
+    
+}
+
+/* Style des images liées aux artisans */
+.list-img {
+    width: 100%;
+    height: 35rem;
+    object-fit: cover;
+}
+
+/* Style du titre/nom des artisans */
+.list-h3 {
+    margin: 4rem 4rem 2rem 4rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--medium-light-gray);
+}
+
+/* Style de la note des artisans */
+.list-note {
+    margin-left: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 200;
+    color: var(--line-and-btn-gray);
+}
+
+/* Style de la déscription liée aux artisans */
+.list-text {
+    margin: 0 4rem 0 4rem;
+    text-align: justify;
+    font-weight: 300;
+    color: var(--medium-light-gray);
+}
+
+/* Style de la ligne qui sépare la désciption et l'aperçu d'un avis lié aux artisans */
+.list-line {
+    width: 40%;
+    margin: 2rem 4rem;
+    border-bottom: 2px solid var(--line-and-btn-gray);
+}
+
+/* Style du nom de l'utilisateur éditeur de l'avis lié aux artisans */
+.list-user-avis {
+    margin: 0 4rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--medium-light-gray);
+}
+
+/* Style du contenu de l'avis lié aux artisans */
+.list-avis-text {
+    margin: 2rem 4rem 4rem 4rem;
+    text-align: justify;
+    font-weight: 200;
+    color: var(--medium-light-gray);
+}
+
+/* Style du bouton dans la page home */
+.main-btn {
+    margin: 4rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--line-and-btn-gray);
+    text-decoration: none;
+    border: 1px solid var(--line-and-btn-gray);
+    padding: 15px 35px;
+}
+
+.main-btn:hover {
+    color: var(--medium-light-gray);
+    text-decoration: none;
+    border: 1px solid var(--medium-light-gray);
+}
+
+/* Style de la map dans la page home */
+.main-map {
+    width: 100%;
+    height: 30rem;
+    object-fit: cover;
+}
