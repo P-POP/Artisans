@@ -25,6 +25,7 @@
     </div>
 
     <div class="w-50 mx-auto">
+    
        
          {{ form_start(form) }}
 
@@ -42,6 +43,14 @@
                 {{ form_label(form.artisan) }}
                 {{ form_widget(form.artisan) }}
                 {{ form_errors(form.artisan) }}
+
+            </div>
+
+             <div class="mb-3">
+
+                {{ form_label(form.score) }}
+                {{ form_widget(form.score) }}
+                {{ form_errors(form.score) }}
 
             </div>
 

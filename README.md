@@ -329,6 +329,22 @@ class ArtisanFormType extends AbstractType
         }
     }
 ```
+### Mise en place des avis
+
+Création d'un fichier js qui se nomme stars.js
+
+- Enregistrement dans l'input du score attribué par un user.
+- Mise en place d'écouteurs d'évènement au "click" et au "mousseout".
+- Création d'un ecouteur d'evenement pour recuperer la valeur de la note donnée.
+- Garder la valeur du click sur l'étoile.
+
+
+### Mise en place de la route dans le controller et d'une vue pour la section des dépots des avis
+
+- Création d'un formulaire et insertion dans la base de données.
+- Choix de l'artisan
+- Dépôt d'un commentaire
+- Note attribué à l'artisan
 
 ---
 #### L'entité User a été crée lors de la création de la table User avec :
