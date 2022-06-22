@@ -27,11 +27,11 @@ class ArtisanCrudController extends AbstractCrudController
             TextField::new('name', 'nom'),
             TextField::new('address'),
             NumberField::new('phone'),
-            EmailField::new('email')
-            ->setFormTypeOption('disabled','disabled'),
+            EmailField::new('email'),
             TextEditorField::new('description'),
             TextField::new('coverFile', 'image')
-            ->setFormType(VichImageType::class),            
+            ->setFormType(VichImageType::class)
+            ->onlyOnForms(),
             ImageField::new('cover', 'image')
             ->setBasePath('images/artisans')
             ->setUploadDir('public/images/artisans')
