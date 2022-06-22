@@ -7,28 +7,26 @@
 <div class="home-grid">
     <div class="content-h-g">
         <div class="imgs-h-g img-1">
-        {% for type in artisanType %}
-             <a href="{{ path('app_type_artisans', { id:type.id })}}" class="g-content g-link-1">
-        {% endfor %}
+            <a href="{{ path('app_type_artisans', { id:artisanType[0].id })}}" class="g-content g-link-1">
                 <i class="fi fi-rr-home"></i>
                 <p class="g-text">Travaux</p>
             </a>
         </div>
         <div class="imgs-h-g img-2"></div>
         <div class="imgs-h-g img-3">
-            <a href="" class="g-content g-link-2">
+            <a href="{{ path('app_type_artisans', { id:artisanType[1].id })}}" class="g-content g-link-2">
                 <i class="fi fi-rr-hand-holding-heart"></i>
                 <p class="g-text">Préstation de service</p>
             </a>
         </div>
         <div class="imgs-h-g img-4">
-            <a href="" class="g-content g-link-3">
+            <a href="{{ path('app_type_artisans', { id:artisanType[2].id })}}" class="g-content g-link-3">
                 <i class="fi fi-rr-spa"></i>
                 <p class="g-text">Bien-être</p>
             </a>
         </div>
         <div class="imgs-h-g img-5">
-            <a href="" class="g-content g-link-4">
+            <a href="{{ path('app_type_artisans', { id:artisanType[3].id })}}" class="g-content g-link-4">
                 <i class="fi fi-rr-salad"></i>
                 <p class="g-text">Alimentation</p>
             </a>
