@@ -812,8 +812,8 @@ Position :
         private $cover;
 
         #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'cover')]
-        #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
-        #[Assert\File(maxSize: '1M', maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}')]
+        #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')] //verifie sic'est bien une image
+        #[Assert\File(maxSize: '1M', maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}')] //Vérifie que l'image ne dépasse 1MO
         private $coverFile;
 
     Installer les Guetter Setter correspondants:
