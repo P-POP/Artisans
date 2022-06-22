@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 
-#[IsGranted('ROLE_USER')]
+#[IsGranted('ROLE_ADMIN')]
 class DashboardController extends AbstractDashboardController
 {
     
@@ -44,16 +44,12 @@ class DashboardController extends AbstractDashboardController
             
         return [
 
-            MenuItem::linkToDashboard('Dashboard', 'fa fa-home')
-            ->setPermission('ROLE_ADMIN'),
-            MenuItem::linkToCrud('utilisateurs', 'fas fa-list', User::class)
-            ->setPermission('ROLE_ADMIN'),
-            MenuItem::linkToCrud('Artisans', 'fas fa-list', Artisan::class)
-            ->setPermission('ROLE_MODERATOR'),
-            MenuItem::linkToCrud('Avis', 'fas fa-list', Owner::class)
-            ->setPermission('ROLE_ADMIN'),          
-            MenuItem::linkToCrud('Type', 'fas fa-list', Type::class)
-            ->setPermission('ROLE_ADMIN'),
+            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),            
+            MenuItem::linkToCrud('utilisateurs', 'fas fa-list', User::class),            
+            MenuItem::linkToCrud('Artisans', 'fas fa-list', Artisan::class),            
+            MenuItem::linkToCrud('Avis', 'fas fa-list', Owner::class),               
+            MenuItem::linkToCrud('Type', 'fas fa-list', Type::class),
+            
         ];
             
     }

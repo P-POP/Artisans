@@ -10,6 +10,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[ORM\Entity(repositoryClass: ArtisanRepository::class)]
 #[Vich\Uploadable]
@@ -38,6 +39,12 @@ class Artisan
     #[ORM\Column(type: 'text', nullable: true)]
     private $cover;
 
+    #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'cover')]
+    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+    #[Assert\File(maxSize: '1M', maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}')]
+    private $coverFile;
+
+    
     #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Owner::class)]
     private $owner;
 
@@ -121,6 +128,31 @@ class Artisan
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of coverFile
+     */ 
+    public function getCoverFile(): ?File 
+    {
+        return $this->coverFile;
+    }
+
+    /**
+     * Set the value of coverFile
+     *
+     * @return  self
+     */ 
+    public function setCoverFile(?File $coverFile = null)
+    {
+        $this->coverFile = $coverFile;
+
+        if ($coverFile !== null) {
+            $this->updated_at = new DateTimeImmutable();
+
+        }
 
         return $this;
     }
@@ -218,4 +250,5 @@ class Artisan
 
         return $this;
     }
+    
 }
