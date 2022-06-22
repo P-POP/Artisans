@@ -29,6 +29,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Owner::class, orphanRemoval: true)]
     private $Owner;
 
+    #[ORM\Column(type: 'string', length: 80)]
+    private $name;
+
+    #[ORM\Column(type: 'string', length: 80)]
+    private $Prenom;
+
+    #[ORM\Column(type: 'string', length: 80)]
+    private $Pseudo;
+
     public function __construct()
     {
         $this->Owner = new ArrayCollection();
@@ -130,6 +139,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $owner->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->Prenom;
+    }
+
+    public function setPrenom(string $Prenom): self
+    {
+        $this->Prenom = $Prenom;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->Pseudo;
+    }
+
+    public function setPseudo(string $Pseudo): self
+    {
+        $this->Pseudo = $Pseudo;
 
         return $this;
     }
