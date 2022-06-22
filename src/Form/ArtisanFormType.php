@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Artisan;
+use App\Entity\Type;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -63,6 +65,12 @@ class ArtisanFormType extends AbstractType
                     'label' => 'Image de l\'artisan',
                     'delete_label' => 'Cocher pour supprimer cette image',
                     
+                ])
+
+
+                ->add('type', EntityType::class, [
+                    'class' => Type::class,
+                    'choice_label' => 'name'
                 ])
             
             
