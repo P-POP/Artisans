@@ -2,82 +2,180 @@
 
 namespace App\Entity;
 
-use App\Repository\OwnerRepository;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: OwnerRepository::class)]
-class Owner
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'text', nullable: true)]
-    private $avis;
+    #[ORM\Column(type: 'string', length: 180, unique: true)]
+    private $email;
 
-    #[ORM\ManyToOne(targetEntity: Artisan::class, inversedBy: 'owner')]
-    private $artisan;
+    #[ORM\Column(type: 'json')]
+    private $roles = [];
 
-    #[ORM\Column(type: 'integer')]
-    private $score;
+    #[ORM\Column(type: 'string')]
+    private $password;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'Owner')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Owner::class, orphanRemoval: true)]
+    private $Owner;
 
+    #[ORM\Column(type: 'string', length: 80)]
+    private $name;
+
+    #[ORM\Column(type: 'string', length: 80)]
+    private $Prenom;
+
+    #[ORM\Column(type: 'string', length: 80)]
+    private $Pseudo;
+
+    public function __construct()
+    {
+        $this->Owner = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAvis(): ?string
+    public function getEmail(): ?string
     {
-        return $this->avis;
+        return $this->email;
     }
 
-    public function setAvis(?string $avis): self
+    public function setEmail(string $email): self
     {
-        $this->avis = $avis;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getArtisan(): ?Artisan
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->artisan;
+        return (string) $this->email;
     }
 
-    public function setArtisan(?Artisan $artisan): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->artisan = $artisan;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getScore(): ?int
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->score;
+        return $this->password;
     }
 
-    public function setScore(int $score): self
+    public function setPassword(string $password): self
     {
-        $this->score = $score;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getUser(): ?User
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        return $this->user;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
-    public function setUser(?User $user): self
+    /**
+     * @return Collection<int, Owner>
+     */
+    public function getOwner(): Collection
     {
-        $this->user = $user;
+        return $this->Owner;
+    }
+
+    public function addOwner(Owner $owner): self
+    {
+        if (!$this->Owner->contains($owner)) {
+            $this->Owner[] = $owner;
+            $owner->setUser($this);
+        }
 
         return $this;
     }
 
+    public function removeOwner(Owner $owner): self
+    {
+        if ($this->Owner->removeElement($owner)) {
+            // set the owning side to null (unless already changed)
+            if ($owner->getUser() === $this) {
+                $owner->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getPrenom(): ?string
+    {
+        return $this->Prenom;
+    }
+
+    public function setPrenom(string $Prenom): self
+    {
+        $this->Prenom = $Prenom;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->Pseudo;
+    }
+
+    public function setPseudo(string $Pseudo): self
+    {
+        $this->Pseudo = $Pseudo;
+
+        return $this;
+    }
 }
