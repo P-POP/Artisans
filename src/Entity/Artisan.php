@@ -36,7 +36,7 @@ class Artisan
     #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Owner::class)]
     private $owner;
 
-    #[ORM\ManyToOne(targetEntity: Type::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'artisan',targetEntity: Type::class, cascade: ['persist', 'remove'])]
     private $type;
 
     public function __construct()
