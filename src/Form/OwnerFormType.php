@@ -8,6 +8,7 @@ use App\Entity\Type;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,12 +26,25 @@ class OwnerFormType extends AbstractType
             ->add('artisan', EntityType::class, [
                 'class' => Artisan::class,
                 'choice_label' => 'name',
-                
             ])
+            ->add('score', ChoiceType::class, [
+                'label'=> 'Attribuez une note générale: 
+                ★ Mauvais - ★★★★★ Excellent!',
+                'choices' => [
+                    '★' => 1,
+                    '★★' => 2,
+                    '★★★' => 3,
+                    '★★★★' => 4,
+                    '★★★★★' => 5,
+                ],
+                'required' => false
+            ])
+
             ->add('save', SubmitType::class, [
                 'label' => 'Enregistrer'
             ])
-        
+            
+            
         ;
 
 

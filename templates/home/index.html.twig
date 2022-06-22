@@ -7,26 +7,26 @@
 <div class="home-grid">
     <div class="content-h-g">
         <div class="imgs-h-g img-1">
-            <a href="" class="g-content g-link-1">
+            <a href="{{ path('app_type_artisans', { id:artisanType[0].id })}}" class="g-content g-link-1">
                 <i class="fi fi-rr-home"></i>
                 <p class="g-text">Travaux</p>
             </a>
         </div>
         <div class="imgs-h-g img-2"></div>
         <div class="imgs-h-g img-3">
-            <a href="" class="g-content g-link-2">
+            <a href="{{ path('app_type_artisans', { id:artisanType[1].id })}}" class="g-content g-link-2">
                 <i class="fi fi-rr-hand-holding-heart"></i>
                 <p class="g-text">Préstation de service</p>
             </a>
         </div>
         <div class="imgs-h-g img-4">
-            <a href="" class="g-content g-link-3">
+            <a href="{{ path('app_type_artisans', { id:artisanType[2].id })}}" class="g-content g-link-3">
                 <i class="fi fi-rr-spa"></i>
                 <p class="g-text">Bien-être</p>
             </a>
         </div>
         <div class="imgs-h-g img-5">
-            <a href="" class="g-content g-link-4">
+            <a href="{{ path('app_type_artisans', { id:artisanType[3].id })}}" class="g-content g-link-4">
                 <i class="fi fi-rr-salad"></i>
                 <p class="g-text">Alimentation</p>
             </a>
@@ -59,37 +59,54 @@
     <div class="col-12 d-flex">
         <h2 class="mx-auto main-h2">Votre artisan pès de chez vous</h2>
     </div>
-    <div class="d-lg-flex">
-        <div class="col-12 col-lg-6">
-            <img src="{{ asset('/images/structure/home/boulangerie.jpeg') }}" alt="" class="list-img">
+    {# {{ dump(lastArtisans)}} #}
+    {% for lastArtisan in lastArtisans %}
+        {% if lastArtisan.id is odd %}
+        <div class="d-lg-flex">
+            <div class="col-12 col-lg-6">
+                <img src="{{ asset('/images/structure/home/boulangerie.jpeg') }}" alt="" class="list-img">
+            </div>
+            <div class="col-12 col-lg-6">
+                <h3 class="list-h3">{{lastArtisan.name}} <span class="list-note"><i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> 5/5</span></h3>
+                <p class="list-text">{{lastArtisan.description}}</p>
+                <div class="list-line"></div>
+                <p class="list-user-avis">User(e)</p>
+                <p class="list-avis-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, adipisci eligendi expedita quae labore recusandae nobis voluptatem magnam mollitia corrupti aliquam corporis numquam quisquam? Qui deserunt asperiores aut eveniet quos?</p>
+            </div>
         </div>
-        <div class="col-12 col-lg-6">
-            <h3 class="list-h3">La belle miche <span class="list-note"><i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> 5/5</span></h3>
-            <p class="list-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque veritatis neque id molestias corrupti? Deserunt, beatae nisi ipsum, eius iusto recusandae eligendi veniam alias quaerat, deleniti consequatur consectetur voluptatibus accusamus.</p>
-            <div class="list-line"></div>
-            <p class="list-user-avis">User(e)</p>
-            <p class="list-avis-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, adipisci eligendi expedita quae labore recusandae nobis voluptatem magnam mollitia corrupti aliquam corporis numquam quisquam? Qui deserunt asperiores aut eveniet quos?</p>
+        {% else %}
+        <div class="d-lg-flex">
+            <div class="col-12 d-lg-none">
+                <img src="{{ asset('/images/structure/home/menuiserie.jpeg') }}" alt="" class="list-img">
+            </div>
+            <div class="col-12 col-lg-6">
+                <h3 class="list-h3">{{lastArtisan.name}} <span class="list-note"><i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> 4/5</span></i></h3>
+                <p class="list-text">{{lastArtisan.description}}</p>
+                <div class="list-line"></div>
+                <p class="list-user-avis">User(e)</p>
+                <p class="list-avis-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ducimus, aspernatur quaerat quod consequatur nesciunt dignissimos recusandae magni, unde exercitationem nostrum eum facilis quis laudantium illo dolorum, commodi necessitatibus minus.</p>
+            </div>
+            <div class="d-none d-lg-block col-lg-6">
+                <img src="{{ asset('/images/structure/home/menuiserie.jpeg') }}" alt="" class="list-img">
+            </div>
         </div>
-    </div>
-    <div class="d-lg-flex">
-        <div class="col-12 d-lg-none">
-            <img src="{{ asset('/images/structure/home/menuiserie.jpeg') }}" alt="" class="list-img">
+        {% endif %}
+    {% else %}
+        <div class="col-12 d-flex mb-3 mt-2 border-bottom">
+            <div class="col-8 m-auto">
+                <p class="text-center">Aucuns artisans</p>
+            </div>
+            <div class="col-4 d-flex justify-content-center pb-3">
+                <a href="{{ path('app_home') }}" class="btn btn-outline-warning m-auto">Quitter la page</a>
+            </div>
         </div>
-        <div class="col-12 col-lg-6">
-            <h3 class="list-h3">Mon beau bout de bois <span class="list-note"><i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> 4/5</span></i></h3>
-            <p class="list-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum assumenda necessitatibus ex incidunt quisquam eius, accusantium blanditiis cum sit placeat nesciunt alias itaque, quis amet veniam! Amet, repudiandae. Recusandae, at!</p>
-            <div class="list-line"></div>
-            <p class="list-user-avis">User(e)</p>
-            <p class="list-avis-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ducimus, aspernatur quaerat quod consequatur nesciunt dignissimos recusandae magni, unde exercitationem nostrum eum facilis quis laudantium illo dolorum, commodi necessitatibus minus.</p>
-        </div>
-        <div class="d-none d-lg-block col-lg-6">
-            <img src="{{ asset('/images/structure/home/menuiserie.jpeg') }}" alt="" class="list-img">
-        </div>
-    </div>
+    {% endfor %}
+
     <div class="d-flex mx-auto">
         <a href="" class="main-btn">Voir plus d'artisans</a>
     </div>
-    <img src="{{ asset('/images/structure/home/map.png') }}" alt="" class="main-map">
+    <div id="map" data-address = "{{ artisansAdress | json_encode() }}">
+    </div>
     <div class="main-line"></div>
     <div class="col-12 d-flex">
         <h2 class="mx-auto main-h">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
