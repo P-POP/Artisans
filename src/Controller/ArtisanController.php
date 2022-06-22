@@ -96,18 +96,26 @@ class ArtisanController extends AbstractController
 
 
     #[Route('/artisan/{id}', name: 'app_details_artisans', requirements:["id"=>"\d+"])]
-    public function details( int $id, ArtisanRepository $artisanRepository, Artisan $artisan)
+    public function details( int $id, ArtisanRepository $artisanRepository )
     {
-        $mapOneAddress =[];
-        $artisan = $artisanRepository->find($id);
+        $mapAddress =[];
+        $artisans = $artisanRepository->findAll();
+        
 
-        $mapOneAddress[]= [
-            $artisan->getNAme()=> $artisan->getAddress()
-        ];
+        foreach ($artisans as $artisan) {
+
+            $mapAddress[] = [
+
+                $artisan -> getName() =>   $artisan -> getAddress()  
+            
+            ];
+
+        }
         
         return $this->render('artisan/detailsArtisan.html.twig', [
-           'artisanAdress'=> $mapOneAddress,
-           "artisan" => $artisan
+           'artisanAddress'=> $mapAddress,
+           "artisan" => $artisans,
+           "oneArtisan" => $artisanRepository->find($id)
         ]);
     }
 
