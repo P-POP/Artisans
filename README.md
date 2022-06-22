@@ -950,7 +950,7 @@ ArtisansCrudController.php
             ImageField::new('cover', 'image') // faire apparaître l'image dans le formulaire
             ->setBasePath('images/artisans') // chemin d'accés de l'image dans le formulaire
             ->setUploadDir('public/images/artisans') pour uploader l'image
-            
+            ->hideOnForm() //pour n'apparaite que dans le form
             
         ];
     }

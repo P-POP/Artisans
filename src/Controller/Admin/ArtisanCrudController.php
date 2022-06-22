@@ -35,7 +35,7 @@ class ArtisanCrudController extends AbstractCrudController
             ImageField::new('cover', 'image')
             ->setBasePath('images/artisans')
             ->setUploadDir('public/images/artisans')
-            
+            ->hideOnForm()
             
         ];
     }
