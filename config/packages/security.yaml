@@ -9,6 +9,8 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
+    access_decision_manager:
+        strategy: unanimous
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -36,6 +38,10 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_MODERATOR
+        ROLE_MODERATOR: ROLE_USER    
 
 when@test:
     security:

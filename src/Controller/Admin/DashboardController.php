@@ -13,7 +13,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[IsGranted('ROLE_ADMIN')]
+
+
+#[IsGranted('ROLE_USER')]
 class DashboardController extends AbstractDashboardController
 {
     
@@ -41,12 +43,23 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('utilisateurs', 'fas fa-list', User::class);
-        yield MenuItem::linkToCrud('Artisans', 'fas fa-list', Artisan::class);
-        yield MenuItem::linkToCrud('Avis', 'fas fa-list', Owner::class);
-        yield MenuItem::linkToCrud('Type', 'fas fa-list', Type::class);
+            
+        return [
+
+            MenuItem::linkToDashboard('Dashboard', 'fa fa-home')
+            ->setPermission('ROLE_ADMIN'),
+            MenuItem::linkToCrud('utilisateurs', 'fas fa-list', User::class)
+            ->setPermission('ROLE_ADMIN'),
+            MenuItem::linkToCrud('Artisans', 'fas fa-list', Artisan::class)
+            ->setPermission('ROLE_MODERATOR'),
+            MenuItem::linkToCrud('Avis', 'fas fa-list', Owner::class)
+            ->setPermission('ROLE_ADMIN'),          
+            MenuItem::linkToCrud('Type', 'fas fa-list', Type::class)
+            ->setPermission('ROLE_ADMIN'),
+        ];
+            
     }
+    
     
 
 
