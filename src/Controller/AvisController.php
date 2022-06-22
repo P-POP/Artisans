@@ -17,8 +17,7 @@ class AvisController extends AbstractController
     #[Route('/avis', name: 'app_avis', requirements:['id' => '\d+'])]
     public function index(Request $request, OwnerRepository $ownerRepository): Response
     {
-        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
-        $this->denyAccessUnlessGranted("POST_ADD", $this->getUser());
+       
           
             $avis = New Owner();
             $form = $this->createForm(OwnerFormType::class, $avis);
