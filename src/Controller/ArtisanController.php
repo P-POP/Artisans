@@ -114,7 +114,7 @@ class ArtisanController extends AbstractController
         
         return $this->render('artisan/detailsArtisan.html.twig', [
            'artisanAddress'=> $mapAddress,
-           "oneArtisan" => $artisanRepository->find($id),
+           'oneArtisan' => $artisanRepository->find($id)
         ]);
     }
 

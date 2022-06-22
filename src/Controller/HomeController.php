@@ -38,6 +38,7 @@ class HomeController extends AbstractController
 
             'artisans' => $mapAddress,
             'artisanType' => $typeRepository->findAll()
+            
         ]);
     }
 
