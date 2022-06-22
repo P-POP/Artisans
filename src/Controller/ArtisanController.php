@@ -9,8 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\ArtisanRepository;
+use App\Repository\OwnerRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ArtisanController extends AbstractController
 {
@@ -44,11 +46,11 @@ class ArtisanController extends AbstractController
 
             $this->addFlash(
                'success',
-               'Votre magazine a bien été ajouté !'
+               'L\'artisan a bien été ajouté !'
             );
 
-            //$magazine = new Magazine();
-            //$form = $this->createForm(MagazineFormType::class, $magazine);
+            $artisan = new Artisan();
+            $form = $this->createForm(ArtisanFormType::class, $artisan());
 
             return $this->redirectToRoute('app_artisan');
             
@@ -62,15 +64,13 @@ class ArtisanController extends AbstractController
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
     {
-
-
 	    $form=$this->createForm(ArtisanFormType::class, $artisan);
 	    $form->handleRequest($request); 
 	    if ($form->isSubmitted() && $form->isValid()) {
 
            	$artisanRepository->add($artisan, true);
 
-            $this->addFlash('success', 'Votre categorie a bien été modifié !');
+            $this->addFlash('success', 'L\'artisan a bien été modifié !');
 
            	return $this->redirectToRoute('app_artisan');
         }
@@ -80,20 +80,57 @@ class ArtisanController extends AbstractController
         ]);
     }
 
-    #[Route('/artisan/delet/{id}', name:'app_delete_artisan', requirements: ['id' => '\d+'], methods: ['POST'])]
-    
+    #[Route('/artisan/delet/{id}', name:'app_delete_artisan', requirements: ['id'=> '\d+'], methods: ['POST'])]
     public function remove(Artisan $artisan, Request $request, ArtisanRepository $artisanRepository): RedirectResponse
-    
     {
         $tokenCsrf = $request->request->get('token');
+        if ($this->isCsrfTokenValid('delete-artisan-'. $artisan->getId(), $tokenCsrf)){
 
-        if ($this->isCsrfTokenValid('delete-artisan-'. $artisan->getId(), $tokenCsrf)) 
-        {
             $artisanRepository->remove($artisan, true);
+            $this->addFlash('success', 'L\'artisan à bien été supprimé');
 
-            $this->addFlash('success', 'La catégorie à bien été supprimée');
         }
 
         return $this->redirectToRoute('app_artisan');
     }
+
+
+    #[Route('/artisan/{id}', name: 'app_details_artisans', requirements:["id"=>"\d+"])]
+    public function details( int $id, ArtisanRepository $artisanRepository )
+    {
+        $mapAddress =[];
+        $artisans = $artisanRepository->findAll();
+        
+
+        foreach ($artisans as $artisan) {
+
+            $mapAddress[] = [
+
+                $artisan -> getName() =>   $artisan -> getAddress()  
+            
+            ];
+
+        }
+        
+        return $this->render('artisan/detailsArtisan.html.twig', [
+           'artisanAddress'=> $mapAddress,
+           "artisan" => $artisans,
+           "oneArtisan" => $artisanRepository->find($id)
+        ]);
+    }
+
+    /* //Création de la route pour le detail des avis concernant un artisan
+    #[Route('/artisan/{id}', name: 'app_details_with_avis__artisans', requirements:['id' => '\d+'])]
+    public function detailsWithAvis(Artisan $artisan): Response
+    {
+        $i=1;
+        
+        return $this->render('artisan/details.html.twig', [
+            'artisan' => $artisan
+        ]);
+    } */
+
 }
+  
+
+    

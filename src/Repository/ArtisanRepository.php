@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Artisan;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Null_;
 
 /**
  * @extends ServiceEntityRepository<Artisan>
@@ -37,6 +38,17 @@ class ArtisanRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /* Fonction pqui permet de récuperer les deux derniers artisans dans la table Artisan */
+    public function find2LastInserted(): array
+    {
+    return $this
+        ->createQueryBuilder("a")
+        ->orderBy("a.id", "DESC")
+        ->setMaxResults(2)
+        ->getQuery()
+        ->getResult();
     }
 
 //    /**

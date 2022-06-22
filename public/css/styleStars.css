@@ -1,0 +1,41 @@
+
+  /*  
+   * Rating styles
+   */
+  /* .rating {
+      width: 226px;
+      margin: 0 auto 1em;
+      font-size: 30px;
+      overflow:hidden;
+  }
+  .rating a {
+      float: center;
+      color: #aaa;
+      text-decoration: none;
+      -webkit-transition: color .4s;
+      -moz-transition: color .4s;
+      -o-transition: color .4s;
+      transition: color .4s;
+  }
+  .rating a:hover,
+  .rating a:hover ~ a,
+  .rating a:focus,
+  .rating a:focus ~ a		{
+      color: goldenrod;
+      cursor: pointer;
+  }
+  .rating2 {
+      direction: rtl;
+  }
+  .rating2 a {
+      float:none
+  }
+
+
+  .avis{
+    
+    justify-content: center;
+
+
+
+  } */
