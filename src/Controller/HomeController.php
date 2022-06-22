@@ -40,14 +40,12 @@ class HomeController extends AbstractController
     }
 
     #[Route ('/type/{id}', name:'app_type_artisans', requirements:["id"=>"\d+"])]
-    public function types(int $id, TypeRepository $typeRepository)
+    public function types( int $id, TypeRepository $typeRepository, ArtisanRepository $artisanRepository)
     {
-
         return $this->render('artisan/typeArtisan.html.twig', [
-
             'type'=>$typeRepository->find($id),
-        
+            'allArtisansFromType'=>$artisanRepository->findAll() 
         ]);
-    }   
+    }
 
 }
