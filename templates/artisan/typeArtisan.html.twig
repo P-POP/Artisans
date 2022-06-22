@@ -3,37 +3,44 @@
 {% block title %}Types{% endblock %}
 
 {% block body %}
-
-       <table class='table table-light table-hover w-75 m-auto'>
-        <thead>
-            <tr>    
-                
-                <th>Nom</th>
-                <th>Adresse</th>
-                <th>Email</th>
-                <th>Téléphone</th>
-                <th>Voir plus..</th> 
-            </tr>
-        </thead>
-        <tbody class="mb-3">
-            {% for artisan in allArtisansFromType %}
-            <tr>
  
-                {% if artisan.type.id == type.id %}
+    <div class="titre">
+        <h2 class="titre-texte"><span>A</span>rtisans</h2>
+    </div>
 
-                   <td>{{artisan.name}}</td> 
-                    <td>{{artisan.address}}</td>
-                    <td>{{artisan.email}}</td>
-                    <td>{{artisan.phone}}</td>
 
-                    <td><a href="{{ path('app_details_artisans', { id:artisan.id }) }}"><button class="btn btn-dark">Voir plus de détails</button></a></td>
+    {% for artisan in allArtisansFromType %}
             
-                {% endif %}
-            </tr>
-            {% endfor %}
+    {% if artisan.type.id == type.id %}
+  <div class="content-h-g d-flex justify-content-center">
+        <div class="mb-3 d-flex justify-content-center">
+            
 
-        </tbody> 
-        
-    </table>
+            <section class="menu">
+                <div class="contenu">
+                <div class="box card-artisan-type">
+                    <div class="inbox">
+                        <img src="../images/structure/home/bien-etre.jpeg" alt="">
+                    </div>
+                    <div class="text">
+                <h3>{{artisan.name}}</h3>
+                <p>Adresse : {{artisan.address}}</p>
+                <p>Adresse mail: {{artisan.email}}</p>
+                <p>Téléphone : {{artisan.phone}}</p>
+                <a href="{{ path('app_details_artisans', { id:artisan.id }) }}"><button class="btn btn-dark mb-3">Voir plus de détails</button></a>
+                <a href="{{ path('app_details_artisans', { id:artisan.id }) }}"><button class="btn btn-dark">Déposez un avis</button></a>
+
+
+                   
+                  
+            
+               
+        </div>
+    </div>
+ 
+    {% endif %}
+            
+    {% endfor %}   
+
 
 {% endblock %}
