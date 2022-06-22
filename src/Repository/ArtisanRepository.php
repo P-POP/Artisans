@@ -39,6 +39,17 @@ class ArtisanRepository extends ServiceEntityRepository
         }
     }
 
+    /* Fonction pqui permet de récuperer les deux derniers artisans dans la table Artisan */
+    public function find2LastInserted(): array
+    {
+    return $this
+        ->createQueryBuilder("a")
+        ->orderBy("a.id", "DESC")
+        ->setMaxResults(2)
+        ->getQuery()
+        ->getResult();
+    }
+
 //    /**
 //     * @return Artisan[] Returns an array of Artisan objects
 //     */
