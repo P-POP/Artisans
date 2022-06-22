@@ -18,6 +18,7 @@ class HomeController extends AbstractController
 
     public function maps(ArtisanRepository $artisanRepository, TypeRepository $typeRepository, UserRepository $userRepository):Response
     {
+        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
 
         $i = [1,2,3,4];
 
@@ -46,6 +47,8 @@ class HomeController extends AbstractController
     public function types( int $id, TypeRepository $typeRepository, ArtisanRepository $artisanRepository)
     
     {
+        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
+        
         return $this->render('artisan/typeArtisan.html.twig', [
             'type'=>$typeRepository->find($id),
             'allArtisansFromType'=>$artisanRepository->findAll()

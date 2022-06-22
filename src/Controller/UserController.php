@@ -13,6 +13,8 @@ class UserController extends AbstractController
     #[Route('/account', name: 'app_user')]
     public function index(): Response
     {
+        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
+        
         return $this->render('user/index.html.twig', [
         ]);
     }
