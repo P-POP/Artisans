@@ -4,12 +4,39 @@
 
 {% block body %}
     
-    {% for artisans in type %}
 
-        {{artisans.name}}
-        {{artisans.address}}
-        {{artisans.description}}
+      
+
+       <table class='table table-light table-hover w-75 m-auto'>
+        <thead>
+            <tr>    
+                
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Voir plus..</th> 
+            </tr>
+        </thead>
+        <tbody class="mb-3">
+            {% for artisan in allArtisansFromType %}
+            <tr>
+ 
+                {% if artisan.type.id == type.id %}
+
+                   <td>{{artisan.name}}</td> 
+                    <td>{{artisan.address}}</td>
+                    <td>{{artisan.email}}</td>
+                    <td>{{artisan.phone}}</td>
+
+                    <td><a href="{{ path('app_details_artisans', { id:artisan.id }) }}"><button class="btn btn-dark">Voir plus de détails</button></a></td>
+            
+                {% endif %}
+            </tr>
+            {% endfor %}
+
+        </tbody> 
         
-    {% endfor %}
+    </table>
 
 {% endblock %}
