@@ -43,9 +43,7 @@ class HomeController extends AbstractController
     public function types( int $id, TypeRepository $typeRepository, ArtisanRepository $artisanRepository)
     
     {
-
         return $this->render('artisan/typeArtisan.html.twig', [
-
             'type'=>$typeRepository->find($id),
             'allArtisansFromType'=>$artisanRepository->findAll()
             
