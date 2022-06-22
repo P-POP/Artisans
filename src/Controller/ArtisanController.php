@@ -49,8 +49,8 @@ class ArtisanController extends AbstractController
                'L\'artisan a bien été ajouté !'
             );
 
-            $artisan = new Artisan();
-            $form = $this->createForm(ArtisanFormType::class, $artisan());
+            //$artisan = new Artisan();
+            //$form = $this->createForm(ArtisanFormType::class, $artisan());
 
             return $this->redirectToRoute('app_artisan');
             
