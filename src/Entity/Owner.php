@@ -64,5 +64,4 @@ class Owner
         return $this;
     }
 
-    
 }

@@ -2,112 +2,82 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\OwnerRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+#[ORM\Entity(repositoryClass: OwnerRepository::class)]
+class Owner
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $email;
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $avis;
 
-    #[ORM\Column(type: 'json')]
-    private $roles = [];
+    #[ORM\ManyToOne(targetEntity: Artisan::class, inversedBy: 'owner')]
+    private $artisan;
 
-    #[ORM\Column(type: 'string')]
-    private $password;
+    #[ORM\Column(type: 'integer')]
+    private $score;
 
-    #[ORM\Column(type: 'boolean')]
-    private $isVerified = false;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'Owner')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getAvis(): ?string
     {
-        return $this->email;
+        return $this->avis;
     }
 
-    public function setEmail(string $email): self
+    public function setAvis(?string $avis): self
     {
-        $this->email = $email;
+        $this->avis = $avis;
 
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUserIdentifier(): string
+    public function getArtisan(): ?Artisan
     {
-        return (string) $this->email;
+        return $this->artisan;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
+    public function setArtisan(?Artisan $artisan): self
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function setRoles(array $roles): self
-    {
-        $this->roles = $roles;
+        $this->artisan = $artisan;
 
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
-    public function getPassword(): string
+    public function getScore(): ?int
     {
-        return $this->password;
+        return $this->score;
     }
 
-    public function setPassword(string $password): self
+    public function setScore(int $score): self
     {
-        $this->password = $password;
+        $this->score = $score;
 
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
+    public function getUser(): ?User
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        return $this->user;
     }
 
-    public function isVerified(): bool
+    public function setUser(?User $user): self
     {
-        return $this->isVerified;
-    }
-
-    public function setIsVerified(bool $isVerified): self
-    {
-        $this->isVerified = $isVerified;
+        $this->user = $user;
 
         return $this;
     }
+
 }
