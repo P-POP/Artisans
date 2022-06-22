@@ -38,7 +38,7 @@ class RegistrationFormType extends AbstractType
                     ])
                 ]
             ])
-            ->add('firstName', TextType::class, [
+            ->add('fisrtName', TextType::class, [
                 'label' => 'Prénom',
                 'constraints' => [
                     new NotBlank([
