@@ -30,13 +30,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $Owner;
 
     #[ORM\Column(type: 'string', length: 80)]
-    private $name;
+    private $lastName;
 
     #[ORM\Column(type: 'string', length: 80)]
-    private $Prenom;
+    private $fisrtName;
 
     #[ORM\Column(type: 'string', length: 80)]
-    private $Pseudo;
+    private $pseudo;
 
     public function __construct()
     {
@@ -143,38 +143,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getName(): ?string
+    public function getLastName(): ?string
     {
-        return $this->name;
+        return $this->lastName;
     }
 
-    public function setName(string $name): self
+    public function setLastName(string $lastName): self
     {
-        $this->name = $name;
+        $this->lastName = $lastName;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getFisrtName(): ?string
     {
-        return $this->Prenom;
+        return $this->fisrtName;
     }
 
-    public function setPrenom(string $Prenom): self
+    public function setFisrtName(string $fisrtName): self
     {
-        $this->Prenom = $Prenom;
+        $this->fisrtName = $fisrtName;
 
         return $this;
     }
 
     public function getPseudo(): ?string
     {
-        return $this->Pseudo;
+        return $this->pseudo;
     }
 
-    public function setPseudo(string $Pseudo): self
+    public function setPseudo(string $pseudo): self
     {
-        $this->Pseudo = $Pseudo;
+        $this->pseudo = $pseudo;
 
         return $this;
     }
