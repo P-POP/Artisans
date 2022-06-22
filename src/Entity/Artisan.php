@@ -10,6 +10,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Entity\File as EntityFile;
 
 #[ORM\Entity(repositoryClass: ArtisanRepository::class)]
 #[Vich\Uploadable]
@@ -179,7 +180,7 @@ class Artisan
         return $this;
     }
 
-    public function getProfileFile(): ?string
+    public function getProfileFile(): ?File
     {
         return $this->profileFile;
     }

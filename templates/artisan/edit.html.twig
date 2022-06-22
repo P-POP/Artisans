@@ -25,7 +25,7 @@
                 
             {% endfor %}
 
-            <div class="mb-3">
+            <div class="mb-3 w-75 m-auto">
 
                 {{ form_label(form.name) }}
                 {{ form_widget(form.name) }}
@@ -47,12 +47,14 @@
                 {{ form_widget(form.description) }}
                 {{ form_errors(form.description) }}
 
-
-     
+                {{ form_label(form.profileFile) }}
+                {{ form_widget(form.profileFile) }}
+                {{ form_errors(form.profileFile) }}
+                
 
             </div>
 
-            <button class ="btn btn-dark">Enregistrer</button>
+          
 
             
 
