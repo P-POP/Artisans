@@ -772,6 +772,7 @@ Position :
 - Pour initaliser le projet, entrez :
 
 > `composer require vich/uploader-bundle`
+
 > `composer require easycorp/easyadmin-bundle`
 
 - Installation Easy Admin:
