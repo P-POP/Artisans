@@ -36,6 +36,8 @@ Site de référencement d'artisans dans un quartier défini.
 
 > `composer require liip/imagine-bundle`
 
+> `composer require easycorp/easyadmin-bundle`
+
 > `symfony console doctrine:schema:update --force`
 
 > `symfony console doctrine:fixtures:load`
@@ -766,3 +768,100 @@ Position :
 ```
 
 ![image](https://www.zupimages.net/up/22/24/6miv.png)
+
+----------------------------------------------------------------------------------------------------------------------------
+
+- Pour initaliser le projet, entrez :
+
+> `composer require vich/uploader-bundle`
+
+> `composer require easycorp/easyadmin-bundle`
+
+- Installation Easy Admin:
+
+Dans le terminal lancer la commande:
+
+> `composer require easycorp/easyadmin-bundle`
+
+Création du DashBoard:
+
+> `symfony console make:admin:dashboard`
+
+"La page d'aministration du site est désormé accessible sous artisans.test/admin"
+
+Modification de la vue welcome.html.twig sous le dossier vendor\easycorp\easyadmin-bundle\src\resources\views
+
+Supprimer le contenu et écrire le code suivant:
+
+> `{% extends '@EasyAdmin/page/content.html.twig' %}`
+
+Création des fichiers CRUD:
+
+Dans le terminal lancer la commande:
+
+> `symfony console make:admin:crud`
+
+Répondre aux questions:
+
+ Which Doctrine entity are you going to manage with this CRUD controller?:
+  [0] App\Entity\Artisan
+  [1] App\Entity\Owner
+  [2] App\Entity\ResetPasswordRequest
+  [3] App\Entity\Type
+  [4] App\Entity\User
+  [5] Vich\UploaderBundle\Entity\File
+ > 
+ Choisir quel Doctrine on veut manager, pour nous cela sera Artisan, Owner, User, Type.
+
+ Le faire pour chaque doctrine.
+ Taper entrer à chaque question
+  > `Which directory do you want to generate the CRUD controller in? [src/Controller/Admin/]:`
+  > ` Namespace of the generated CRUD controller [App\Controller\Admin]:`
+
+Modifier le fichier DashboardController.php
+
+     public function configureDashboard(): Dashboard
+        {
+            return Dashboard::new()
+                ->setTitle('Artisans');
+                
+                
+
+        }
+
+        Dans SetTitle mettre le nom du projet
+
+public function configureMenuItems(): iterable
+    {
+        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        yield MenuItem::linkToCrud('utilisateurs', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Artisans', 'fas fa-list', Artisan::class);
+        yield MenuItem::linkToCrud('Avis', 'fas fa-list', Owner::class);
+    }
+    
+
+    Ajoute les menuItem Dashboard, Utilisateurs, Artisans, Avis
+
+Dans les fichiers CrudController.php modifier la public Function:
+
+    public function configureFields(string $pageName): iterable
+    {
+        yield TextField::new('email');
+        yield ArrayField::new('roles');
+        
+        
+        
+    }
+    
+    Ajouter les Information de la table phpMyadmin que l'on veut récupérer.
+
+
+
+
+
+
+
+
+
+
+
