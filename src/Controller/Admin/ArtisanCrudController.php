@@ -34,8 +34,8 @@ class ArtisanCrudController extends AbstractCrudController
             ->setFormType(VichImageType::class)
             ->onlyOnForms(),
             ImageField::new('cover', 'image')
-            ->setBasePath('public/images/artisans')
-            ->setUploadDir('public/avatars/uploads')
+            ->setBasePath('images/artisans')
+            ->setUploadDir('public/images/artisans')
             ->hideOnForm()
             
         ];
