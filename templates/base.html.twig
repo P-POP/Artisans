@@ -71,12 +71,16 @@
                             </li>
 
                             {% if app.user is not null %}
+                                
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('app_home') }}">Mon compte</a>
+                                    <a class="nav-link" href="{{ path('app_user') }}">Mon compte</a>
                                 </li>
+
+
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li class="nav-item">
                                         <a class="nav-link text-warning" href="/admin">Administration</a>
+
                                     </li>
                                 {% elseif is_granted('ROLE_MODERATOR')%}
                                     <li class="nav-item">

@@ -5,17 +5,20 @@ namespace App\Controller;
 use App\Entity\Artisan;
 use App\Repository\ArtisanRepository;
 use App\Repository\TypeRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class HomeController extends AbstractController
 {
     #[Route('/', name:'app_home')]
 
-    public function maps(ArtisanRepository $artisanRepository, TypeRepository $typeRepository):Response
+    public function maps(ArtisanRepository $artisanRepository, TypeRepository $typeRepository, UserRepository $userRepository):Response
     {
+        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
 
         $i = [1,2,3,4];
 
@@ -35,7 +38,8 @@ class HomeController extends AbstractController
             'i' => $i,
             'lastArtisans' => $lastArtisans,
             'artisansAdress' => $mapAddress,
-            'artisanType' => $typeRepository->findAll()
+            'artisanType' => $typeRepository->findAll(),
+            
         ]);
     }
 
@@ -43,6 +47,8 @@ class HomeController extends AbstractController
     public function types( int $id, TypeRepository $typeRepository, ArtisanRepository $artisanRepository)
     
     {
+        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
+        
         return $this->render('artisan/typeArtisan.html.twig', [
             'type'=>$typeRepository->find($id),
             'allArtisansFromType'=>$artisanRepository->findAll()
@@ -51,4 +57,5 @@ class HomeController extends AbstractController
             
         ]);
     } 
+
 }
