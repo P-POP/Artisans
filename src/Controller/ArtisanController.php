@@ -19,7 +19,7 @@ class ArtisanController extends AbstractController
     #[Route('/artisan', name: 'app_artisan')]
     public function index(ArtisanRepository $artisanRepository, PaginatorInterface $paginatorInterface, Request $request ): Response
     {
-        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
+        
 
         $artisans = $paginatorInterface->paginate(
             $artisanRepository->findAll(), //Requête SQL/DQL
@@ -66,6 +66,8 @@ class ArtisanController extends AbstractController
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
     {
+
+        
 	    $form=$this->createForm(ArtisanFormType::class, $artisan);
 	    $form->handleRequest($request); 
 	    if ($form->isSubmitted() && $form->isValid()) {
@@ -100,7 +102,7 @@ class ArtisanController extends AbstractController
     #[Route('/artisan/{id}', name: 'app_details_artisans', requirements:["id"=>"\d+"])]
     public function details( int $id, ArtisanRepository $artisanRepository )
     {
-        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
+        
         $mapAddress =[];
         $artisans = $artisanRepository->findAll();
         
