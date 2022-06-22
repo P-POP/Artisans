@@ -41,10 +41,15 @@ class Artisan
     #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Owner::class)]
     private $owner;
 
-    #[ORM\OneToOne(targetEntity: Type::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Type::class, cascade: ['persist', 'remove'])]
     private $type;
 
     #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'profile')]
+    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+    #[Assert\File(
+        maxSize: '1M', 
+        maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}'
+    )]
     private $profileFile;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -167,7 +172,7 @@ class Artisan
         return $this;
     }
 
-    public function getType(): ?File
+    public function getType(): ?Type
     {
         return $this->type;
     }
@@ -179,7 +184,7 @@ class Artisan
         return $this;
     }
 
-    public function getProfileFile(): ?string
+    public function getProfileFile(): ?File
     {
         return $this->profileFile;
     }
