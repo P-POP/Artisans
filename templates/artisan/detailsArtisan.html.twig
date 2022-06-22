@@ -33,21 +33,29 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6">
-            <h1>{{artisan.name}}</h1> 
-                <p>{{artisan.address}}</p>
-                <p>{{artisan.description}}</p>
-            </div>
+                    <div class="col">
+           <h1>{{oneArtisan.name}}</h1> 
+            <p>{{oneArtisan.address}}</p>
+            <p>{{oneArtisan.description}}</p>
         </div>
     </div>
+</div>
 
-    <section class="avis h=200">
+<section class="avis h=200">
 
-        Tous les avis
+    Tous les avis
 
-    </section>
+</section>
+{% set itemToMap = [] %}
 
-    <div id="map" data-address = "{{ artisan | json_encode() }}"></div>
-</main>
+{% for key, currentArtisan in artisanAddress %}
+    {% for key2, jsp in currentArtisan %}
+        {% if key2 == oneArtisan.name %}
+            {% set itemToMap = itemToMap|merge([currentArtisan]) %}
+        {% endif %}
+    {% endfor %} 
+{% endfor %}
+<div id="map" data-address = "{{ itemToMap | json_encode() }}"></div>
+
 
 {% endblock %}
