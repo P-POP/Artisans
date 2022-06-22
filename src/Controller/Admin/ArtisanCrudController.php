@@ -31,12 +31,11 @@ class ArtisanCrudController extends AbstractCrudController
             ->setFormTypeOption('disabled','disabled'),
             TextEditorField::new('description'),
             TextField::new('coverFile', 'image')
-            ->setFormType(VichImageType::class)
-            ->onlyOnForms(),
+            ->setFormType(VichImageType::class),            
             ImageField::new('cover', 'image')
             ->setBasePath('images/artisans')
             ->setUploadDir('public/images/artisans')
-            ->hideOnForm()
+            
             
         ];
     }

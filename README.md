@@ -774,6 +774,91 @@ Position :
 > `composer require vich/uploader-bundle`
 > `composer require easycorp/easyadmin-bundle`
 
+- Installation VichUploader:
+
+    Ajoutez la configuration minimale qui fait fonctionner le bundle :
+
+        vich_uploader:
+            db_driver: orm
+            metadata:
+                type: attribute
+
+            mappings:
+                artisans:
+                    uri_prefix: /images/artisans
+                    upload_destination: '%kernel.project_dir%/public/images/artisans'
+                    namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+                    delete_on_update: true
+                    delete_on_remove: true
+
+        Avant de télécharger des fichiers, nous devons configurer les "mappings" pour le VichUploaderBundle. Ces "mappages" indiquent au bundle où les fichiers doivent être téléchargés et quels chemins doivent être utilisés pour les afficher dans l'application. 
+
+        ajouter le mappings:
+
+        mappings:
+                artisans: // nom du mapping
+                    uri_prefix: /images/artisans
+                    upload_destination: '%kernel.project_dir%/public/images/artisans' // Chemin d'upload
+                    namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+    Préparation des entités pour conserver des images:
+    la première modification que nous faisons e est d'ajouter le #[Vich\Uploadable] à la classe d'entité : 
+        #[Vich\Uploadable]
+        >`class Artisan` 
+
+    Ensuite, nous ajoutons deux nouvelles propriétés ( cover et coverFile):
+
+        #[ORM\Column(type: 'text', nullable: true)]
+        private $cover;
+
+        #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'cover')]
+        #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+        #[Assert\File(maxSize: '1M', maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}')]
+        private $coverFile;
+
+    Installer les Guetter Setter correspondants:
+
+        /**
+        * Get the value of coverFile
+        */ 
+        public function getCoverFile(): ?File 
+        {
+            return $this->coverFile;
+        }
+
+        /**
+        * Set the value of coverFile
+        *
+        * @return  self
+        */ 
+        public function setCoverFile(?File $coverFile = null)
+        {
+            $this->coverFile = $coverFile;
+
+            if ($coverFile !== null) {
+                $this->updated_at = new DateTimeImmutable();
+
+            }
+
+            return $this;
+        }
+
+        public function getCover(): ?string
+        {
+            return $this->cover;
+        }
+
+        public function setCover(?string $cover): self
+        {
+            $this->cover = $cover;
+
+            return $this;
+        }
+            
+
+
+
+
 - Installation Easy Admin:
 
 Dans le terminal lancer la commande:
@@ -785,12 +870,6 @@ Création du DashBoard:
 > `symfony console make:admin:dashboard`
 
 "La page d'aministration du site est désormé accessible sous artisans.test/admin"
-
-Modification de la vue welcome.html.twig sous le dossier vendor\easycorp\easyadmin-bundle\src\resources\views
-
-Supprimer le contenu et écrire le code suivant:
-
-> `{% extends '@EasyAdmin/page/content.html.twig' %}`
 
 Création des fichiers CRUD:
 
@@ -815,42 +894,90 @@ Répondre aux questions:
   > `Which directory do you want to generate the CRUD controller in? [src/Controller/Admin/]:`
   > ` Namespace of the generated CRUD controller [App\Controller\Admin]:`
 
-Modifier le fichier DashboardController.php
+Créer la route:
+
+    #[Route('/admin', name: 'admin')]
+
+        public function index(): Response
+        {
+                    
+            return $this->render('admin/index.html.twig');
+        }
+
+Modifier le fichier DashboardController.php afin que le Dashboard porte le nom Artisans:
 
      public function configureDashboard(): Dashboard
         {
             return Dashboard::new()
-                ->setTitle('Artisans');
+                ->setTitle('Artisans');// Mettre le nom artisans
                 
-                
-
         }
 
-        Dans SetTitle mettre le nom du projet
+Modifier les menuItem qui vont apparaître pour l'administrateur dans le DashboardController.php
 
-public function configureMenuItems(): iterable
+    public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('utilisateurs', 'fas fa-list', User::class);
-        yield MenuItem::linkToCrud('Artisans', 'fas fa-list', Artisan::class);
-        yield MenuItem::linkToCrud('Avis', 'fas fa-list', Owner::class);
-    }
-    
+            
+        return [
 
-    Ajoute les menuItem Dashboard, Utilisateurs, Artisans, Avis
+            MenuItem::linkToDashboard('Dashboard', 'fa fa-home'), // Ajout de Dashboard            
+            MenuItem::linkToCrud('utilisateurs', 'fas fa-list', User::class),  // Ajout de utilisateurs          
+            MenuItem::linkToCrud('Artisans', 'fas fa-list', Artisan::class), // Ajout de Artisans            
+            MenuItem::linkToCrud('Avis', 'fas fa-list', Owner::class),  // Ajout de Avis              
+            MenuItem::linkToCrud('Type', 'fas fa-list', Type::class),// Ajout de Type 
+            
+        ];
+            
+    }
+
 
 Dans les fichiers CrudController.php modifier la public Function:
 
+ArtisansCrudController.php
+
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('email');
-        yield ArrayField::new('roles');
         
-        
-        
+        return [
+            TextField::new('name', 'nom'),
+            TextField::new('address'),
+            NumberField::new('phone'),
+            EmailField::new('email')
+            ->setFormTypeOption('disabled','disabled'), // l'eamil apparaît mais n'est pas modifiable
+            TextEditorField::new('description'),
+            TextField::new('coverFile', 'image') //Pour charger l'image dans l'edit
+            ->setFormType(VichImageType::class) // redimenssionnement avec VichImage
+            ImageField::new('cover', 'image') // faire apparaître l'image dans le formulaire
+            ->setBasePath('images/artisans') // chemin d'accés de l'image dans le formulaire
+            ->setUploadDir('public/images/artisans') pour uploader l'image
+            
+            
+        ];
     }
     
     Ajouter les Information de la table phpMyadmin que l'on veut récupérer.
+
+UtilisateursCrudController.php
+
+    public function configureFields(string $pageName): iterable
+        {
+            yield TextField::new('email'); //récupère l'email
+            yield ArrayField::new('roles'); //récupère le role
+            
+            
+            
+        }
+
+OwnerCrudController.php
+
+public function configureFields(string $pageName): iterable
+    {
+        return [
+            IdField::new('id'),  //récupère l'ID
+            TextField::new('avis'), //récupère l'avis
+            
+        ];
+    }
 
 
 
