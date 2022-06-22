@@ -17,31 +17,27 @@ class HomeController extends AbstractController
     public function maps(ArtisanRepository $artisanRepository, TypeRepository $typeRepository):Response
     {
 
-        $mapAddress =[];
-        $artisans = $artisanRepository->findAll();
-        
+        $i = [1,2,3,4];
 
-        foreach ($artisans as $artisan) {
+        $lastArtisans = $artisanRepository->find2LastInserted();
+
+        $mapAddress =[];
+        $artisansAdress = $artisanRepository->findAll();
+        
+        foreach ($artisansAdress as $artisanAdress) {
 
             $mapAddress[] = [
-
-                $artisan -> getName() =>   $artisan -> getAddress()  
-            
+                $artisanAdress->getName() => $artisanAdress->getAddress()  
             ];
-
         }
     
-       
-    
-
         return $this->render('home/index.html.twig', [
-
-            'artisans' => $mapAddress,
+            'i' => $i,
+            'lastArtisans' => $lastArtisans,
+            'artisansAdress' => $mapAddress,
             'artisanType' => $typeRepository->findAll()
         ]);
     }
-
-    
 
     #[Route ('/type/{id}', name:'app_type_artisans', requirements:["id"=>"\d+"])]
     public function types( int $id, TypeRepository $typeRepository, ArtisanRepository $artisanRepository)
