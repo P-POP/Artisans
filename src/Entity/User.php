@@ -38,8 +38,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 80)]
     private $pseudo;
 
+
     #[ORM\OneToMany(mappedBy: 'maker', targetEntity: Artisan::class, orphanRemoval: true)]
     private $artisans;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
 
     public function __construct()
     {
@@ -183,6 +188,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
     /**
      * @return Collection<int, Artisan>
      */
@@ -198,8 +204,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $artisan->setMaker($this);
         }
 
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
+
+
         return $this;
     }
+
 
     public function removeArtisan(Artisan $artisan): self
     {
@@ -212,4 +229,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
 }

@@ -22,18 +22,23 @@ class Artisan
     private $id;
 
     #[ORM\Column(type: 'string', length: 50)]
+    #[Assert\NotBlank(message : 'L\'intitulé est obligatoire !')]
     private $name;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message : 'L\'adresse est obligatoire !')]
     private $address;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank(message : 'Le numéro de téléphone est obligatoire !')]
     private $phone;
 
     #[ORM\Column(type: 'string', length: 80)]
+    #[Assert\NotBlank(message : 'L\'email est obligatoire !')]
     private $email;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message : 'La déscription est obligatoire !')]
     private $description;
 
     #[ORM\Column(type: 'text', nullable: true)]
@@ -46,8 +51,7 @@ class Artisan
     #[ORM\ManyToOne(inversedBy: 'artisan',targetEntity: Type::class, cascade: ['persist', 'remove'])]
     private $type;
 
-
-    #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'profile')]
+    #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'cover')]
     #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
     #[Assert\File(
         maxSize: '1M', 
@@ -219,6 +223,7 @@ class Artisan
     }
 
     public function getMaker(): ?User
+
     {
         return $this->maker;
     }
