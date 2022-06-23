@@ -79,13 +79,13 @@
     {% endfor %}
 
         <div class="d-flexjustify-content-start ">
-    {% for owner in oneArtisan.owner %}
 
-            <a href="{{ path('app_avis',{ id:owner.id }) }}"><button class="btn btn-dark m-4 ">Déposez un avis</button></a>
+            <a href="{{ path('app_avis',{ id:oneArtisan.id }) }}"><button class="btn btn-dark m-4 ">Déposez un avis</button></a>
             
-    {% endfor %}
+   
 
-    </div>
+        </div>
+
         </div>
     </main>
 </section>

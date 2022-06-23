@@ -15,8 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AvisController extends AbstractController
 {
-    #[Route('/avis', name: 'app_avis', requirements:['id' => '\d+'])]
-    public function index(Request $request, OwnerRepository $ownerRepository, ArtisanRepository $artisanRepository): Response
+    #[Route('/avis/{id}', name: 'app_avis', requirements:['id' => '\d+'])]
+    public function index(int $id, Request $request, OwnerRepository $ownerRepository): Response
     {
           
             $avis = New Owner();
@@ -37,6 +37,7 @@ class AvisController extends AbstractController
 
             return $this->render('avis/index.html.twig', [
                 'form'=> $form->createView(),
+                'a'
                 
         ]);
     }
