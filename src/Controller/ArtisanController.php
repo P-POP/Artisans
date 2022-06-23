@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\ArtisanRepository;
-use App\Repository\OwnerRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -62,6 +61,7 @@ class ArtisanController extends AbstractController
     }
 
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
+    #[IsGranted('ROLE_MODERATOR')]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
     {
 	    $form=$this->createForm(ArtisanFormType::class, $artisan);
@@ -76,7 +76,8 @@ class ArtisanController extends AbstractController
         }
 
         	return $this->render('artisan/edit.html.twig', [
-           	 'form'=> $form->createView()
+           	 'form'=> $form->createView(),
+             
         ]);
     }
 

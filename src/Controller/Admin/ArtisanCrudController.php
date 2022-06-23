@@ -30,7 +30,7 @@ class ArtisanCrudController extends AbstractCrudController
             EmailField::new('email')
             ->setFormTypeOption('disabled','disabled'),
             TextEditorField::new('description'),
-            TextField::new('coverFile', 'image')
+            TextField::new('profileFile', 'image')
             ->setFormType(VichImageType::class)
             ->onlyOnForms(),
             ImageField::new('cover', 'image')
