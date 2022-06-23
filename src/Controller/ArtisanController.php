@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
-#[IsGranted('ROLE_MODERATOR')]
+
 class ArtisanController extends AbstractController
 {
     #[Route('/artisan', name: 'app_artisan')]
@@ -35,6 +35,7 @@ class ArtisanController extends AbstractController
     //Ajout d'un nouveau artisan
     
     #[Route('/artisan/new',name:'app_new_artisan')]
+    #[IsGranted('ROLE_MODERATOR')]
     public function newArtisan(Request $request, ArtisanRepository $artisanRepository) :Response
     {
         $artisan = new Artisan();
@@ -65,6 +66,7 @@ class ArtisanController extends AbstractController
     }
     //Modifier les données d'un artisan 
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
+    #[IsGranted('ROLE_MODERATOR')]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request): Response
     {
 
@@ -91,6 +93,7 @@ class ArtisanController extends AbstractController
     }
     //Supprimer un artisan
     #[Route('/artisan/delet/{id}', name:'app_delete_artisan', requirements: ['id'=> '\d+'], methods: ['POST'])]
+    #[IsGranted('ROLE_MODERATOR')]
     public function remove(Artisan $artisan, Request $request, ArtisanRepository $artisanRepository): RedirectResponse
     {   //Cross Site Request Forgery Permet de sécuriser un session
         $tokenCsrf = $request->request->get('token');
