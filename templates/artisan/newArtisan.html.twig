@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription
+{% endblock %}
+
+{% block body %}
+
+	<!-- Contenu -->
+    <main class="p-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <div class="col-6 d-flex text-start">
+                        <h2 class="fs-3 text-danger">S'ajouter en tant qu'artisan </h2>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                        <a href="{{ path('app_artisan') }}" class="btn btn-outline-danger my-auto">Retour</a>
+                    </div>
+                </div>
+                <div class="col-12 d-block border-bottom my-3"></div>
+                <div class="w-50 mx-auto py-5">
+
+				<select class="form-select mx-auto" aria-label="Default select example">
+					<option selected>Choix de quoi ?</option>
+					<option value="1">Utilisateur</option>
+					<option value="2">Artisan</option>
+					<option value="3">Three</option>
+				</select>
+
+				{# <div class="d-flex mx-auto mt-4">
+					<img src="{ vich_uploader_asset(artisan, 'profileFile')|imagine_filter('thumbnail') }}" alt="artisan" class="img-fluid rounded mb-3">
+				</div> #}
+
+                    {{ form(form) }}
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

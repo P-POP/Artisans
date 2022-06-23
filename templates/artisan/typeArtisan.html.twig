@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}Types{% endblock %}
+
+{% block body %}
+
+    <div class="titre p-3">
+        <h2 class="titre-texte"><span>A</span>rtisans</h2>
+    </div>
+
+
+    <section class="text-center m-4">
+
+        <div class="block m-5" >
+        <h3> Découvrez notre selection d'artisans locaux de Charnay</h3>
+
+        <p class="text m-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+        </div>
+
+
+    </section>
+
+    {% for artisan in allArtisansFromType %}
+
+    {% if artisan.type.id == type.id %}
+<div class="row justify-content-md-center">
+    <div class="col-12 lg-6">
+
+
+        <div class="menue">
+                <div class="contenu">
+                <div class="box card-artisan-type p-4">
+                    <div class="inbox">
+                        <img src="{{ asset('images/artisans/' ~ artisan.cover)}}" alt="">
+                    </div>
+                    <div class="text">
+                <h3>{{artisan.name}}</h3>
+                <p>Adresse : {{artisan.address}}</p>
+                <p>Adresse mail: {{artisan.email}}</p>
+                <p>Téléphone : {{artisan.phone}}</p>
+                <a href="{{ path('app_details_artisans', { id:artisan.id }) }}"><button class="btn btn-dark mb-3">Voir plus de détails</button></a>        </div>
+    </div>
+</div>
+ 
+    {% endif %}
+
+    {% endfor %}
+
+
+
+{% endblock %}

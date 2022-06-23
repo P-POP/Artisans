@@ -1,0 +1,65 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition Artisan{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex align-items-center justify-content-between pb-5">
+        <div>
+            <h1 class="display-5 m-0">Edition Artisan</h1>
+        </div>
+      
+    </div>
+
+    
+    {{ form_start(form)}}
+
+    <div class="w-50 m-auto py-5">
+
+            {% for message in app.flashes('success') %}
+
+                <div class = "alert alert-success">
+                    {{ message }}
+                </div>
+                
+            {% endfor %}
+
+            <div class="mb-3 w-75 m-auto">
+
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name) }}
+                {{ form_errors(form.name) }}
+
+                {{ form_label(form.address) }}
+                {{ form_widget(form.address) }}
+                {{ form_errors(form.address) }}
+
+                {{ form_label(form.phone) }}
+                {{ form_widget(form.phone) }}
+                {{ form_errors(form.phone) }}
+
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description) }}
+                {{ form_errors(form.description) }}
+
+                {{ form_label(form.profileFile) }}
+                {{ form_widget(form.profileFile) }}
+                {{ form_errors(form.profileFile) }}
+                
+
+            </div>
+
+          
+
+            
+
+        {{ form_end(form)}}
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,661 @@
+/* Lien google font de la police décriture Raleway,  */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap');
+
+/* Couleurs configurées via le :root */
+:root {
+    --black: #000000; 
+    --withe: #FFFFFF;
+    --gray: #242424;
+    --medium-gray: #575756;
+    --medium-light-gray: #706f6f;
+    --light-gray: #e3e3e3;
+    --line-and-btn-gray: #c6c6c6;
+    --footer-gray: #3c3c3b;
+}
+
+/* Paramètres par defaut du body */
+body {
+    height: 100vh; 
+}
+
+/* Paramètres par defaut des différents blocks de textes/titres */
+p, h1, h2, h3, h4, h5{
+    font-family: 'Raleway', sans-serif;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Taille du logo */
+.logo {
+    width: 12.5rem;
+}
+
+/* Classes liées au style de la NavBar */
+.base-nav {
+    background-color: var(--withe);
+    border-bottom: 1px solid var(--light-gray);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 300;
+    font-size: 1.8rem;
+}
+
+nav .marg-logo {
+    margin-left: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+
+nav .bruger{
+    border: 0;
+    font-size: 2rem;
+}
+
+nav .drop{
+    font-size: 1.8rem;
+}
+
+
+nav .marg-nav {
+    margin: 0 4rem 0 4rem;
+}
+
+/* Classes liées au style de la grille d'images sur la page Home */
+.home-grid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: auto;
+}
+
+.content-h-g{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.imgs-h-g{
+    height: 50%;
+}
+
+.img-1{
+    background: url('../images/structure/home/travaux.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 25%;
+}
+
+.img-2{
+    display: none;
+}
+
+.img-3{
+    background: url('../images/structure/home/prestation-de-service.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 25%;
+}
+
+.img-4{
+    background: url('../images/structure/home/bien-etre.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 25%;
+}
+
+.img-5{
+    background: url('../images/structure/home/alimentaire.jpeg') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 25%;
+}
+
+.img-6{
+    display: none;
+}
+
+.g-content{
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 1rem;
+}
+
+.g-content:hover{
+    background-color: rgba(255, 255, 255, 0.750);
+    background-size: cover;
+    height: 25%;
+    color: var(--gray);
+}
+
+.g-text{
+    font-weight: 400;
+    font-size: 3rem;
+}
+
+.g-link-1{
+    height: 25%;
+    width: 100%;
+}
+
+.g-link-2{
+    height: 25%;
+    width: 100%;
+}
+
+.g-link-3{
+    height: 25%;
+    width: 100%;
+}
+
+.g-link-4{
+    height: 25%;
+    width: 100%;
+}
+
+/* Classes liées à la ligne de la page home */
+.main-line {
+    width: 50%;
+    margin: 4rem auto;
+    border-bottom: 2px solid var(--line-and-btn-gray);
+}
+
+/* Style du premier titre dans la page home */
+.main-h {
+    padding: 0 4rem;
+    text-align: center;
+    margin: auto;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--medium-light-gray);
+    
+}
+
+/* Style des textes principaux dans la page home */
+.main-text-left {
+    margin: 4rem 4rem 0 4rem;
+    text-align: justify;
+    font-weight: 300;
+    color: var(--medium-light-gray);
+}
+
+.main-text-right {
+    margin: 4rem 4rem 0 4rem;
+    text-align: justify;
+    font-weight: 300;
+    color: var(--medium-light-gray);
+}
+
+/* Style du second Titre */
+.main-h2 {
+    padding: 0 4rem 4rem 4rem;
+    text-align: center;
+    margin: auto;
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--medium-light-gray);
+    
+}
+
+/* Style des images liées aux artisans */
+.list-img {
+    width: 100%;
+    height: 35rem;
+    object-fit: cover;
+}
+
+/* Style du titre/nom des artisans */
+.list-h3 {
+    padding: 4rem 4rem 4rem 4rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--medium-light-gray);
+}
+
+/* Style de la note des artisans */
+.list-note {
+    margin-left: 0.5rem;
+    font-size: 2rem;
+    font-weight: 200;
+    color: var(--line-and-btn-gray);
+}
+
+/* Style de la déscription liée aux artisans */
+.list-text {
+    margin: 0 4rem 0 4rem;
+    text-align: justify;
+    font-weight: 300;
+    color: var(--medium-light-gray);
+}
+
+/* Style de la ligne qui sépare la désciption et l'aperçu d'un avis lié aux artisans */
+.list-line {
+    width: 40%;
+    margin: 2rem 4rem;
+    border-bottom: 2px solid var(--line-and-btn-gray);
+}
+
+/* Style du nom de l'utilisateur éditeur de l'avis lié aux artisans */
+.list-user-avis {
+    margin: 0 4rem;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--medium-light-gray);
+}
+
+/* Style du contenu de l'avis lié aux artisans */
+.list-avis-text {
+    margin: 2rem 4rem 4rem 4rem;
+    text-align: justify;
+    font-weight: 200;
+    color: var(--medium-light-gray);
+}
+
+/* Style du bouton dans la page home */
+.main-btn {
+    margin: 4rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--line-and-btn-gray);
+    font-size: 2rem;
+    text-decoration: none;
+    border: 1px solid var(--line-and-btn-gray);
+    padding: 15px 35px;
+}
+
+.main-btn:hover {
+    color: var(--medium-light-gray);
+    text-decoration: none;
+    border: 1px solid var(--medium-light-gray);
+}
+
+/* Style de la map dans la page home */
+.main-map {
+    width: 100%;
+    height: 30rem;
+    object-fit: cover;
+}
+
+/*Affichage de la carte*/
+#map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+    height: 50rem;
+    margin: auto;
+}
+
+/* Image de la page détails de l'artisan */
+.artisanImage{
+    height: 300px;
+    
+}
+
+.sizeImg{
+    height: 400px;
+    margin: auto;
+
+}
+
+.leftArrow svg{
+    float: right;
+    fill: var(--cloud);
+    margin: 10px;
+}
+
+.rightArrow svg{
+    fill: var(--cloud);
+    float: left;
+    margin: 10px;
+}
+
+/* Style du footer */
+footer{
+    background-color: var(--footer-gray);
+    color: var(--light-gray);
+}
+
+footer p{
+    margin: 0;
+    font-weight: 200;
+}
+
+.fo-content{
+    padding: 4rem 4rem;
+}
+
+.fo-title{
+    font-weight: 400;
+    font-size: 2.2rem;
+}
+
+.fo-btn {
+    margin: 1rem 1rem 1rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--line-and-btn-gray);
+    font-size: 2rem;
+    background-color: var(--footer-gray);
+    text-decoration: none;
+    border: 1px solid var(--line-and-btn-gray);
+    padding: 12.5px 30px;
+}
+
+.fo-btn:hover {
+    color: var(--medium-light-gray);
+    text-decoration: none;
+    border: 1px solid var(--medium-light-gray);
+}
+
+.fo-part-left{
+    width: 100%;
+    border-bottom: 2px solid var(--line-and-btn-gray);
+}
+
+.street-text{
+    margin-top: 2rem;
+    font-weight: 200;
+}
+
+.town-text{
+    font-weight: 300;
+}
+
+.rights{
+    margin: 2rem 0 4rem 0;
+}
+
+.all-rights{
+    font-weight: 200;
+}
+
+.copy{
+    font-weight: 300;
+}
+
+.fo-part-middle-1{
+    width: 100%;
+    padding: 4rem 0 4rem 0;
+    border-bottom: 2px solid var(--line-and-btn-gray);
+}
+
+.fo-title-line-1 {
+    width: 16rem;
+    margin: 1rem 0;
+    border-bottom: 2px solid var(--line-and-btn-gray);
+}
+
+.fo-text{
+    font-weight: 200;
+}
+
+.fo-part-middle-2{
+    display: none;
+}
+
+.fo-part-right{
+    width: 100%;
+    padding-top: 4rem;
+}
+
+.fo-title-ligne-right{
+    width: 10rem;
+    margin: 1rem 0;
+    border-bottom: 2px solid var(--line-and-btn-gray);
+}
+
+.fo-label-news{
+    font-size: 1.5rem;
+    font-weight: 200;
+}
+
+.fo-input-news{
+    margin-top: 0.5rem;
+    background-color: var(--line-and-btn-gray);
+    outline: none;
+    border: 1px solid var(--medium-light-gray);
+    padding: 15px 15px;
+    width: 100%;
+}
+
+/* Version Ordinateur */
+@media screen and (min-width: 1280px) {
+
+    /* Paramètres par defaut des différents blocks de textes/titres */
+    p, h1, h2, h3, h4, h5{
+        font-family: 'Raleway', sans-serif;
+        margin: 0;
+        padding: 0;
+        font-size: 16px;
+    }
+
+    /* Taille du logo */
+    .logo {
+        width: 7rem;
+    }
+
+    /* Classes liées au style de la NavBar */
+    .base-nav {
+        font-size: 1.1rem;
+    }
+
+    nav .drop{
+        font-size: 1.1rem;
+    }
+
+    /* Classes liées au style de la grille d'images sur la page Home */
+    .home-grid{
+        height: 87%;
+    }
+
+    .imgs-h-g{
+        height: 50%;
+    }
+
+    .img-1{
+        width: 35%;
+        height: auto;
+    }
+
+    .img-2{
+        display: block;
+        background: url('../images/structure/home/food.jpeg') no-repeat center center;
+        background-size: cover;
+        width: 20%;
+        height: auto;
+    }
+
+    .img-3{
+        width: 45%;
+        height: auto;
+    }
+
+    .img-4{
+        width: 25%;
+        height: auto;
+    }
+
+    .img-5{
+        width: 45%;
+        height: auto;
+    }
+
+    .img-6{
+        display: block;
+        background: url('../images/structure/home/street.jpeg') no-repeat center center;
+        background-size: cover;
+        width: 30%;
+        height: auto;
+    }
+
+    .g-content{
+        font-size: 2.5rem;
+    }
+
+    .g-content:hover{
+        height: 43.5%;
+    }
+
+    .g-text{
+        font-weight: 400;
+        font-size: 2rem;
+    }
+
+    .g-link-1{
+        height: 50%;
+        width: 35%;
+    }
+
+    .g-link-2{
+        height: 50%;
+        width: 45%;
+    }
+
+    .g-link-3{
+        height: 50%;
+        width: 25%;
+    }
+
+    .g-link-4{
+        height: 50%;
+        width: 45%;
+    }
+
+    /* Classe permettant au footer de rester en bas dans toutes les pages */
+    main{
+        min-height: 65%;
+    }
+
+    /* Classes liées à la ligne de la page home */
+    .main-line {
+        width: 30%;
+    }
+
+    /* Style du premier titre dans la page home */
+    .main-h {
+        padding: 0 4rem;
+        font-size: 1.8rem;     
+    }
+
+    /* Style des textes principaux dans la page home */
+    .main-text-left {
+        margin: 4rem 2rem 0 4rem;
+    }
+
+    .main-text-right {
+        margin: 4rem 4rem 0 2rem;
+    }
+
+    /* Style du second Titre */
+    .main-h2 {
+        padding: 0 4rem 2rem 4rem;
+        font-size: 1.8rem;
+    }
+
+    /* Style du titre/nom des artisans */
+    .list-h3 {
+        font-size: 1.8rem;
+    }
+
+    /* Style de la note des artisans */
+    .list-note {
+        font-size: 1.5rem;
+    }
+
+    /* Style du nom de l'utilisateur éditeur de l'avis lié aux artisans */
+    .list-user-avis {
+        font-size: 1.2rem;
+    }
+
+    /* Style du bouton dans la page home */
+    .main-btn {
+        font-size: 1rem;
+    }
+
+    /*Affichage de la carte*/
+    #map{ /* la carte DOIT avoir une hauteur sinon elle n'apparaît pas */
+        height: 30rem;
+    }
+
+    .fo-content{
+        display: flex;
+    }
+
+    .fo-title{
+        font-size: 1.3rem;
+    }
+
+    .fo-btn {
+        font-size: 1rem;
+    }
+
+    .fo-links{
+        text-decoration: none;
+        color: var(--line-and-btn-gray);
+        font-weight: 200;
+    }
+    
+    .fo-links:hover{
+        text-decoration: none;
+        color: var(--medium-light-gray);
+    }
+
+    .fo-part-left{
+        position: relative;
+        width: 30%;
+        border-right: 2px solid var(--line-and-btn-gray);
+        border-bottom: none;
+    }
+
+    .rights{
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+    }
+
+    .fo-part-middle-1{
+        position: relative;
+        width: 40%;
+        padding: 0 0 0 4rem;
+        border-bottom: none;
+    }
+
+    .fo-title-line-1 {
+        width: 10rem;
+    }
+
+    .fo-part-middle-2{
+        display: block;
+        position: relative;
+        width: 10%;
+        padding-left: 4rem;
+    }
+
+    .fo-title-line-2 {
+        width: 2rem;
+        margin: 1rem 0;
+        border-bottom: 2px solid var(--line-and-btn-gray);
+    }
+
+    .fo-part-right{
+        position: relative;
+        width: 30%;
+        padding-left: 4rem;
+        padding-top: 0;
+    }
+
+    .fo-title-ligne-right{
+        width: 6rem;
+    }
+
+    .fo-label-news{
+        font-size: 1rem;
+        font-weight: 200;
+    }
+}

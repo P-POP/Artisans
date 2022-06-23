@@ -19,6 +19,14 @@ class Owner
     #[ORM\ManyToOne(targetEntity: Artisan::class, inversedBy: 'owner')]
     private $artisan;
 
+    #[ORM\Column(type: 'integer')]
+    private $score;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'Owner')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -47,4 +55,30 @@ class Owner
 
         return $this;
     }
+
+    public function getScore(): ?int
+    {
+        return $this->score;
+    }
+
+    public function setScore(int $score): self
+    {
+        $this->score = $score;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    
 }

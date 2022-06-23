@@ -3,9 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\ArtisanRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Vich\UploaderBundle\Entity\File as EntityFile;
+
 
 #[ORM\Entity(repositoryClass: ArtisanRepository::class)]
 class Artisan
@@ -16,28 +22,52 @@ class Artisan
     private $id;
 
     #[ORM\Column(type: 'string', length: 50)]
+    #[Assert\NotBlank(message : 'L\'intitulé est obligatoire !')]
     private $name;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message : 'L\'adresse est obligatoire !')]
     private $address;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank(message : 'Le numéro de téléphone est obligatoire !')]
     private $phone;
 
     #[ORM\Column(type: 'string', length: 80)]
+    #[Assert\NotBlank(message : 'L\'email est obligatoire !')]
     private $email;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message : 'La déscription est obligatoire !')]
     private $description;
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $cover;
 
+
+    
     #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Owner::class)]
     private $owner;
 
-    #[ORM\OneToOne(targetEntity: Type::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'artisan',targetEntity: Type::class, cascade: ['persist', 'remove'])]
     private $type;
+
+    #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'cover')]
+    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
+    #[Assert\File(
+        maxSize: '1M', 
+        maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}'
+    )]
+    private $profileFile;
+
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $updated_at;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'artisans')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $maker;
+
 
     public function __construct()
     {
@@ -109,6 +139,8 @@ class Artisan
         return $this;
     }
 
+
+
     public function getCover(): ?string
     {
         return $this->cover;
@@ -162,4 +194,55 @@ class Artisan
 
         return $this;
     }
+
+
+    public function getProfileFile(): ?File
+    {
+        return $this->profileFile;
+    }
+
+    public function setProfileFile(?File $profileFile = null): self
+    {
+        $this->profileFile = $profileFile;
+
+        if ($profileFile !== null) {
+            $this->updated_at = new DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+
+
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getMaker(): ?User
+
+
+    {
+        return $this->maker;
+    }
+
+    public function setMaker(?User $maker): self
+    {
+        $this->maker = $maker;
+
+        return $this;
+    }
+    
+
 }
+
+
+

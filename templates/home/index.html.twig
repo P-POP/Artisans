@@ -3,14 +3,131 @@
 {% block title %}Home!{% endblock %}
 
 {% block body %}
-    <div>
-        <ul>
-            <li><a href=""> Bien-être</a></li>
-            <li><a href=""> Almentaire</a></li>
-            <li><a href="">Prestation de service</a></li>
-            <li><a href=""> Travaux</a></li>
-        </ul>
-    </div>
 
+<div class="home-grid">
+    <div class="content-h-g">
+        <div class="imgs-h-g img-1">
+            <a href="{{ path('app_type_artisans', { id:artisanType[0].id })}}" class="g-content g-link-1">
+                <i class="fi fi-rr-home"></i>
+                <p class="g-text">Travaux</p>
+            </a>
+        </div>
+        <div class="imgs-h-g img-2"></div>
+        <div class="imgs-h-g img-3">
+            <a href="{{ path('app_type_artisans', { id:artisanType[1].id })}}" class="g-content g-link-2">
+                <i class="fi fi-rr-hand-holding-heart"></i>
+                <p class="g-text">Préstation de service</p>
+            </a>
+        </div>
+        <div class="imgs-h-g img-4">
+            <a href="{{ path('app_type_artisans', { id:artisanType[2].id })}}" class="g-content g-link-3">
+                <i class="fi fi-rr-spa"></i>
+                <p class="g-text">Bien-être</p>
+            </a>
+        </div>
+        <div class="imgs-h-g img-5">
+            <a href="{{ path('app_type_artisans', { id:artisanType[3].id })}}" class="g-content g-link-4">
+                <i class="fi fi-rr-salad"></i>
+                <p class="g-text">Alimentation</p>
+            </a>
+        </div>
+        <div class="imgs-h-g img-6"></div>
+    </div>
+</div>
+<main>    
+    <div class="main-line"></div>
+    <div class="col-12 d-flex">
+        <h2 class="mx-auto main-h">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+    </div>
+    <div class="d-lg-flex">
+        <div class="col-12 col-lg-6">
+            <p class="main-text-left">
+            Lorem ipsum dolor sit amet. Et quibusdam sunt ducimus quis et rerum vitae et galisum voluptas vel voluptatem quod qui eius harum. Qui labore adipisci a doloribus asperiores cum suscipit repellat ut amet modi hic voluptates temporibus sit maxime quos. Nam distinctio sequi eum voluptate galisum et amet quia sit necessitatibus blanditiis ut unde fuga rem accusamus veniam. Et autem rerum nihil voluptas qui fuga reprehenderit ut enim commodi sed culpa neque? Aut explicabo molestiae a similique consectetur hic mollitia tenetur ut distinctio maxime ut magnam possimus qui doloremque distinctio. Vel laborum quia non mollitia impedit et nobis veritatis qui ipsa voluptas quo omnis assumenda ea galisum provident. Ut accusantium nisi et animi quam est quos commodi ut sapiente officia qui perferendis beatae.
+            
+            Non maiores suscipit ex fugit voluptas et delectus dolorem. Ea voluptates ipsum ea quidem deserunt est harum voluptas aut exercitationem asperiores. Sed tempore recusandae eos ipsa rerum vel obcaecati illo et animi nemo aut quam nulla est provident sint. Ut sequi sequi At magnam culpa ut distinctio itaque sed eveniet fugit in ratione dolor. Et dignissimos autem eum rerum nihil aut voluptas voluptas et dolor consequatur in blanditiis sequi non tempore facilis.
+            </p>
+        </div>
+        <div class="col-12 col-lg-6">
+            <p class="main-text-right">
+            Lorem ipsum dolor sit amet. Eum voluptates delectus ab quisquam quae At pariatur explicabo sed quae ipsum ex sequi quae. Ut dolores quibusdam ea laudantium consequatur id aliquam debitis est ullam error ut dignissimos voluptatibus. Non ipsum voluptas non voluptas perspiciatis ut quaerat rerum in sint deleniti rem quos perspiciatis quo fugiat vero. Et voluptatem voluptas id placeat harum qui perferendis laborum et rerum dolores ea ratione impedit est dolorem dicta. Aut sint explicabo eum quibusdam cumque vel commodi debitis et illum quas eos consectetur recusandae et voluptatum minima vel adipisci officia.
+
+            Quo consequatur doloremque non earum quis At temporibus fugit sit provident distinctio? Est ducimus quaerat et ipsam consequatur qui voluptatem quaerat et quod recusandae in dolor officia aliquid pariatur est alias repudiandae. Aut magni voluptatibus id molestiae culpa 33 omnis reiciendis sed velit galisum rem repellat molestias. Cum facilis autem eum illo molestias non impedit dolorum et impedit adipisci aut voluptatibus iste cupiditate expedita! Ex quia nihil id laborum perspiciatis ut perferendis similique id error quas nam laudantium pariatur et unde commodi.
+            </p>
+        </div>
+    </div>
+    <div class="main-line"></div>
+    <div class="col-12 d-flex">
+        <h2 class="mx-auto main-h2">Votre artisan pès de chez vous</h2>
+    </div>
+    {# {{ dump(lastArtisans)}} #}
+    {% for lastArtisan in lastArtisans %}
+        {% if lastArtisan.id is odd %}
+        <div class="d-lg-flex">
+            <div class="col-12 col-lg-6">
+                <img src="{{ asset('/images/structure/home/boulangerie.jpeg') }}" alt="" class="list-img">
+            </div>
+            <div class="col-12 col-lg-6">
+                <h3 class="list-h3">{{lastArtisan.name}} <span class="list-note"><i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> 5/5</span></h3>
+                <p class="list-text">{{lastArtisan.description}}</p>
+                <div class="list-line"></div>
+                <p class="list-user-avis">User(e)</p>
+                <p class="list-avis-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, adipisci eligendi expedita quae labore recusandae nobis voluptatem magnam mollitia corrupti aliquam corporis numquam quisquam? Qui deserunt asperiores aut eveniet quos?</p>
+            </div>
+        </div>
+        {% else %}
+        <div class="d-lg-flex">
+            <div class="col-12 d-lg-none">
+                <img src="{{ asset('/images/structure/home/menuiserie.jpeg') }}" alt="" class="list-img">
+            </div>
+            <div class="col-12 col-lg-6">
+                <h3 class="list-h3">{{lastArtisan.name}} <span class="list-note"><i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> <i class="fi fi-ss-star"></i> 4/5</span></i></h3>
+                <p class="list-text">{{lastArtisan.description}}</p>
+                <div class="list-line"></div>
+                <p class="list-user-avis">User(e)</p>
+                <p class="list-avis-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda ducimus, aspernatur quaerat quod consequatur nesciunt dignissimos recusandae magni, unde exercitationem nostrum eum facilis quis laudantium illo dolorum, commodi necessitatibus minus.</p>
+            </div>
+            <div class="d-none d-lg-block col-lg-6">
+                <img src="{{ asset('/images/structure/home/menuiserie.jpeg') }}" alt="" class="list-img">
+            </div>
+        </div>
+        {% endif %}
+    {% else %}
+        <div class="col-12 d-flex mb-3 mt-2 border-bottom">
+            <div class="col-8 m-auto">
+                <p class="text-center">Aucuns artisans</p>
+            </div>
+            <div class="col-4 d-flex justify-content-center pb-3">
+                <a href="{{ path('app_home') }}" class="btn btn-outline-warning m-auto">Quitter la page</a>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="d-flex mx-auto">
+        <a href="" class="main-btn">Voir plus d'artisans</a>
+    </div>
+    <div id="map" data-address = "{{ artisansAdress | json_encode() }}">
+    </div>
+    <div class="main-line"></div>
+    <div class="col-12 d-flex">
+        <h2 class="mx-auto main-h">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h2>
+    </div>
+    <div class="d-lg-flex">
+        <div class="col-12 col-lg-6">
+            <p class="main-text-left">
+            Lorem ipsum dolor sit amet. Et quibusdam sunt ducimus quis et rerum vitae et galisum voluptas vel voluptatem quod qui eius harum. Qui labore adipisci a doloribus asperiores cum suscipit repellat ut amet modi hic voluptates temporibus sit maxime quos. Nam distinctio sequi eum voluptate galisum et amet quia sit necessitatibus blanditiis ut unde fuga rem accusamus veniam. Et autem rerum nihil voluptas qui fuga reprehenderit ut enim commodi sed culpa neque? Aut explicabo molestiae a similique consectetur hic mollitia tenetur ut distinctio maxime ut magnam possimus qui doloremque distinctio. Vel laborum quia non mollitia impedit et nobis veritatis qui ipsa voluptas quo omnis assumenda ea galisum provident. Ut accusantium nisi et animi quam est quos commodi ut sapiente officia qui perferendis beatae.
+            
+            Non maiores suscipit ex fugit voluptas et delectus dolorem. Ea voluptates ipsum ea quidem deserunt est harum voluptas aut exercitationem asperiores. Sed tempore recusandae eos ipsa rerum vel obcaecati illo et animi nemo aut quam nulla est provident sint. Ut sequi sequi At magnam culpa ut distinctio itaque sed eveniet fugit in ratione dolor. Et dignissimos autem eum rerum nihil aut voluptas voluptas et dolor consequatur in blanditiis sequi non tempore facilis.
+            </p>
+        </div>
+        <div class="col-12 col-lg-6">
+            <p class="main-text-right">
+            Lorem ipsum dolor sit amet. Eum voluptates delectus ab quisquam quae At pariatur explicabo sed quae ipsum ex sequi quae. Ut dolores quibusdam ea laudantium consequatur id aliquam debitis est ullam error ut dignissimos voluptatibus. Non ipsum voluptas non voluptas perspiciatis ut quaerat rerum in sint deleniti rem quos perspiciatis quo fugiat vero. Et voluptatem voluptas id placeat harum qui perferendis laborum et rerum dolores ea ratione impedit est dolorem dicta. Aut sint explicabo eum quibusdam cumque vel commodi debitis et illum quas eos consectetur recusandae et voluptatum minima vel adipisci officia.
+
+            Quo consequatur doloremque non earum quis At temporibus fugit sit provident distinctio? Est ducimus quaerat et ipsam consequatur qui voluptatem quaerat et quod recusandae in dolor officia aliquid pariatur est alias repudiandae. Aut magni voluptatibus id molestiae culpa 33 omnis reiciendis sed velit galisum rem repellat molestias. Cum facilis autem eum illo molestias non impedit dolorum et impedit adipisci aut voluptatibus iste cupiditate expedita! Ex quia nihil id laborum perspiciatis ut perferendis similique id error quas nam laudantium pariatur et unde commodi.
+            </p>
+        </div>
+    </div>
+    <div class="main-line"></div>
+</main>
 
 {% endblock %}
