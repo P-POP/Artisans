@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Artisan;
+use App\Entity\Type;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -13,6 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ArtisanFormType extends AbstractType
 {
@@ -53,6 +56,21 @@ class ArtisanFormType extends AbstractType
                 ->add('description', TextareaType::class, [
                     'required' => false,
                     'label' => 'Déscription de l\'artisan'
+                ])
+
+                ->add('profileFile', VichImageType::class, [
+                    'required' => false,
+                    'imagine_pattern' => 'thumbnail', // Applique une configuration LiipImagine sur l'image
+                    'download_label' => false, // Enlève le lien de téléchargement
+                    'label' => 'Image de l\'artisan',
+                    'delete_label' => 'Cocher pour supprimer cette image',
+                    
+                ])
+
+
+                ->add('type', EntityType::class, [
+                    'class' => Type::class,
+                    'choice_label' => 'name'
                 ])
             
             

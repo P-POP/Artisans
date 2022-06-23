@@ -71,20 +71,22 @@
                             </li>
 
                             {% if app.user is not null %}
+                                
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ path('app_home') }}">Mon compte</a>
+                                    <a class="nav-link" href="{{ path('app_user') }}">Mon compte</a>
                                 </li>
-                                {# {% if is_granted('ROLE_MODERATOR') %} #}
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Administration 
-                                        </a>
-                                        <ul class="dropdown-menu drop" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="{{ path('app_home') }}">Tableau de bord</a></li>
-                                            <li><a class="dropdown-item" href="{{ path('app_home') }}">Utilisateurs</a></li>
-                                        </ul>
+
+
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li class="nav-item">
+                                        <a class="nav-link text-warning" href="/admin">Administration</a>
+
                                     </li>
-                                {# {% endif %} #}
+                                {% elseif is_granted('ROLE_MODERATOR')%}
+                                    <li class="nav-item">
+                                        <a class="nav-link text-warning" href="{{ path('app_home') }}">Ma page artisan</a>
+                                    </li>
+                                {% endif %}
                                 <li class="nav-item">
                                     <a class="nav-link text-danger" href="{{ path('app_logout') }}">Se déconnecter</a>
                                 </li>

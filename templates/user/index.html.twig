@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Profil utilisateur
+{% endblock %}
+
+{% block body %}
+
+    <div class="col-1 m-auto">
+    <p class="text-center text-secondary">{{app.user.id}}</p>
+    </div>
+
+    
+    <div class="col-3 m-auto">
+    <p class="text-center text-secondary">{{app.user.email}}</p>
+    </div>
+    
+{% endblock %}
