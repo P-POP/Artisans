@@ -203,6 +203,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->artisans[] = $artisan;
             $artisan->setMaker($this);
         }
+    }    
 
     public function isVerified(): bool
     {

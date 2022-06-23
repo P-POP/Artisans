@@ -13,7 +13,7 @@
                         <h2 class="fs-3 text-danger">Liste des Artisans</h2>
                     </div>
                     <div class="col-6 d-flex justify-content-end gap-2">
-                    {% if app.user == ['ROLE_MODERATOR'] %}
+                    {% if is_granted('ROLE_MODERATOR') %}
                         <a href="{{ path('app_new_artisan') }}" class="btn btn-outline-success my-auto">Ajouter un Artisan</a>
                     {% endif %}
                         
@@ -102,7 +102,7 @@
                             <div class="col-2 d-flex justify-content-center m-auto gap-2">
                             <a href="{{ path('app_details_artisans', { id:artisan.id }) }}" class="btn btn-outline-warning mb-3">Détails</a>
                             
-                            {% if  app.user == ['ROLE_MODERATOR'] %}
+                            {% if is_granted('ROLE_MODERATOR') %}
 
                              <a href="{{ path('app_edit_artisan', { id:artisan.id }) }}" class="btn btn-outline-success mb-3">Editer</a>
                                 <form action="{{ path('app_delete_artisan', { id:artisan.id }) }}" method="post" class="m-0 p-0">

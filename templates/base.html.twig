@@ -82,7 +82,8 @@
                                         <a class="nav-link text-warning" href="/admin">Administration</a>
 
                                     </li>
-                                {% elseif is_granted('ROLE_MODERATOR')%}
+                                {% endif %}
+                                {% if is_granted('ROLE_MODERATOR')%}
                                     <li class="nav-item">
                                         <a class="nav-link text-warning" href="{{ path('app_home') }}">Ma page artisan</a>
                                     </li>
