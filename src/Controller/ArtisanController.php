@@ -62,7 +62,7 @@ class ArtisanController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
+    //Modifier les données d'un artisan 
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
     {
@@ -83,10 +83,10 @@ class ArtisanController extends AbstractController
            	 'form'=> $form->createView()
         ]);
     }
-
+    //Supprimer un artisan
     #[Route('/artisan/delet/{id}', name:'app_delete_artisan', requirements: ['id'=> '\d+'], methods: ['POST'])]
     public function remove(Artisan $artisan, Request $request, ArtisanRepository $artisanRepository): RedirectResponse
-    {
+    {   //Cross Site Request Forgery Permet de sécuriser un session
         $tokenCsrf = $request->request->get('token');
         if ($this->isCsrfTokenValid('delete-artisan-'. $artisan->getId(), $tokenCsrf)){
 
@@ -98,9 +98,9 @@ class ArtisanController extends AbstractController
         return $this->redirectToRoute('app_artisan');
     }
 
-
+    //Obtenir le détail d'un artisan via le tableau
     #[Route('/artisan/{id}', name: 'app_details_artisans', requirements:["id"=>"\d+"])]
-    public function details( int $id, ArtisanRepository $artisanRepository )
+    public function details( int $id, ArtisanRepository $artisanRepository)
     {
         
         $mapAddress =[];
@@ -119,8 +119,8 @@ class ArtisanController extends AbstractController
         
         return $this->render('artisan/detailsArtisan.html.twig', [
            'artisanAddress'=> $mapAddress,
-           "artisan" => $artisans,
-           "oneArtisan" => $artisanRepository->find($id)
+           'oneArtisan' => $artisanRepository->find($id)
+           
         ]);
     }
 

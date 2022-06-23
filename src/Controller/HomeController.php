@@ -24,6 +24,10 @@ class HomeController extends AbstractController
 
         $lastArtisans = $artisanRepository->find2LastInserted();
 
+        $i = [1,2,3,4];
+
+        $lastArtisans = $artisanRepository->find2LastInserted();
+
         $mapAddress =[];
         $artisansAdress = $artisanRepository->findAll();
         
@@ -38,12 +42,14 @@ class HomeController extends AbstractController
             'i' => $i,
             'lastArtisans' => $lastArtisans,
             'artisansAdress' => $mapAddress,
-            'artisanType' => $typeRepository->findAll(),
-            
+
+            'artisanType' => $typeRepository->findAll()
+
         ]);
     }
 
     #[Route ('/type/{id}', name:'app_type_artisans', requirements:["id"=>"\d+"])]
+
     public function types(Type $type, ArtisanRepository $artisanRepository)
     
     {
@@ -52,5 +58,6 @@ class HomeController extends AbstractController
             'allArtisansFromType'=>$artisanRepository->findAll()
         ]);
     } 
+
 
 }

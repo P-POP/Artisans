@@ -4,17 +4,15 @@ namespace App\Entity;
 
 use App\Repository\ArtisanRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use DateTimeImmutable;
 use Doctrine\Common\Collections\Collection;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 use Vich\UploaderBundle\Entity\File as EntityFile;
 
+
 #[ORM\Entity(repositoryClass: ArtisanRepository::class)]
-#[Vich\Uploadable]
 class Artisan
 {
     #[ORM\Id]
@@ -49,6 +47,10 @@ class Artisan
     #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Owner::class)]
     private $owner;
 
+    #[ORM\ManyToOne(inversedBy: 'artisan',targetEntity: Type::class, cascade: ['persist', 'remove'])]
+    private $type;
+
+
     #[ORM\ManyToOne(targetEntity: Type::class, cascade: ['persist', 'remove'])]
     private $type;
 
@@ -67,6 +69,7 @@ class Artisan
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $updated_at;
+
 
     public function __construct()
     {
@@ -217,6 +220,7 @@ class Artisan
         return $this;
     }
 
+
     public function getProfileFile(): ?File
     {
         return $this->profileFile;
@@ -257,4 +261,5 @@ class Artisan
         return $this;
     }
     
+
 }

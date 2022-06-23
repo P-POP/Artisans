@@ -1,41 +1,107 @@
 
-  /*  
-   * Rating styles
-   */
-  /* .rating {
-      width: 226px;
-      margin: 0 auto 1em;
-      font-size: 30px;
-      overflow:hidden;
-  }
-  .rating a {
-      float: center;
-      color: #aaa;
-      text-decoration: none;
-      -webkit-transition: color .4s;
-      -moz-transition: color .4s;
-      -o-transition: color .4s;
-      transition: color .4s;
-  }
-  .rating a:hover,
-  .rating a:hover ~ a,
-  .rating a:focus,
-  .rating a:focus ~ a		{
-      color: goldenrod;
-      cursor: pointer;
-  }
-  .rating2 {
-      direction: rtl;
-  }
-  .rating2 a {
-      float:none
-  }
+/* Lien google font de la police décriture Raleway,  */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap');
+
+/* Couleurs configurées via le :root */
+:root {
+    --black: #000000; 
+    --withe: #FFFFFF;
+    --gray: #242424;
+    --medium-gray: #575756;
+    --medium-light-gray: #706f6f;
+    --light-gray: #e3e3e3;
+    --line-and-btn-gray: #c6c6c6;
+    --footer-gray: #3c3c3b;
+    --golden: goldenrod;
+}
+
+.test{
+    display: flex;
+
+}
+
+.titre-texte{
+    color: var(--golden);
+    font-size: 2em;
+    font-weight: 16rem;
+    text-transform: capitalize;
+}
+
+.titre-texte span{
+    color: var(--black);
+    font-size: 1.5em;
+    font-weight: 20rem;
+}
 
 
-  .avis{
-    
+.titre{
+    display: flex;
+    width: 100%;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
 
+.menu{
+    margin-top: -100px;
+    
+}
 
-  } */
+.menu .contenu{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 80px;
+}
+
+.menu .contenu .box{
+    width: 350px;
+    margin: 20px;
+    border: 20px solid var(--withe);
+    box-shadow: 20px 15px 35px var(--gray);
+}
+
+.menu .contenu .box .inbox{
+    position: relative;
+    width: 100%;
+    height: 20rem;
+}
+
+.menu .contenu .box .inbox img
+{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.menu .contenu .box .text{
+    text-align: center;
+    font-weight: 300px;
+    color: var(--gray);
+}
+
+.menu .contenu .box .text h3{
+    font-weight: 400;
+}
+
+.card-artisan-type {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  }
+
+  .card-artisan-type:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+
+  #img .square{
+
+    width : 30vw;
+    
+  }
+
+  
