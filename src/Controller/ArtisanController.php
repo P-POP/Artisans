@@ -96,7 +96,7 @@ class ArtisanController extends AbstractController
 
     //Obtenir le détail d'un artisan via le tableau
     #[Route('/artisan/{id}', name: 'app_details_artisans', requirements:["id"=>"\d+"])]
-    public function details( int $id, ArtisanRepository $artisanRepository)
+    public function details( int $id, ArtisanRepository $artisanRepository, OwnerRepository $ownerRepository)
     {
         $mapAddress =[];
         $artisans = $artisanRepository->findAll();

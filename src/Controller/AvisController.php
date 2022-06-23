@@ -37,9 +37,12 @@ class AvisController extends AbstractController
 
             return $this->render('avis/index.html.twig', [
                 'form'=> $form->createView(),
-                'a'
+                
                 
         ]);
+
+        // Redirige l'utilisateur vers une autre page selon le nom de la route
+        return $this->redirectToRoute('app_details_artisans');
     }
 }
 
