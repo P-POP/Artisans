@@ -38,9 +38,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 80)]
     private $pseudo;
 
+    #[ORM\OneToMany(mappedBy: 'maker', targetEntity: Artisan::class, orphanRemoval: true)]
+    private $artisans;
+
     public function __construct()
     {
         $this->Owner = new ArrayCollection();
+        $this->artisans = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -175,6 +179,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Artisan>
+     */
+    public function getArtisans(): Collection
+    {
+        return $this->artisans;
+    }
+
+    public function addArtisan(Artisan $artisan): self
+    {
+        if (!$this->artisans->contains($artisan)) {
+            $this->artisans[] = $artisan;
+            $artisan->setMaker($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtisan(Artisan $artisan): self
+    {
+        if ($this->artisans->removeElement($artisan)) {
+            // set the owning side to null (unless already changed)
+            if ($artisan->getMaker() === $this) {
+                $artisan->setMaker(null);
+            }
+        }
 
         return $this;
     }

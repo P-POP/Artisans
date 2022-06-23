@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserVoter extends Voter
 {
-    public const ADD = 'POST_ADD';
+    public const ADD = 'AVIS_ADD';
     public const EDIT = 'POST_EDIT';
 
     protected function supports(string $attribute, $subject): bool
@@ -24,17 +24,15 @@ class UserVoter extends Voter
         $user = $token->getUser();
         // if the user is anonymous, do grant access
         if (!$user instanceof UserInterface) {
-            return true;
+            return false;
         }
 
-        /** @var  Owner $owner */
-
-        $type = $subject;
+        $artisan = $subject;
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case self::ADD:
-                return true;
+                return $user == $artisan->getMaker();
                 break;
 
             case self::EDIT:
