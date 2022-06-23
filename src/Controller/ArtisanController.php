@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+
+#[IsGranted('ROLE_MODERATOR')]
 class ArtisanController extends AbstractController
 {
     #[Route('/artisan', name: 'app_artisan')]
@@ -61,7 +63,6 @@ class ArtisanController extends AbstractController
     }
 
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
-    #[IsGranted('ROLE_MODERATOR')]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request): Response
     {
         

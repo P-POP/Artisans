@@ -10,7 +10,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class ArtisanCrudController extends AbstractCrudController
 {
 
