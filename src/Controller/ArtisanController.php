@@ -9,11 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\ArtisanRepository;
-use App\Repository\OwnerRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+
+#[IsGranted('ROLE_MODERATOR')]
 class ArtisanController extends AbstractController
 {
     #[Route('/artisan', name: 'app_artisan')]
@@ -64,11 +65,13 @@ class ArtisanController extends AbstractController
     }
     //Modifier les données d'un artisan 
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
-    public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
+    public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request): Response
     {
+
 
         
 	    $form=$this->createForm(ArtisanFormType::class, $artisan);
+
 	    $form->handleRequest($request); 
 	    if ($form->isSubmitted() && $form->isValid()) {
 
@@ -81,6 +84,9 @@ class ArtisanController extends AbstractController
 
         	return $this->render('artisan/edit.html.twig', [
            	 'form'=> $form->createView()
+                
+             
+
         ]);
     }
     //Supprimer un artisan
@@ -135,6 +141,7 @@ class ArtisanController extends AbstractController
         ]);
     } */
 
+    
 }
   
 

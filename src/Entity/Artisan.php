@@ -211,6 +211,9 @@ class Artisan
 
 
     public function getUpdatedAt(): ?\DateTimeImmutable
+
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updated_at;
     }
@@ -223,6 +226,7 @@ class Artisan
     }
 
     public function getMaker(): ?User
+
 
     {
         return $this->maker;
@@ -237,3 +241,6 @@ class Artisan
     
 
 }
+
+
+
