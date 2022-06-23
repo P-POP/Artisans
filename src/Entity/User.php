@@ -3,13 +3,13 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -26,8 +26,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Owner::class, orphanRemoval: true)]
+    private $Owner;
+
+    #[ORM\Column(type: 'string', length: 80)]
+    private $lastName;
+
+    #[ORM\Column(type: 'string', length: 80)]
+    private $firstName;
+
+    #[ORM\Column(type: 'string', length: 80)]
+    private $pseudo;
+
+
+    #[ORM\OneToMany(mappedBy: 'maker', targetEntity: Artisan::class, orphanRemoval: true)]
+    private $artisans;
+
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
+
+
+    public function __construct()
+    {
+        $this->Owner = new ArrayCollection();
+        $this->artisans = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -99,6 +122,89 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    /**
+     * @return Collection<int, Owner>
+     */
+    public function getOwner(): Collection
+    {
+        return $this->Owner;
+    }
+
+    public function addOwner(Owner $owner): self
+    {
+        if (!$this->Owner->contains($owner)) {
+            $this->Owner[] = $owner;
+            $owner->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOwner(Owner $owner): self
+    {
+        if ($this->Owner->removeElement($owner)) {
+            // set the owning side to null (unless already changed)
+            if ($owner->getUser() === $this) {
+                $owner->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): self
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    public function getFisrtName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFisrtName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+
+    /**
+     * @return Collection<int, Artisan>
+     */
+    public function getArtisans(): Collection
+    {
+        return $this->artisans;
+    }
+
+    public function addArtisan(Artisan $artisan): self
+    {
+        if (!$this->artisans->contains($artisan)) {
+            $this->artisans[] = $artisan;
+            $artisan->setMaker($this);
+        }
+    }    
+
     public function isVerified(): bool
     {
         return $this->isVerified;
@@ -108,6 +214,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->isVerified = $isVerified;
 
+
         return $this;
     }
+
+
+    public function removeArtisan(Artisan $artisan): self
+    {
+        if ($this->artisans->removeElement($artisan)) {
+            // set the owning side to null (unless already changed)
+            if ($artisan->getMaker() === $this) {
+                $artisan->setMaker(null);
+            }
+        }
+
+        return $this;
+    }
+
 }
