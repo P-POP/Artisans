@@ -51,7 +51,7 @@ class Artisan
     #[ORM\ManyToOne(targetEntity: Type::class, cascade: ['persist', 'remove'])]
     private $type;
 
-    #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'profile')]
+    #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'cover')]
     #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
     #[Assert\File(
         maxSize: '1M', 
