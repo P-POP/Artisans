@@ -17,7 +17,8 @@ class Type
     #[ORM\Column(type: 'string', length: 50)]
     private $name;
     
-    #[ORM\OneToMany(mappedBy: 'type', targetEntity: Artisan::class, orphanRemoval: true)]
+
+    #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Artisan::class, orphanRemoval: true)]
     private $artisan;
 
     public function getId(): ?int
@@ -66,4 +67,6 @@ class Type
 
         return $this;
     }
+
 }
+

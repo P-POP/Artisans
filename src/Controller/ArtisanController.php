@@ -19,6 +19,8 @@ class ArtisanController extends AbstractController
     #[Route('/artisan', name: 'app_artisan')]
     public function index(ArtisanRepository $artisanRepository, PaginatorInterface $paginatorInterface, Request $request ): Response
     {
+        
+
         $artisans = $paginatorInterface->paginate(
             $artisanRepository->findAll(), //Requête SQL/DQL
             $request->query->getInt('page', 1), //Numéritation des pages 
@@ -49,8 +51,8 @@ class ArtisanController extends AbstractController
                'L\'artisan a bien été ajouté !'
             );
 
-            $artisan = new Artisan();
-            $form = $this->createForm(ArtisanFormType::class, $artisan());
+            //$artisan = new Artisan();
+            //$form = $this->createForm(ArtisanFormType::class, $artisan());
 
             return $this->redirectToRoute('app_artisan');
             
@@ -64,6 +66,8 @@ class ArtisanController extends AbstractController
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
     public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
     {
+
+        
 	    $form=$this->createForm(ArtisanFormType::class, $artisan);
 	    $form->handleRequest($request); 
 	    if ($form->isSubmitted() && $form->isValid()) {
@@ -98,6 +102,7 @@ class ArtisanController extends AbstractController
     #[Route('/artisan/{id}', name: 'app_details_artisans', requirements:["id"=>"\d+"])]
     public function details( int $id, ArtisanRepository $artisanRepository)
     {
+        
         $mapAddress =[];
         $artisans = $artisanRepository->findAll();
         
