@@ -29,7 +29,7 @@ class ArtisanCrudController extends AbstractCrudController
             TextField::new('name', 'nom'),
             TextField::new('address'),
             NumberField::new('phone'),
-            EmailField::new('email'),            
+            EmailField::new('email'),
             TextEditorField::new('description'),
             TextField::new('profileFile', 'image')
             ->setFormType(VichImageType::class)

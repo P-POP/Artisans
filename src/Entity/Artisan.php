@@ -44,6 +44,7 @@ class Artisan
     #[ORM\Column(type: 'text', nullable: true)]
     private $cover;
 
+
     
     #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Owner::class)]
     private $owner;
@@ -58,6 +59,7 @@ class Artisan
         maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}'
     )]
     private $profileFile;
+
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $updated_at;
@@ -138,6 +140,7 @@ class Artisan
     }
 
 
+
     public function getCover(): ?string
     {
         return $this->cover;
@@ -210,7 +213,6 @@ class Artisan
     }
 
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
 
 
     public function getUpdatedAt(): ?\DateTimeImmutable
