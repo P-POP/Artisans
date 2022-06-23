@@ -36,6 +36,8 @@ Site de référencement d'artisans dans un quartier défini.
 
 > `composer require liip/imagine-bundle`
 
+> `composer require easycorp/easyadmin-bundle`
+
 > `symfony console doctrine:schema:update --force`
 
 > `symfony console doctrine:fixtures:load`
@@ -771,7 +773,6 @@ Position :
 
 - Pour initaliser le projet, entrez :
 
-> `composer require vich/uploader-bundle`
 > `composer require easycorp/easyadmin-bundle`
 
 - Installation VichUploader:

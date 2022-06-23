@@ -9,16 +9,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\ArtisanRepository;
-use App\Repository\OwnerRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+
+#[IsGranted('ROLE_MODERATOR')]
 class ArtisanController extends AbstractController
 {
     #[Route('/artisan', name: 'app_artisan')]
     public function index(ArtisanRepository $artisanRepository, PaginatorInterface $paginatorInterface, Request $request ): Response
     {
+        
+
         $artisans = $paginatorInterface->paginate(
             $artisanRepository->findAll(), //Requête SQL/DQL
             $request->query->getInt('page', 1), //Numéritation des pages 
@@ -49,8 +52,8 @@ class ArtisanController extends AbstractController
                'L\'artisan a bien été ajouté !'
             );
 
-            $artisan = new Artisan();
-            $form = $this->createForm(ArtisanFormType::class, $artisan());
+            //$artisan = new Artisan();
+            //$form = $this->createForm(ArtisanFormType::class, $artisan());
 
             return $this->redirectToRoute('app_artisan');
             
@@ -60,11 +63,15 @@ class ArtisanController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
+    //Modifier les données d'un artisan 
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
-    public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
+    public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request): Response
     {
+
+
+        
 	    $form=$this->createForm(ArtisanFormType::class, $artisan);
+
 	    $form->handleRequest($request); 
 	    if ($form->isSubmitted() && $form->isValid()) {
 
@@ -77,12 +84,15 @@ class ArtisanController extends AbstractController
 
         	return $this->render('artisan/edit.html.twig', [
            	 'form'=> $form->createView()
+                
+             
+
         ]);
     }
-
+    //Supprimer un artisan
     #[Route('/artisan/delet/{id}', name:'app_delete_artisan', requirements: ['id'=> '\d+'], methods: ['POST'])]
     public function remove(Artisan $artisan, Request $request, ArtisanRepository $artisanRepository): RedirectResponse
-    {
+    {   //Cross Site Request Forgery Permet de sécuriser un session
         $tokenCsrf = $request->request->get('token');
         if ($this->isCsrfTokenValid('delete-artisan-'. $artisan->getId(), $tokenCsrf)){
 
@@ -94,10 +104,11 @@ class ArtisanController extends AbstractController
         return $this->redirectToRoute('app_artisan');
     }
 
-
+    //Obtenir le détail d'un artisan via le tableau
     #[Route('/artisan/{id}', name: 'app_details_artisans', requirements:["id"=>"\d+"])]
-    public function details( int $id, ArtisanRepository $artisanRepository )
+    public function details( int $id, ArtisanRepository $artisanRepository)
     {
+        
         $mapAddress =[];
         $artisans = $artisanRepository->findAll();
         
@@ -114,8 +125,8 @@ class ArtisanController extends AbstractController
         
         return $this->render('artisan/detailsArtisan.html.twig', [
            'artisanAddress'=> $mapAddress,
-           "artisan" => $artisans,
-           "oneArtisan" => $artisanRepository->find($id)
+           'oneArtisan' => $artisanRepository->find($id)
+           
         ]);
     }
 
@@ -130,6 +141,7 @@ class ArtisanController extends AbstractController
         ]);
     } */
 
+    
 }
   
 

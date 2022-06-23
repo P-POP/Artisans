@@ -7,7 +7,7 @@
 
 <div class="example-wrapper container">
     
-
+    
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
                     {{ message }}
@@ -38,11 +38,11 @@
 
             </div>
 
-            <div class="mb-3">
+            {# <div class="mb-3">
 
                 {{ form_label(form.artisan) }}
                 {{ form_widget(form.artisan) }}
-                {{ form_errors(form.artisan) }}
+                {{ form_errors(form.artisan) }} #}
 
             </div>
 

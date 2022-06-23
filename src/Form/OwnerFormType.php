@@ -23,10 +23,10 @@ class OwnerFormType extends AbstractType
                 'label'=> 'Déposez un avis',
                 'required' => false
             ])
-            ->add('artisan', EntityType::class, [
-                'class' => Artisan::class,
-                'choice_label' => 'name',
-            ])
+            //->add('artisan', EntityType::class, [
+                //'class' => Artisan::class,
+               // 'choice_label' => 'name',
+           // ])
             ->add('score', ChoiceType::class, [
                 'label'=> 'Attribuez une note générale: 
                 ★ Mauvais - ★★★★★ Excellent!',
@@ -54,6 +54,8 @@ class OwnerFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Owner::class,
+        
+
         ]);
     }
 }
