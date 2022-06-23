@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Artisan;
+use App\Entity\Type;
 use App\Repository\ArtisanRepository;
 use App\Repository\TypeRepository;
 use App\Repository\UserRepository;
@@ -18,7 +19,10 @@ class HomeController extends AbstractController
 
     public function maps(ArtisanRepository $artisanRepository, TypeRepository $typeRepository, UserRepository $userRepository):Response
     {
-        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
+        
+        $i = [1,2,3,4];
+
+        $lastArtisans = $artisanRepository->find2LastInserted();
 
         $i = [1,2,3,4];
 
@@ -38,24 +42,24 @@ class HomeController extends AbstractController
             'i' => $i,
             'lastArtisans' => $lastArtisans,
             'artisansAdress' => $mapAddress,
-            'artisanType' => $typeRepository->findAll(),
-            
+
+
+            'artisanType' => $typeRepository->findAll()
+
+
         ]);
     }
 
     #[Route ('/type/{id}', name:'app_type_artisans', requirements:["id"=>"\d+"])]
-    public function types( int $id, TypeRepository $typeRepository, ArtisanRepository $artisanRepository)
+
+    public function types(Type $type, ArtisanRepository $artisanRepository)
     
     {
-        $this->denyAccessUnlessGranted("POST_VIEW", $this->getUser());
-        
         return $this->render('artisan/typeArtisan.html.twig', [
-            'type'=>$typeRepository->find($id),
+            'type'=> $type,
             'allArtisansFromType'=>$artisanRepository->findAll()
-            
-
-            
         ]);
     } 
+
 
 }
