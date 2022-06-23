@@ -13,7 +13,10 @@
                         <h2 class="fs-3 text-danger">Liste des Artisans</h2>
                     </div>
                     <div class="col-6 d-flex justify-content-end gap-2">
+                    {% if app.user == ['ROLE_MODERATOR'] %}
                         <a href="{{ path('app_new_artisan') }}" class="btn btn-outline-success my-auto">Ajouter un Artisan</a>
+                    {% endif %}
+                        
                         <a href="{{ path('app_home') }}" class="btn btn-outline-danger my-auto">Retour</a>
                         <form methode="GET" class="my-auto">
                             <input type="hidden" name="page" value="{{ app.request.query.get('page', 1) }}">

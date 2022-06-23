@@ -16,7 +16,7 @@ class UserVoter extends Voter
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
         return in_array($attribute, [self::ADD, self::EDIT])
-            && $subject instanceof \App\Entity\User;
+            && $subject instanceof \App\Entity\Artisan;
     }
 
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
@@ -32,7 +32,7 @@ class UserVoter extends Voter
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
             case self::ADD:
-                return $user == $artisan->getMaker();
+                return $user !== $artisan->getMaker();
                 break;
 
             case self::EDIT:
