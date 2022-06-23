@@ -7,15 +7,12 @@
 {% block body %}
 <main>
 
-    <div class="container">
+   
 
-        <div class="row d-lg-flex">
+        <div class="row d-lg-flex pt-5">
             <div class="col-12 col-lg-6 mt-4">
             <div class="row align-items-center carousel slide" data-bs-ride="carousel">
                     <div class="col left carousel-control leftArrow" role="button">
-                        <svg xmlns="http://www.w3.org/2000/svg"  width="30" height="30" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"/>
-                        </svg>
                     </div>
                     <div class="carousel-inner col" id="img">
                         <div class=" carousel-item  active">
@@ -29,9 +26,6 @@
                         </div>
                     </div>
                     <div class="col right carousel-control rightArrow" role="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8zm-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5z"/>
-                        </svg>
                     </div>
                 </div>
             </div>
@@ -44,13 +38,12 @@
     
 
 
-<section class="avis h=200">
+<section class="avis m-5 pt-5">
 
     <h3 class="mt-5">Tous les avis</h3>
     
     {% for owner in oneArtisan.owner %}
 
-        
 
         <ul>
             <li>{{ owner.avis }} - Note: {{ owner.score }}/5 
@@ -86,7 +79,7 @@
 
         </div>
 
-        </div>
+
     </main>
 </section>
 

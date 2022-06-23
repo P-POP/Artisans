@@ -32,6 +32,8 @@ class AvisController extends AbstractController
             
 
             if($form->isSubmitted() && $form->isValid()) {
+                $avis->setUser($this->getUser());
+                $avis->setArtisan($artisan);
                 $ownerRepository->add($avis, true);
                 $this->addFlash('sucess', 'Merci pour votre avis');
 

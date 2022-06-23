@@ -1,6 +1,4 @@
-
-/* Lien google font de la police décriture Raleway,  */
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;300;400;500;600&display=swap%27');
 
 /* Couleurs configurées via le :root */
 :root {
@@ -43,34 +41,33 @@
 }
 
 
-.menu{
+.menue{
     margin-top: -100px;
-    
+
 }
 
-.menu .contenu{
+.menue .contenu{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     margin-top: 80px;
 }
 
-.menu .contenu .box{
+.menue .contenu .box{
     width: 350px;
     margin: 20px;
     border: 20px solid var(--withe);
     box-shadow: 20px 15px 35px var(--gray);
 }
 
-.menu .contenu .box .inbox{
+.menue .contenu .box .inbox{
     position: relative;
     width: 100%;
     height: 20rem;
 }
 
-.menu .contenu .box .inbox img
+.menue .contenu .box .inbox img
 {
-    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -78,13 +75,13 @@
     object-fit: cover;
 }
 
-.menu .contenu .box .text{
+.menue .contenu .box .text{
     text-align: center;
     font-weight: 300px;
     color: var(--gray);
 }
 
-.menu .contenu .box .text h3{
+.menue .contenu .box .text h3{
     font-weight: 400;
 }
 
@@ -98,10 +95,12 @@
   }
 
 
-  #img .square{
+.block{
+    justify-content: center;
 
-    width : 30vw;
-    
-  }
+}
+.text{
+    text-align: center;
 
-  
+
+}
