@@ -425,6 +425,16 @@ footer p{
     width: 100%;
 }
 
+.profile{
+width: 250px; /* Largeur */
+height: 250px; /* Hauteur */
+border-radius: 100%;
+object-fit: cover;
+
+}
+
+
+
 /* Version Ordinateur */
 @media screen and (min-width: 1280px) {
 
@@ -660,3 +670,4 @@ footer p{
         font-weight: 200;
     }
 }
+

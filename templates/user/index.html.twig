@@ -5,19 +5,23 @@
 {% endblock %}
 
 {% block body %}
-
-<div class="row">
-   <div class="col">
-       <img src="./images/oiseaux.jpg" alt="oiseaux">
-
-
+    
+    
+    
+    <div class="row">
     <div class="col">
-    <p class="text-center text-secondary">{{app.user.id}}</p>
+      <img src="{{ asset('images/profile.jpg') }}" alt="Profile" class="img-fluid rounded mb-3 profile">
     </div>
 
-    
-    <div class="col">
-    <p class="text-center text-secondary">{{app.user.email}}</p>
-    </div>
-    
-{% endblock %}
+
+
+        <div class="col">
+        <p class="text-center text-secondary">{{app.user.id}}</p>
+        </div>
+
+        
+        <div class="col">
+        <p class="text-center text-secondary">{{app.user.email}}</p>
+        </div>
+        
+    {% endblock %}
