@@ -80,7 +80,7 @@
                                     </li>
                                 {% elseif is_granted('ROLE_MODERATOR')%}
                                     <li class="nav-item">
-                                        <a class="nav-link text-warning" href="{{ path('app_artisan_mapage') }}">Ma page artisan</a>
+                                        <a class="nav-link text-warning" href="{{ path('app_edit_artisan', {id: app.user.id}) }}">Ma page artisan</a>
                                     </li>
                                 {% endif %}
                                 <li class="nav-item">

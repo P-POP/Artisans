@@ -62,9 +62,10 @@ class ArtisanController extends AbstractController
 
     #[Route('/artisan/edit/{id}', name: 'app_edit_artisan', requirements:["id"=>"\d+"])]
     #[IsGranted('ROLE_MODERATOR')]
-    public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request, int $id )
+    public function edit (Artisan $artisan, ArtisanRepository $artisanRepository, Request $request): Response
     {
-	    $form=$this->createForm(ArtisanFormType::class, $artisan);
+        
+        $form=$this->createForm(ArtisanFormType::class, $artisan);
 	    $form->handleRequest($request); 
 	    if ($form->isSubmitted() && $form->isValid()) {
 
@@ -76,8 +77,10 @@ class ArtisanController extends AbstractController
         }
 
         	return $this->render('artisan/edit.html.twig', [
-           	 'form'=> $form->createView(),
+           	 'form'=> $form->createView()
+                
              
+
         ]);
     }
 
