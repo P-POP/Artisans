@@ -39,12 +39,6 @@ class Artisan
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $cover;
-
-    #[Vich\UploadableField(mapping: 'artisans', fileNameProperty: 'cover')]
-    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
-    #[Assert\File(maxSize: '1M', maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}')]
-    private $coverFile;
-
     
     #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Owner::class)]
     private $owner;
@@ -59,11 +53,6 @@ class Artisan
         maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }} {{ suffix }}'
     )]
     private $profileFile;
-
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    #[Assert\Image(mimeTypesMessage: 'Ceci n\'est pas une image')]
-    #[Assert\File(maxSize: '1M', maxSizeMessage: 'Cette image ne doit pas dépasser les {{ limit }}')]
-    private $Profile;
 
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $updated_at;
@@ -138,31 +127,6 @@ class Artisan
         return $this;
     }
 
-    /**
-     * Get the value of coverFile
-     */ 
-    public function getCoverFile(): ?File 
-    {
-        return $this->coverFile;
-    }
-
-    /**
-     * Set the value of coverFile
-     *
-     * @return  self
-     */ 
-    public function setCoverFile(?File $coverFile = null)
-    {
-        $this->coverFile = $coverFile;
-
-        if ($coverFile !== null) {
-            $this->updated_at = new DateTimeImmutable();
-
-        }
-
-        return $this;
-    }
-
     public function getCover(): ?string
     {
         return $this->cover;
@@ -229,18 +193,6 @@ class Artisan
         if ($profileFile !== null) {
             $this->updated_at = new DateTimeImmutable();
         }
-
-        return $this;
-    }
-
-    public function getProfile(): ?string
-    {
-        return $this->Profile;
-    }
-
-    public function setProfile(?string $Profile): self
-    {
-        $this->Profile = $Profile;
 
         return $this;
     }
