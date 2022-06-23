@@ -5,12 +5,20 @@ namespace App\Security\Voter;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\Security;
 
 class UserVoter extends Voter
 {
     public const VIEW = 'POST_VIEW';
     public const ADD = 'POST_ADD';
     public const EDIT = 'POST_EDIT';
+
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
 
     protected function supports(string $attribute, $subject): bool
     {
@@ -28,6 +36,11 @@ class UserVoter extends Voter
             return false;
         }
 
+        // Si ADMIN, alors il a toutes les autorisations
+        if ($this->security->isGranted('ROLE_ADMIN')) {
+            return true;
+        }
+
         /** @var  Owner $owner */
 
         $owner = $subject;
@@ -35,7 +48,7 @@ class UserVoter extends Voter
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
 
-            case self::VIEW:
+            /* case self::VIEW:
                 return $owner->getAvis() === $user->getOwner();
                 break;
             
@@ -45,7 +58,7 @@ class UserVoter extends Voter
 
             case self::EDIT:
                 return $owner->getAvis() === $user->getOwner();
-                break;
+                break; */
             
         }
 
