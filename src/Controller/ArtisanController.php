@@ -134,14 +134,7 @@ class ArtisanController extends AbstractController
         ]);
     } */
 
-    #[Route('/artisan/mapage', name: 'app_artisan_mapage')]
-    public function mapage()
-    {
-        
-        return $this->render('artisan/mapageartisan.html.twig');
-            
-    }
-
+    
 }
   
 
