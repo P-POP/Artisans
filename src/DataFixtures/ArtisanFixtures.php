@@ -3,14 +3,18 @@
 namespace App\DataFixtures;
 
 use App\Entity\Artisan;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ArtisanFixtures extends Fixture
+class ArtisanFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
+
+        
+        
         for ($i=0; $i<10; $i++){
 
 
@@ -22,10 +26,16 @@ class ArtisanFixtures extends Fixture
            $artisans->setEmail("email@_$i");
            $artisans->setDescription("Description_$i");
            $artisans->setCover("Description_$i");
+           $artisans->setMaker($this->getReference("user_".  rand(0, 9)));
            // Met de côté les données en attente d'insertion
            $manager->persist($artisans);
        }
 
        $manager->flush();
+    }
+    public function getDependencies(){
+        return [
+            UserFixtures::class
+        ];
     }
 }

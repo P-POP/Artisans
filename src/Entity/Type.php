@@ -17,6 +17,7 @@ class Type
     #[ORM\Column(type: 'string', length: 50)]
     private $name;
     
+
     #[ORM\OneToMany(mappedBy: 'artisan', targetEntity: Artisan::class, orphanRemoval: true)]
     private $artisan;
 
@@ -66,4 +67,6 @@ class Type
 
         return $this;
     }
+
 }
+
